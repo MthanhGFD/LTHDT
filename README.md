@@ -1,6 +1,6 @@
 # Lập trình hướng đối tượng 2025-2026
 *Quản lí bán vé máy bay:*
-  1. Chuyến bay ✅
+  1. Chuyến bay
   2. Hãng hàng không
   3. Máy bay
   4. Ghế
