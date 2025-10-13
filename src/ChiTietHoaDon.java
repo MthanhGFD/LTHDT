@@ -1,4 +1,4 @@
-package LTHDT.source;
+package src;
 
 public class ChiTietHoaDon {
     
