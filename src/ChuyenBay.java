@@ -1,5 +1,2 @@
-package src;
-
-public class ChuyenBay {
-    
+public class ChuyenBay {    
 }
