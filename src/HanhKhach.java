@@ -1,5 +1,6 @@
 package src;
 
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class HanhKhach {
@@ -10,22 +11,24 @@ public class HanhKhach {
         h1.outputHanhKhach();
     }
 
-    private String maHanhKhach, ho, ten, danhxung, cccd, sdt, loaiHanhKhach;
+    private String maHanhKhach, ho, ten, ngaysinh, danhxung, cccd, sdt, loaiHanhKhach;
 
     public HanhKhach() {
         this.maHanhKhach = "";
         this.ho = "";
         this.ten = "";
+        this.ngaysinh = "";
         this.danhxung = "";
         this.cccd = "";
         this.sdt = "";
         this.loaiHanhKhach = "";
     }
 
-    public HanhKhach(String maHanhKhach, String ho, String ten, String danhxung, String cccd, String sdt, String loaiHanhKhach) {
+    public HanhKhach(String maHanhKhach, String ho, String ten, String ngaysinh, String danhxung, String cccd, String sdt, String loaiHanhKhach) {
         this.maHanhKhach = maHanhKhach;
         this.ho = ho;
         this.ten = ten;
+        this.ngaysinh = ngaysinh;
         this.danhxung = danhxung;
         this.cccd = cccd;
         this.sdt = sdt;
@@ -36,6 +39,7 @@ public class HanhKhach {
         this.maHanhKhach = other.maHanhKhach;
         this.ho = other.ho;
         this.ten = other.ten;
+        this.ngaysinh = other.ngaysinh;
         this.danhxung = other.danhxung;
         this.cccd = other.cccd;
         this.sdt = other.sdt;
@@ -50,6 +54,8 @@ public class HanhKhach {
         this.ho = scanner.nextLine();
         System.out.print("Nhập tên: ");
         this.ten = scanner.nextLine();
+        System.out.print("Nhập ngày sinh(dd-mm-yy): ");
+        this.ngaysinh = scanner.nextLine();
         System.out.print("Nhập danh xưng: ");
         this.danhxung = scanner.nextLine();
         System.out.print("Nhập căn cước công dân: ");
@@ -61,10 +67,14 @@ public class HanhKhach {
     }
 
     public void outputHanhKhach() {
-        String fmt = "| %-15s | %-40s | %-10s | %-10s | %-15s | %-15s | %-15s |%n";
+        String fmt = "| %-15s | %-30s | %-10s | %-10s | %-10s | %-15s | %-15s | %-15s |%n";
         System.out.println("+-----------------+------------------------------------------+------------+------------+-----------------+-----------------+-----------------+");
-        System.out.printf(fmt, maHanhKhach, ho, ten, danhxung, cccd, sdt, loaiHanhKhach);
+        System.out.printf(fmt, maHanhKhach, ho, ngaysinh, ten, danhxung, cccd, sdt, loaiHanhKhach);
         System.out.println("+-----------------+------------------------------------------+------------+------------+-----------------+-----------------+-----------------+");
+    }
+    
+    public int tuoi(){
+        return LocalDate.now().getYear() - Integer.parseInt(ngaysinh);
     }
 
     public String getMaHanhKhach() {
@@ -91,20 +101,30 @@ public class HanhKhach {
         this.ten = ten;
     }
 
+    public String getNgaysinh() {
+        return ngaysinh;
+    }
+
+    public void setNgaysinh(String ngaysinh) {
+        this.ngaysinh = ngaysinh;
+    }
+
+    public String getCccd() {
+        return cccd;
+    }
+
+    public void setCccd(String cccd) {
+        this.cccd = cccd;
+    }
+
+    
+    
     public String getDanhxung() {
         return danhxung;
     }
 
     public void setDanhxung(String danhxung) {
         this.danhxung = danhxung;
-    }
-
-    public String getCCCD() {
-        return cccd;
-    }
-
-    public void setCCCD(String cccd) {
-        this.cccd = cccd;
     }
 
     public String getSdt() {

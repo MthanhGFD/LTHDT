@@ -29,11 +29,11 @@ public class Ghe{
         this.maghe = scanner.nextLine();
         System.out.print("Nhập vị trí ghế: ");
         this.vitrighe = scanner.nextLine();
-        // Không nhập thông tin MayBay tại đây
-        // this.maybay = ... (nhập hoặc gán từ bên ngoài nếu cần)
+        System.out.print("Nhập mã số máy bay: ");
+        maybay.setMaMayBay(scanner.nextLine());
     }
 
-     public void outputGhe() {
+    public void outputGhe() {
         String fmt = "| %-15s | %-20s | %-20s |%\n";
         System.out.println("+-----------------+----------------------+----------------------+");
         System.out.printf(fmt, maghe, vitrighe, maybay.getMaMayBay() );
