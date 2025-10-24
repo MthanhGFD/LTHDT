@@ -4,12 +4,6 @@ import java.time.LocalDate;
 import java.util.Scanner;
 
 public class HanhKhach {
-    
-    public static void main(String[] args) {
-        HanhKhach h1 = new HanhKhach();
-        h1.inputHanhKhach();
-        h1.outputHanhKhach();
-    }
 
     private String maHanhKhach, ho, ten, ngaysinh, danhxung, cccd, sdt, loaiHanhKhach;
 
@@ -46,7 +40,7 @@ public class HanhKhach {
         this.loaiHanhKhach = other.loaiHanhKhach;
     }
 
-    public void inputHanhKhach() {
+    public void nhapHanhKhach() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Nhập mã Hành Khách: ");
         this.maHanhKhach = scanner.nextLine();
@@ -62,19 +56,24 @@ public class HanhKhach {
         this.cccd = scanner.nextLine();
         System.out.print("Nhập số điện thoại: ");
         this.sdt = scanner.nextLine();
-        System.out.print("Nhập loại Hành Khách: ");
-        this.loaiHanhKhach = scanner.nextLine();
+        // chổ này là làm loại hành khách
+        System.out.println("===================================");
     }
 
-    public void outputHanhKhach() {
+    public void xuatHanhKhach() {
         String fmt = "| %-15s | %-30s | %-10s | %-10s | %-10s | %-15s | %-15s | %-15s |%n";
         System.out.println("+-----------------+------------------------------------------+------------+------------+-----------------+-----------------+-----------------+");
-        System.out.printf(fmt, maHanhKhach, ho, ngaysinh, ten, danhxung, cccd, sdt, loaiHanhKhach);
+        System.out.printf(fmt, maHanhKhach, ho, ten, ngaysinh, danhxung, cccd, sdt, loaiHanhKhach);
         System.out.println("+-----------------+------------------------------------------+------------+------------+-----------------+-----------------+-----------------+");
     }
-    
-    public int tuoi(){
+
+    public int tuoi() {
         return LocalDate.now().getYear() - Integer.parseInt(ngaysinh);
+    }
+
+    @Override
+    public String toString() {
+        return maHanhKhach + "," + ho + "," + ten + "," + ngaysinh + "," + danhxung + "," + cccd + "," + sdt + "," + loaiHanhKhach;
     }
 
     public String getMaHanhKhach() {
@@ -117,8 +116,6 @@ public class HanhKhach {
         this.cccd = cccd;
     }
 
-    
-    
     public String getDanhxung() {
         return danhxung;
     }
