@@ -21,13 +21,13 @@ public class ChuyenBay {
         sanbay = new SanBay();
     }
 
-    public ChuyenBay(String machuyenbay, String diemkhoihanh, String diemden, String ngaykhoihanh, String giokhoihanh, String tinhtrang, MayBay maybay, HangHangKhong hanghangkhong, SanBay sanbay) {
+    public ChuyenBay(String machuyenbay, String diemkhoihanh, String diemden, String ngaykhoihanh, String giokhoihanh, MayBay maybay, HangHangKhong hanghangkhong, SanBay sanbay) {
         this.machuyenbay = machuyenbay;
         this.diemkhoihanh = diemkhoihanh;
         this.diemden = diemden;
         this.ngaykhoihanh = ngaykhoihanh;
         this.giokhoihanh = giokhoihanh;
-        this.tinhtrang = tinhtrang;
+        this.tinhtrang = "hoạt động";
         this.maybay = maybay;
         this.hanghangkhong = hanghangkhong;
         this.sanbay = sanbay;
@@ -45,28 +45,18 @@ public class ChuyenBay {
         sanbay = cb1.sanbay;
     }
 
-    public void inputChuyenBay() {
+    public void nhapChuyenBay() {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Nhập mã chuyến bay: ");
-        machuyenbay = sc.nextLine();
         System.out.print("Nhập điểm khởi hành: ");
         diemkhoihanh = sc.nextLine();
         System.out.print("Nhập ngày khởi hành(dd-mm-yy): ");
         ngaykhoihanh = sc.nextLine();
         System.out.print("Nhập giờ khởi hành(hh:pp:ss): ");
         giokhoihanh = sc.nextLine();
-//        System.out.print("Nhập tình trạng: ");
-//        tinhtrang = sc.nextLine();
-        System.out.print("Nhập mã máy bay:");
-        maybay.setMaMayBay(sc.nextLine());
         System.out.print("Nhập mã hãng hàng không: ");
-        hanghangkhong.setMaHang(sc.nextLine());
-        System.out.print("nhập mã sân bay: ");
-        sanbay.setMaSanBay(sc.nextLine());
-        
     }
 
-    public void outputChuyenBay() {
+    public void xuatChuyenBay() {
         String fmt = "| %-12s | %-15s | %-12s | %-10s | %-10s | %-15s | %-20s | %-10s |%n";
         System.out.println("+--------------+-----------------+--------------+------------+------------+-----------------+----------------------+------------+");
         System.out.printf(fmt, machuyenbay, diemkhoihanh, ngaykhoihanh, giokhoihanh, tinhtrang, maybay.getMaMayBay(), hanghangkhong.getMaHang(), sanbay.getMaSanBay());
