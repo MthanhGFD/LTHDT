@@ -6,31 +6,31 @@ public class HoaDonVe {
 
     private String mahoadon, ngaynhap;
     private int soluongve;
-    private HanhKhach hanhkhach;
-    private ChuyenBay chuyenbay;
+    private String mahanhkhach;
+    private String machuyenbay;
 
     public HoaDonVe() {
         mahoadon = "";
         ngaynhap = "";
         soluongve = 0;
-        hanhkhach = new HanhKhach();
-        chuyenbay = new ChuyenBay();
+        mahanhkhach = "";
+        machuyenbay = "";
     }
 
-    public HoaDonVe(String mahoadon, String ngaynhap, int soluongve, HanhKhach hanhkhach, ChuyenBay chuyenbay) {
+    public HoaDonVe(String mahoadon, String ngaynhap, int soluongve, String mahanhkhach, String machuyenbay) {
         this.mahoadon = mahoadon;
         this.ngaynhap = ngaynhap;
         this.soluongve = soluongve;
-        this.hanhkhach = hanhkhach;
-        this.chuyenbay = chuyenbay;
+        this.mahanhkhach = mahanhkhach;
+        this.machuyenbay = machuyenbay;
     }
 
     public HoaDonVe(HoaDonVe hd1) {
         mahoadon = hd1.mahoadon;
         ngaynhap = hd1.ngaynhap;
         soluongve = hd1.soluongve;
-        hanhkhach = hd1.hanhkhach;
-        chuyenbay = hd1.chuyenbay;
+        mahanhkhach = hd1.mahanhkhach;
+        machuyenbay = hd1.machuyenbay;
     }
 
     public void inputHoaDonVe() {
@@ -42,22 +42,22 @@ public class HoaDonVe {
         System.out.print("Nhập số lượng vé: ");
         soluongve = sc.nextInt();
         System.out.print("Nhập mã hành khách: ");
-        hanhkhach.setMaHanhKhach(sc.nextLine());
+        mahanhkhach = sc.nextLine();
         System.out.print("Nhập mà chuyến bay: ");
-        chuyenbay.setMachuyenbay(sc.nextLine());
+        machuyenbay = sc.nextLine();
     }
 
     public void outputHoaDonVe() {
         String fmt = "| %-12s | %-10s | %-5d | %-8.3f | %-15s | %-15s |%n";
 
         System.out.println("+--------------+--------------+------------+------------+-----------------+");
-        System.out.printf(fmt, mahoadon, ngaynhap, soluongve, "Tổng tiền", hanhkhach.getMaHanhKhach(), chuyenbay.getMachuyenbay());
+        System.out.printf(fmt, mahoadon, ngaynhap, soluongve, "Tổng tiền", mahanhkhach, machuyenbay);
         System.out.println("+--------------+--------------+------------+------------+-----------------+");
     }
     
-    public float tongTien(){
-        
-    }
+//    public float tongTien(){
+//        
+//    }
 
     public String getMahoadon() {
         return mahoadon;
@@ -83,21 +83,23 @@ public class HoaDonVe {
         this.soluongve = soluongve;
     }
 
-    public HanhKhach getHanhkhach() {
-        return hanhkhach;
+    public String getMahanhkhach() {
+        return mahanhkhach;
     }
 
-    public void setHanhkhach(HanhKhach hanhkhach) {
-        this.hanhkhach = hanhkhach;
+    public void setMahanhkhach(String mahanhkhach) {
+        this.mahanhkhach = mahanhkhach;
     }
 
-    public ChuyenBay getChuyenbay() {
-        return chuyenbay;
+    public String getMachuyenbay() {
+        return machuyenbay;
     }
 
-    public void setChuyenbay(ChuyenBay chuyenbay) {
-        this.chuyenbay = chuyenbay;
+    public void setMachuyenbay(String machuyenbay) {
+        this.machuyenbay = machuyenbay;
     }
+
+    
     
     
 }

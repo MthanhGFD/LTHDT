@@ -30,7 +30,7 @@ public class MayBay {
 
     // ======== Input / Output ========
 
-    public void inputMayBay() {
+    public void nhapMayBay() {
         Scanner sc = new Scanner(System.in);
         System.out.print("Nhập mã máy bay: ");
         this.maMayBay = sc.nextLine();
@@ -57,13 +57,19 @@ public class MayBay {
         this.sucChua = Integer.parseInt(sc.nextLine());
     }
 
-    public void outputMayBay() {
+    public void xuatMayBay() {
         String fmt = "| %-15s | %-25s | %-10d |%n";
         System.out.println("+-----------------+---------------------------+------------+");
         System.out.printf(fmt, maMayBay, loaiMayBay, sucChua);
         System.out.println("+-----------------+---------------------------+------------+");
     }
 
+    @Override
+    public String toString() {
+        return  maMayBay + "," + loaiMayBay +"," + sucChua;
+    }
+
+    
 
     public String getMaMayBay() {
         return maMayBay;

@@ -61,7 +61,7 @@ public class HanhKhach {
     }
 
     public void xuatHanhKhach() {
-        String fmt = "| %-15s | %-30s | %-10s | %-10s | %-10s | %-15s | %-15s | %-15s |%n";
+        String fmt = "| %-15s | %-30s | %-10s | %-10s | %-10s | %-15s | %-15s | %-15s |\n";
         System.out.println("+-----------------+------------------------------------------+------------+------------+-----------------+-----------------+-----------------+");
         System.out.printf(fmt, maHanhKhach, ho, ten, ngaysinh, danhxung, cccd, sdt, loaiHanhKhach);
         System.out.println("+-----------------+------------------------------------------+------------+------------+-----------------+-----------------+-----------------+");
@@ -73,7 +73,7 @@ public class HanhKhach {
 
     @Override
     public String toString() {
-        return maHanhKhach + "," + ho + "," + ten + "," + ngaysinh + "," + danhxung + "," + cccd + "," + sdt + "," + loaiHanhKhach;
+        return maHanhKhach + "," + ho + " " + ten + "," + ngaysinh + "," + danhxung + "," + cccd + "," + sdt + "," + loaiHanhKhach;
     }
 
     public String getMaHanhKhach() {

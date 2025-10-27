@@ -3,23 +3,22 @@ package src;
 import java.util.Scanner;
 
 public class Ghe{
-    private String maghe, vitrighe;
-    private MayBay maybay;
+    private String maghe, vitrighe, mamaybay;
     public Ghe(){
         maghe = "";
-        maybay = new MayBay();
+        mamaybay = "";
         vitrighe = "";
     }
     
-    public Ghe(String maghe, MayBay maybay, String vitrighe){
+    public Ghe(String maghe, String mamaybay, String vitrighe){
         this.maghe = maghe;
-        this.maybay = maybay;
+        this.mamaybay = mamaybay;
         this.vitrighe = vitrighe;
     }
     
     public Ghe(Ghe ghe1){
         maghe = ghe1.maghe;
-        maybay = ghe1.maybay;
+        mamaybay = ghe1.mamaybay;
         vitrighe = ghe1.vitrighe;
     }
     
@@ -30,13 +29,13 @@ public class Ghe{
         System.out.print("Nhập vị trí ghế: ");
         this.vitrighe = sc.nextLine();
         System.out.print("Nhập mã số máy bay: ");
-        maybay.setMaMayBay(sc.nextLine());
+        mamaybay = sc.nextLine();
     }
 
     public void outputGhe() {
         String fmt = "| %-15s | %-20s | %-20s |%\n";
         System.out.println("+-----------------+----------------------+----------------------+");
-        System.out.printf(fmt, maghe, vitrighe, maybay.getMaMayBay() );
+        System.out.printf(fmt, maghe, vitrighe, mamaybay );
         System.out.println("+-----------------+----------------------+----------------------+");
     }
     
@@ -48,12 +47,12 @@ public class Ghe{
         this.maghe = maghe;
     }
 
-    public MayBay getMaybay() {
-        return maybay;
+    public String getMamaybay() {
+        return mamaybay;
     }
 
-    public void setMaybay(MayBay maybay) {
-        this.maybay = maybay;
+    public void setMamaybay(String mamaybay) {
+        this.mamaybay = mamaybay;
     }
 
     public String getVitrighe() {

@@ -4,10 +4,7 @@ import java.util.Scanner;
 
 public class ChuyenBay {
 
-    private String machuyenbay, diemkhoihanh, diemden, ngaykhoihanh, giokhoihanh, tinhtrang;
-    private MayBay maybay;
-    private HangHangKhong hanghangkhong;
-    private SanBay sanbay;
+    private String machuyenbay, diemkhoihanh, diemden, ngaykhoihanh, giokhoihanh, tinhtrang, mamaybay, mahanghangkhong, masanbay;
 
     public ChuyenBay() {
         machuyenbay = "";
@@ -16,21 +13,21 @@ public class ChuyenBay {
         ngaykhoihanh = "";
         giokhoihanh = "";
         tinhtrang = "";
-        maybay = new MayBay();
-        hanghangkhong = new HangHangKhong();
-        sanbay = new SanBay();
+        mamaybay = "";
+        mahanghangkhong = "";
+        masanbay = "";
     }
 
-    public ChuyenBay(String machuyenbay, String diemkhoihanh, String diemden, String ngaykhoihanh, String giokhoihanh, MayBay maybay, HangHangKhong hanghangkhong, SanBay sanbay) {
+    public ChuyenBay(String machuyenbay, String diemkhoihanh, String diemden, String ngaykhoihanh, String giokhoihanh, String mamaybay, String mayhanghangkhong, String masanbay) {
         this.machuyenbay = machuyenbay;
         this.diemkhoihanh = diemkhoihanh;
         this.diemden = diemden;
         this.ngaykhoihanh = ngaykhoihanh;
         this.giokhoihanh = giokhoihanh;
         this.tinhtrang = "hoạt động";
-        this.maybay = maybay;
-        this.hanghangkhong = hanghangkhong;
-        this.sanbay = sanbay;
+        this.mamaybay = mamaybay;
+        this.mahanghangkhong = mahanghangkhong;
+        this.masanbay = masanbay;
     }
 
     public ChuyenBay(ChuyenBay cb1) {
@@ -40,9 +37,9 @@ public class ChuyenBay {
         ngaykhoihanh = cb1.ngaykhoihanh;
         giokhoihanh = cb1.giokhoihanh;
         tinhtrang = cb1.tinhtrang;
-        maybay = cb1.maybay;
-        hanghangkhong = cb1.hanghangkhong;
-        sanbay = cb1.sanbay;
+        mamaybay = cb1.mamaybay;
+        mahanghangkhong = cb1.mahanghangkhong;
+        masanbay = cb1.masanbay;
     }
 
     public void nhapChuyenBay() {
@@ -59,7 +56,7 @@ public class ChuyenBay {
     public void xuatChuyenBay() {
         String fmt = "| %-12s | %-15s | %-12s | %-10s | %-10s | %-15s | %-20s | %-10s |%n";
         System.out.println("+--------------+-----------------+--------------+------------+------------+-----------------+----------------------+------------+");
-        System.out.printf(fmt, machuyenbay, diemkhoihanh, ngaykhoihanh, giokhoihanh, tinhtrang, maybay.getMaMayBay(), hanghangkhong.getMaHang(), sanbay.getMaSanBay());
+        System.out.printf(fmt, machuyenbay, diemkhoihanh, ngaykhoihanh, giokhoihanh, tinhtrang, mamaybay, mahanghangkhong, masanbay);
         System.out.println("+--------------+-----------------+--------------+------------+------------+-----------------+----------------------+------------+");
     }
 
@@ -111,27 +108,29 @@ public class ChuyenBay {
         this.tinhtrang = tinhtrang;
     }
 
-    public MayBay getMayBay() {
-        return maybay;
+    public String getMamaybay() {
+        return mamaybay;
     }
 
-    public void setMayBay(MayBay maybay) {
-        this.maybay = maybay;
+    public void setMamaybay(String mamaybay) {
+        this.mamaybay = mamaybay;
     }
 
-    public HangHangKhong getHangHangKhong() {
-        return hanghangkhong;
+    public String getMahanghangkhong() {
+        return mahanghangkhong;
     }
 
-    public void setHangHangKhong(HangHangKhong hanghangkhong) {
-        this.hanghangkhong = hanghangkhong;
+    public void setMahanghangkhong(String mahanghangkhong) {
+        this.mahanghangkhong = mahanghangkhong;
     }
 
-    public SanBay getSanBay() {
-        return sanbay;
+    public String getMasanbay() {
+        return masanbay;
     }
 
-    public void setSanBay(SanBay sanbay) {
-        this.sanbay = sanbay;
+    public void setMasanbay(String masanbay) {
+        this.masanbay = masanbay;
     }
+
+    
 }

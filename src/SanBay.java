@@ -32,8 +32,6 @@ public class SanBay {
 
     public void nhapSanBay() {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Nhập mã sân bay: ");
-        this.maSanBay = scanner.nextLine();
         System.out.print("Nhập tên sân bay: ");
         this.tenSanBay = scanner.nextLine();
         System.out.print("Nhập địa điểm (tỉnh/thành phố): ");

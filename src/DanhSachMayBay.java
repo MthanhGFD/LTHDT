@@ -10,6 +10,12 @@ import java.util.Scanner;
 
 public class DanhSachMayBay {
 
+    public static void main(String[] args) {
+        DanhSachMayBay dsmb = new DanhSachMayBay();
+        dsmb.docFile();
+        dsmb.xuatDS();
+    }
+
     private MayBay[] dsmaybay;
     private int soluong;
     static Scanner sc = new Scanner(System.in);
@@ -52,17 +58,21 @@ public class DanhSachMayBay {
     public void docFile() {
         int i = soluong;
         try {
-            FileReader f = new FileReader("dsMayBay.txt");
+            File f = new File("data/dsMayBay.txt");
+            FileReader rf = new FileReader(f);
             Scanner docf = new Scanner(f);
             while (docf.hasNextLine()) {
                 String line = docf.nextLine();
                 String tokens[] = line.split(",");
+                dsmaybay = Arrays.copyOf(dsmaybay, dsmaybay.length + 1);
+                dsmaybay[i] = new MayBay();
                 dsmaybay[i].setMaMayBay(tokens[0]);
                 dsmaybay[i].setLoaiMayBay(tokens[1]);
                 dsmaybay[i].setSucChua(Integer.parseInt(tokens[2]));
                 i++;
             }
-            f.close();
+            rf.close();
+            docf.close();
             soluong = i;
 
         } catch (FileNotFoundException e) {
@@ -244,12 +254,12 @@ public class DanhSachMayBay {
         }
         return -1;
     }
-    
-    public MayBay[] dsLoaiMayBay(String loaimaybay){
+
+    public MayBay[] dsLoaiMayBay(String loaimaybay) {
         MayBay ds[] = new MayBay[0];
         int j = 0;
         for (int i = 0; i < dsmaybay.length; i++) {
-            if(dsmaybay[i].getLoaiMayBay().equals(loaimaybay)){
+            if (dsmaybay[i].getLoaiMayBay().equals(loaimaybay)) {
                 ds = Arrays.copyOf(dsmaybay, j + 1);
                 ds[j] = new MayBay();
                 ds[j] = dsmaybay[i];
@@ -258,23 +268,23 @@ public class DanhSachMayBay {
         }
         return ds;
     }
-    
-    public MayBay[][] thongKeLoaiMayBay(){
+
+    public MayBay[][] thongKeLoaiMayBay() {
         String loai[] = {"Airbus A321", "Airbus A350-900", "Boeing 787-10", "Airbus A320"};
-        MayBay[][] cacds= new MayBay[0][0];
+        MayBay[][] cacds = new MayBay[0][0];
         for (int i = 0; i < loai.length; i++) {
             cacds = Arrays.copyOf(cacds, i + 1);
             MayBay[] ds = new MayBay[dsLoaiMayBay(loai[i]).length];
             ds = dsLoaiMayBay(loai[i]);
-            if(ds != null){
-                cacds[i] = Arrays.copyOf(cacds[i], cacds[i].length  + ds.length);
+            if (ds != null) {
+                cacds[i] = Arrays.copyOf(cacds[i], cacds[i].length + ds.length);
                 cacds[i] = ds;
             }
         }
         return cacds;
     }
 
-    public void menu(){
+    public void menu() {
         System.out.println("+--------------------Danh sách máy bay--------------------+");
         System.out.println("|  1. Nhập danh sách máy bay                              |");
         System.out.println("|  2. Đọc danh sách máy bay từ File                       |");
@@ -283,161 +293,176 @@ public class DanhSachMayBay {
         System.out.println("|  5. Sửa thông tin máy bay                               |");
         System.out.println("|  6. Tìm máy bay                                         |");
         System.out.println("|  7. Thống kê máy bay theo loại máy bay                  |");
+        System.out.println("|  8. Xuất danh sách Máy Bay                              |");
         System.out.println("+---------------------------------------------------------+");
     }
-    
+
     public void choice() {
-    String c;
-    boolean nhapSai;
+        String c;
+        boolean nhapSai;
 
-    do {
-        nhapSai = false;
-        menu();
-        System.out.print("Mời chọn chức năng (0 để thoát): ");
-        c = sc.next();
+        do {
+            nhapSai = false;
+            menu();
+            System.out.print("Mời chọn chức năng (0 để thoát): ");
+            c = sc.next();
 
-        switch (c) {
-            case "0":
-                System.out.println("Cảm ơn bạn đã sử dụng chương trình!");
-                break;
+            switch (c) {
+                case "0":
+                    System.out.println("Cảm ơn bạn đã sử dụng chương trình!");
+                    break;
 
-            case "1":
-                nhapDS();
-                break;
+                case "1":
+                    nhapDS();
+                    break;
 
-            case "2":
-                docFile();
-                break;
+                case "2":
+                    docFile();
+                    break;
 
-            case "3": // thêm máy bay
-                System.out.println("+-------------- Thêm Máy Bay --------------+");
-                System.out.println("|  1. Thêm máy bay không có tham số        |");
-                System.out.println("|  2. Thêm máy bay có tham số              |");
-                System.out.println("+------------------------------------------+");
-                System.out.print("Chọn kiểu thêm máy bay: ");
-                String t = sc.next();
-                sc.nextLine(); // bỏ Enter
+                case "3": // thêm máy bay
+                    System.out.println("+-------------- Thêm Máy Bay --------------+");
+                    System.out.println("|  1. Thêm máy bay không có tham số        |");
+                    System.out.println("|  2. Thêm máy bay có tham số              |");
+                    System.out.println("+------------------------------------------+");
+                    System.out.print("Chọn kiểu thêm máy bay: ");
+                    String t = sc.next();
+                    sc.nextLine(); // bỏ Enter
 
-                if (t.equals("1")) {
-                    them();
-                } else if (t.equals("2")) {
-                    System.out.print("Nhập mã máy bay muốn thêm: ");
-                    String ma = sc.nextLine();
-                    them(ma);
-                } else {
-                    System.out.println("Lựa chọn không hợp lệ!");
-                }
-                break;
-
-            case "4": // xóa máy bay
-                System.out.println("+--------------- Xóa Máy Bay ---------------+");
-                System.out.println("|  1. Xóa máy bay không có tham số          |");
-                System.out.println("|  2. Xóa máy bay có tham số                |");
-                System.out.println("+-------------------------------------------+");
-                System.out.print("Chọn kiểu xóa máy bay: ");
-                String x = sc.next();
-                sc.nextLine();
-
-                if (x.equals("1")) {
-                    xoa();
-                } else if (x.equals("2")) {
-                    System.out.print("Nhập mã máy bay cần xóa: ");
-                    String ma = sc.nextLine();
-                    xoa(ma);
-                } else {
-                    System.out.println("Lựa chọn không hợp lệ!");
-                }
-                break;
-
-            case "5": // sửa máy bay
-                System.out.println("+--------------- Sửa Máy Bay ---------------+");
-                System.out.println("|  1. Sửa máy bay không có tham số          |");
-                System.out.println("|  2. Sửa máy bay có tham số                |");
-                System.out.println("+-------------------------------------------+");
-                System.out.print("Chọn kiểu sửa máy bay: ");
-                String s = sc.next();
-                sc.nextLine();
-
-                if (s.equals("1")) {
-                    sua();
-                } else if (s.equals("2")) {
-                    System.out.print("Nhập mã máy bay cần sửa: ");
-                    String ma = sc.nextLine();
-                    sua(ma);
-                } else {
-                    System.out.println("Lựa chọn không hợp lệ!");
-                }
-                break;
-
-            case "6": // tìm máy bay
-                System.out.println("+--------------- Tìm Máy Bay ---------------+");
-                System.out.println("|  1. Tìm máy bay không có tham số          |");
-                System.out.println("|  2. Tìm máy bay có tham số                |");
-                System.out.println("|  3. Tìm vị trí máy bay                    |");
-                System.out.println("+-------------------------------------------+");
-                System.out.print("Chọn kiểu tìm: ");
-                String tm = sc.next();
-                sc.nextLine();
-
-                switch (tm) {
-                    case "1":
-                        MayBay mb1 = tim();
-                        if (mb1 != null) mb1.xuatMayBay();
-                        else System.out.println("Không tìm thấy máy bay!");
-                        break;
-
-                    case "2":
-                        System.out.print("Nhập mã máy bay cần tìm: ");
+                    if (t.equals("1")) {
+                        them();
+                    } else if (t.equals("2")) {
+                        System.out.print("Nhập mã máy bay muốn thêm: ");
                         String ma = sc.nextLine();
-                        MayBay mb2 = tim(ma);
-                        if (mb2 != null) mb2.xuatMayBay();
-                        else System.out.println("Không tìm thấy máy bay!");
-                        break;
-
-                    case "3":
-                        System.out.print("Nhập mã máy bay cần tìm vị trí: ");
-                        String maVT = sc.nextLine();
-                        int vt = timViTri(maVT);
-                        if (vt != -1)
-                            System.out.println("Máy bay ở vị trí: " + vt);
-                        else
-                            System.out.println("Không tìm thấy máy bay!");
-                        break;
-
-                    default:
-                        System.out.println("Lựa chọn không hợp lệ!");
-                }
-                break;
-
-            case "7": // thống kê loại máy bay
-                System.out.println("+---------- Thống Kê Theo Loại Máy Bay ----------+");
-                MayBay[][] tk = thongKeLoaiMayBay();
-                String[] loai = {"Airbus A321", "Airbus A350-900", "Boeing 787-10", "Airbus A320"};
-                
-                for (int i = 0; i < tk.length; i++) {
-                    System.out.println("Loại: " + loai[i]);
-                    if (tk[i] != null && tk[i].length > 0) {
-                        for (MayBay mb : tk[i]) {
-                            mb.xuatMayBay();
-                        }
+                        them(ma);
                     } else {
-                        System.out.println("Không có máy bay loại này.");
+                        System.out.println("Lựa chọn không hợp lệ!");
                     }
-                    System.out.println("------------------------------------------------");
-                }
-                break;
+                    break;
 
-            default:
-                System.out.println("Chọn không đúng, hãy chọn lại chức năng (0-7)");
-                nhapSai = true;
-        }
+                case "4": // xóa máy bay
+                    System.out.println("+--------------- Xóa Máy Bay ---------------+");
+                    System.out.println("|  1. Xóa máy bay không có tham số          |");
+                    System.out.println("|  2. Xóa máy bay có tham số                |");
+                    System.out.println("+-------------------------------------------+");
+                    System.out.print("Chọn kiểu xóa máy bay: ");
+                    String x = sc.next();
+                    sc.nextLine();
 
-        if (!nhapSai && !c.equals("0")) {
-            System.out.println("Bạn có muốn thoát chương trình?");
-            System.out.println("Nếu có -> (0) | Thao tác tiếp -> (1-7)");
-        }
+                    if (x.equals("1")) {
+                        xoa();
+                    } else if (x.equals("2")) {
+                        System.out.print("Nhập mã máy bay cần xóa: ");
+                        String ma = sc.nextLine();
+                        xoa(ma);
+                    } else {
+                        System.out.println("Lựa chọn không hợp lệ!");
+                    }
+                    break;
 
-    } while (!c.equals("0"));
-}
+                case "5": // sửa máy bay
+                    System.out.println("+--------------- Sửa Máy Bay ---------------+");
+                    System.out.println("|  1. Sửa máy bay không có tham số          |");
+                    System.out.println("|  2. Sửa máy bay có tham số                |");
+                    System.out.println("+-------------------------------------------+");
+                    System.out.print("Chọn kiểu sửa máy bay: ");
+                    String s = sc.next();
+                    sc.nextLine();
+
+                    if (s.equals("1")) {
+                        sua();
+                    } else if (s.equals("2")) {
+                        System.out.print("Nhập mã máy bay cần sửa: ");
+                        String ma = sc.nextLine();
+                        sua(ma);
+                    } else {
+                        System.out.println("Lựa chọn không hợp lệ!");
+                    }
+                    break;
+
+                case "6": // tìm máy bay
+                    System.out.println("+--------------- Tìm Máy Bay ---------------+");
+                    System.out.println("|  1. Tìm máy bay không có tham số          |");
+                    System.out.println("|  2. Tìm máy bay có tham số                |");
+                    System.out.println("|  3. Tìm vị trí máy bay                    |");
+                    System.out.println("+-------------------------------------------+");
+                    System.out.print("Chọn kiểu tìm: ");
+                    String tm = sc.next();
+                    sc.nextLine();
+
+                    switch (tm) {
+                        case "1":
+                            MayBay mb1 = tim();
+                            if (mb1 != null) {
+                                mb1.xuatMayBay();
+                            } else {
+                                System.out.println("Không tìm thấy máy bay!");
+                            }
+                            break;
+
+                        case "2":
+                            System.out.print("Nhập mã máy bay cần tìm: ");
+                            String ma = sc.nextLine();
+                            MayBay mb2 = tim(ma);
+                            if (mb2 != null) {
+                                mb2.xuatMayBay();
+                            } else {
+                                System.out.println("Không tìm thấy máy bay!");
+                            }
+                            break;
+
+                        case "3":
+                            System.out.print("Nhập mã máy bay cần tìm vị trí: ");
+                            String maVT = sc.nextLine();
+                            int vt = timViTri(maVT);
+                            if (vt != -1) {
+                                System.out.println("Máy bay ở vị trí: " + vt);
+                            } else {
+                                System.out.println("Không tìm thấy máy bay!");
+                            }
+                            break;
+
+                        default:
+                            System.out.println("Lựa chọn không hợp lệ!");
+                    }
+                    break;
+
+                case "7": // thống kê loại máy bay
+                    System.out.println("+---------- Thống Kê Theo Loại Máy Bay ----------+");
+                    MayBay[][] tk = thongKeLoaiMayBay();
+                    String[] loai = {"Airbus A321", "Airbus A350-900", "Boeing 787-10", "Airbus A320"};
+
+                    for (int i = 0; i < tk.length; i++) {
+                        System.out.println("Loại: " + loai[i]);
+                        if (tk[i] != null && tk[i].length > 0) {
+                            for (MayBay mb : tk[i]) {
+                                mb.xuatMayBay();
+                            }
+                        } else {
+                            System.out.println("Không có máy bay loại này.");
+                        }
+                        System.out.println("------------------------------------------------");
+                    }
+                    break;
+                
+                case "8":
+                     System.out.println("+------------ Danh Sách Hãng Hàng Không -----------+");
+                    xuatDS();
+                    System.out.println("+--------------------------------------------------+");
+                    break;
+
+
+                default:
+                    System.out.println("Chọn không đúng, hãy chọn lại chức năng (0-7)");
+                    nhapSai = true;
+            }
+
+            if (!nhapSai && !c.equals("0")) {
+                System.out.println("Bạn có muốn thoát chương trình?");
+                System.out.println("Nếu có -> (0) | Thao tác tiếp -> (1-7)");
+            }
+
+        } while (!c.equals("0"));
+    }
 
 }

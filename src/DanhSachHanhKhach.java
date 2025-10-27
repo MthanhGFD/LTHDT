@@ -9,7 +9,11 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class DanhSachHanhKhach {
-
+    public static void main(String[] args){
+        DanhSachHanhKhach dshk = new DanhSachHanhKhach();
+        dshk.docFile();
+        dshk.xuatDS();
+    }
     private HanhKhach dshanhkhach[];
     private int soluong;
     static Scanner sc = new Scanner(System.in);
@@ -545,7 +549,9 @@ public class DanhSachHanhKhach {
                                     }
                                     break;
                                 case "10":
+                                    System.out.println("+---------------------------- Danh sách Hành Khách ----------------------------+");
                                     xuatDS();
+                                    System.out.println("+---------------------------- Danh sách Hành Khách ----------------------------+");
                                     break;
                                 default:
                                     System.out.println("Chọn không đúng, hãy chọn lại cho đúng chức năng (0-10): ");
