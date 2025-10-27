@@ -24,21 +24,21 @@ public class DanhSachChuyenBay {
     
     public void nhapDS(){
         int sl;
-        System.out.print("Nhâp số lượng Chuyến bay: ");
+        System.out.print("Nhap so luong chuyen bay: ");
         sl = sc.nextInt();
         soluong = sl;
         for (int i = 0; i < sl; i++) {
             String machuyenbay;
-            System.out.print("Nhập mã chuyến bay: ");
+            System.out.print("Nhap ma chuyen bay: ");
             machuyenbay = sc.nextLine();
             if(tim(machuyenbay) == null){
                 dschuyenbay[i].nhapChuyenBay();
                 String mamaybay, mahang, masanbay;
-                System.out.print("Nhập mã máy bay: ");
+                System.out.print("Nhap ma may bay: ");
                 mamaybay = sc.nextLine();
-                System.out.print("Nhập mã hãng hàng không: ");
+                System.out.print("Nhap ma hang hang khong: ");
                 mahang = sc.nextLine();
-                System.out.print("Nhập mã sân bay: ");
+                System.out.print("Nhap ma san bay: ");
                 masanbay = sc.nextLine();
             }
         }
@@ -62,19 +62,15 @@ public class DanhSachChuyenBay {
 //        } catch (Exception e) {
 //        } 
 //    }
+// tìm Chuyến bay
+// không tham số
     
-    
-    
-    
-    
-    // tìm Chuyến bay
-    // không tham số
-    public ChuyenBay tim(){
+public ChuyenBay tim(){
         String ma;
-        System.out.print("Nhập mã chuyến bay cần tìm:");
+        System.out.print("Nhap ma chuyen bay can tim:");
         ma = sc.nextLine();
         for (int i = 0; i < dschuyenbay.length; i++) {
-            if(dschuyenbay[i].getMachuyenbay().equals(ma))
+            if(dschuyenbay[i].getMaChuyenBay().equals(ma))
                 return dschuyenbay[i];
         }
         return null;
@@ -83,7 +79,7 @@ public class DanhSachChuyenBay {
     // có tham số
     public ChuyenBay tim(String ma){
         for (int i = 0; i < dschuyenbay.length; i++) {
-            if(dschuyenbay[i].getMachuyenbay().equals(ma))
+            if(dschuyenbay[i].getMaChuyenBay().equals(ma))
                 return dschuyenbay[i];
         }
         return null;
@@ -92,7 +88,7 @@ public class DanhSachChuyenBay {
     // tìm vị trí
     public int timViTri(String ma){
         for (int i = 0; i < dschuyenbay.length; i++) {
-            if(dschuyenbay[i].getMachuyenbay().equals(ma))
+            if(dschuyenbay[i].getMaChuyenBay().equals(ma))
                 return i;
         }
         return -1;
@@ -105,16 +101,16 @@ public class DanhSachChuyenBay {
         System.out.print("Nhập mã máy bay: ");
         mamaybay = sc.nextLine();
         for (int i = 0; i < dschuyenbay.length; i++) {
-            if(dschuyenbay[i].getMaybay().getMaMayBay().equals(mamaybay) && dschuyenbay[i].getMachuyenbay().equals(machuyenbay))
-                return dschuyenbay[i].getMaybay();
+            if(dschuyenbay[i].getMayBay().getMaMayBay().equals(mamaybay) && dschuyenbay[i].getMaChuyenBay().equals(machuyenbay))
+                return dschuyenbay[i].getMayBay();
         }
         return null;
     }
     // có tham số mã chuyến bay
     public MayBay timMayBay(String machuyenbay, String mamaybay){
         for (int i = 0; i < dschuyenbay.length; i++) {
-            if(dschuyenbay[i].getMaybay().getMaMayBay().equals(mamaybay) && dschuyenbay[i].getMachuyenbay().equals(machuyenbay))
-                return dschuyenbay[i].getMaybay();
+            if(dschuyenbay[i].getMayBay().getMaMayBay().equals(mamaybay) && dschuyenbay[i].getMaChuyenBay().equals(machuyenbay))
+                return dschuyenbay[i].getMayBay();
         }
         return null;
     }
@@ -126,8 +122,8 @@ public class DanhSachChuyenBay {
         System.out.print("Nhập mã hãng hàng không: ");
         mahanghangkhong = sc.nextLine();
         for (int i = 0; i < dschuyenbay.length; i++) {
-            if(dschuyenbay[i].getHanghangkhong().getMaHang().equals(mahanghangkhong) && dschuyenbay[i].getMachuyenbay().equals(machuyenbay))
-                return dschuyenbay[i].getHanghangkhong();
+            if(dschuyenbay[i].getHangHangKhong().getMaHang().equals(mahanghangkhong) && dschuyenbay[i].getMaChuyenBay().equals(machuyenbay))
+                return dschuyenbay[i].getHangHangKhong();
         }
         return null;
     }
@@ -135,8 +131,8 @@ public class DanhSachChuyenBay {
     // có tham số hãng hàng không
     public HangHangKhong timHangHangKhong(String machuyenbay, String mahanghangkhong){
         for (int i = 0; i < dschuyenbay.length; i++) {
-            if(dschuyenbay[i].getHanghangkhong().getMaHang().equals(mahanghangkhong) && dschuyenbay[i].getMachuyenbay().equals(machuyenbay))
-                return dschuyenbay[i].getHanghangkhong();
+            if(dschuyenbay[i].getHangHangKhong().getMaHang().equals(mahanghangkhong) && dschuyenbay[i].getMaChuyenBay().equals(machuyenbay))
+                return dschuyenbay[i].getHangHangKhong();
         }
         return null;
     }
@@ -148,8 +144,8 @@ public class DanhSachChuyenBay {
         System.out.print("Nhập mã sân bay: ");
         masanbay = sc.nextLine();
         for (int i = 0; i < dschuyenbay.length; i++) {
-            if(dschuyenbay[i].getSanbay().getMaSanBay().equals(masanbay) && dschuyenbay[i].getMachuyenbay().equals(machuyenbay))
-                return dschuyenbay[i].getSanbay();
+            if(dschuyenbay[i].getSanBay().getMaSanBay().equals(masanbay) && dschuyenbay[i].getMaChuyenBay().equals(machuyenbay))
+                return dschuyenbay[i].getSanBay();
         }
         return null;
     }
@@ -157,10 +153,9 @@ public class DanhSachChuyenBay {
     // có tham số sân bay
     public SanBay timSanBay(String machuyenbay, String masanbay){
         for (int i = 0; i < dschuyenbay.length; i++) {
-            if(dschuyenbay[i].getSanbay().getMaSanBay().equals(masanbay) && dschuyenbay[i].getMachuyenbay().equals(machuyenbay))
-                return dschuyenbay[i].getSanbay();
+            if(dschuyenbay[i].getMayBay().getSanBay().equals(masanbay) && dschuyenbay[i].getMaChuyenBay().equals(machuyenbay))
+                return dschuyenbay[i].getSanBay();
         }
         return null;
     }
-    
 }
