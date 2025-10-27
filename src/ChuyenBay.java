@@ -63,75 +63,75 @@ public class ChuyenBay {
         System.out.println("+--------------+-----------------+--------------+------------+------------+-----------------+----------------------+------------+");
     }
 
-    public String getMachuyenbay() {
+    public String getMaChuyenBay() {
         return machuyenbay;
     }
 
-    public void setMachuyenbay(String machuyenbay) {
+    public void setMaChuyenBay(String machuyenbay) {
         this.machuyenbay = machuyenbay;
     }
 
-    public String getDiemkhoihanh() {
+    public String getDiemKhoiHanh() {
         return diemkhoihanh;
     }
 
-    public void setDiemkhoihanh(String diemkhoihanh) {
+    public void setDiemKhoiHanh(String diemkhoihanh) {
         this.diemkhoihanh = diemkhoihanh;
     }
 
-    public String getDiemden() {
+    public String getDiemDen() {
         return diemden;
     }
 
-    public void setDiemden(String diemden) {
+    public void setDiemDen(String diemden) {
         this.diemden = diemden;
     }
 
-    public String getNgaykhoihanh() {
+    public String getNgayKhoiHanh() {
         return ngaykhoihanh;
     }
 
-    public void setNgaykhoihanh(String ngaykhoihanh) {
+    public void setNgayKhoiHanh(String ngaykhoihanh) {
         this.ngaykhoihanh = ngaykhoihanh;
     }
 
-    public String getGiokhoihanh() {
+    public String getGioKhoiHanh() {
         return giokhoihanh;
     }
 
-    public void setGiokhoihanh(String giokhoihanh) {
+    public void setGioKhoiHanh(String giokhoihanh) {
         this.giokhoihanh = giokhoihanh;
     }
 
-    public String getTinhtrang() {
+    public String getTinhTrang() {
         return tinhtrang;
     }
 
-    public void setTinhtrang(String tinhtrang) {
+    public void setTinhTrang(String tinhtrang) {
         this.tinhtrang = tinhtrang;
     }
 
-    public MayBay getMaybay() {
+    public MayBay getMayBay() {
         return maybay;
     }
 
-    public void setMaybay(MayBay maybay) {
+    public void setMayBay(MayBay maybay) {
         this.maybay = maybay;
     }
 
-    public HangHangKhong getHanghangkhong() {
+    public HangHangKhong getHangHangKhong() {
         return hanghangkhong;
     }
 
-    public void setHanghangkhong(HangHangKhong hanghangkhong) {
+    public void setHangHangKhong(HangHangKhong hanghangkhong) {
         this.hanghangkhong = hanghangkhong;
     }
 
-    public SanBay getSanbay() {
+    public SanBay getSanBay() {
         return sanbay;
     }
 
-    public void setSanbay(SanBay sanbay) {
+    public void setSanBay(SanBay sanbay) {
         this.sanbay = sanbay;
     }
 }
