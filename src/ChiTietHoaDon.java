@@ -34,7 +34,7 @@ public class ChiTietHoaDon {
         tienve = cthd1.tienve;
     }
 
-    public void inputChiTietHoaDon() {
+    public void nhapChiTietHoaDon() {
         Scanner sc = new Scanner(System.in);
         System.out.print("Nhập mã hóa đơn: ");
         mahoadon = sc.nextLine();
@@ -47,11 +47,11 @@ public class ChiTietHoaDon {
         tienve = ve.getGiaVe();
     }
 
-    public void outputChiTietHoaDon() {
+    public void xuatChiTietHoaDon() {
         String fmt = "| %-15s | %-15s | %-15s | %-15s | %-15.2f |%n";
-        System.out.println("+-----------------+-----------------+-----------------+-----------------+-----------------+");
+        System.out.println("|-----------------|-----------------|-----------------|-----------------|-----------------|");
         System.out.printf(fmt, mahoadon, ve.getMaVe(), chuyenbay.getMachuyenbay(), hanhkhach.getMaHanhKhach(), "Tiền Vé");
-        System.out.println("+-----------------+-----------------+-----------------+-----------------+-----------------+");
+        System.out.println("|-----------------|-----------------|-----------------|-----------------|-----------------|");
     }
 
     public String getMahoadon() {
