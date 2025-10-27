@@ -56,7 +56,7 @@ public class HoaDonVe {
     }
     
     public float tongTien(){
-        // lấy trong chi tiết hóa đơn, với những vé nằm trong chi tiết hóa đơn và hóa đơn chính là hóa đơn này thì cộng tiền vé vào
+        
     }
 
     public String getMahoadon() {

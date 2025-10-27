@@ -35,10 +35,18 @@ public class DanhSachHanhKhach {
         sl = sc.nextInt();
         soluong = sl;
         for (int i = 0; i < sl; i++) {
-            dshanhkhach = Arrays.copyOf(dshanhkhach, i + 1);
-            dshanhkhach[i] = new HanhKhach();
-            dshanhkhach[i].nhapHanhKhach();
-            ghiFile(dshanhkhach[i]);
+            String ma;
+            System.out.print("Nhập mã hành khách: ");
+            ma = sc.nextLine();
+            if (tim(ma) != null) {
+                dshanhkhach = Arrays.copyOf(dshanhkhach, i + 1);
+                dshanhkhach[i] = new HanhKhach();
+                dshanhkhach[i].setMaHanhKhach(ma);
+                dshanhkhach[i].nhapHanhKhach();
+                ghiFile(dshanhkhach[i]);
+            } else {
+                i--;
+            }
         }
     }
 
@@ -89,17 +97,25 @@ public class DanhSachHanhKhach {
                 writef.write("\n");
             }
             writef.write(hanhkhach.toString());
+            writef.close();
         } catch (IOException e) {
         }
     }
 
     // thêm không tham số
     public void them() {
-        dshanhkhach = Arrays.copyOf(dshanhkhach, soluong + 1);
-        dshanhkhach[soluong] = new HanhKhach();
-        dshanhkhach[soluong].nhapHanhKhach();
-        this.ghiFile(dshanhkhach[soluong]);
-        soluong++;
+        String ma;
+        System.out.print("Nhập mã hành khách: ");
+        ma = sc.nextLine();
+        if (tim(ma) == null) {
+            dshanhkhach = Arrays.copyOf(dshanhkhach, soluong + 1);
+            dshanhkhach[soluong] = new HanhKhach();
+            dshanhkhach[soluong].setMaHanhKhach(ma);
+            dshanhkhach[soluong].nhapHanhKhach();
+            ghiFile(dshanhkhach[soluong]);
+            soluong++;
+        } else
+            System.out.println("LỖI, trùng mã hành khách!!!");
     }
 
     // thêm có tham số
@@ -131,7 +147,7 @@ public class DanhSachHanhKhach {
         mahanhkhach = sc.nextLine();
         int vitrixoa = timViTri(mahanhkhach);
         if (vitrixoa != -1) {
-            for (int i = vitrixoa; i < dshanhkhach.length; i++) {
+            for (int i = vitrixoa; i < dshanhkhach.length - 1; i++) {
                 dshanhkhach[i] = dshanhkhach[i + 1];
             }
             dshanhkhach = Arrays.copyOf(dshanhkhach, soluong - 1);
@@ -531,13 +547,13 @@ public class DanhSachHanhKhach {
                                 case "10":
                                     xuatDS();
                                     break;
-                                default :
+                                default:
                                     System.out.println("Chọn không đúng, hãy chọn lại cho đúng chức năng (0-10): ");
                                     nhapSai = true;
                             }
                     }
             }
-            if(!nhapSai && !c.equals("0")){
+            if (!nhapSai && !c.equals("0")) {
                 System.out.println("Bạn có muốn thoát chương trình??");
                 System.out.println("Nếu có -> (0) | thao tác tiếp -> (1-10)");
             }
