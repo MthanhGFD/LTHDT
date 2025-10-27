@@ -24,13 +24,13 @@ public class Ghe{
     }
     
     public void inputGhe() {
-        Scanner sc = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         System.out.print("Nhập mã ghế: ");
-        this.maghe = sc.nextLine();
+        this.maghe = scanner.nextLine();
         System.out.print("Nhập vị trí ghế: ");
-        this.vitrighe = sc.nextLine();
+        this.vitrighe = scanner.nextLine();
         System.out.print("Nhập mã số máy bay: ");
-        maybay.setMaMayBay(sc.nextLine());
+        maybay.setMaMayBay(scanner.nextLine());
     }
 
     public void outputGhe() {
