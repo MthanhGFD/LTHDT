@@ -31,9 +31,9 @@ public class MayBay {
     // ======== Input / Output ========
 
     public void inputMayBay() {
-        Scanner scanner = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         System.out.print("Nhập mã máy bay: ");
-        this.maMayBay = scanner.nextLine();
+        this.maMayBay = sc.nextLine();
        try {
             int choice;
             System.out.println("+-------------------- Loại máy bay --------------------+");
@@ -43,7 +43,7 @@ public class MayBay {
             System.out.println("|  4. Airbus A320                                      |");
             System.out.println("+------------------------------------------------------+");
             System.out.print("Chọn loại Hành Khách: ");
-            choice = scanner.nextInt();
+            choice = sc.nextInt();
             switch (choice) {
                 case 1: this.loaiMayBay = "Airbus A321"; break;
                 case 2: this.loaiMayBay = "Airbus A350-900"; break;
@@ -54,7 +54,7 @@ public class MayBay {
             this.loaiMayBay = "Airbus A321";
         }
         System.out.print("Nhập sức chứa: ");
-        this.sucChua = Integer.parseInt(scanner.nextLine());
+        this.sucChua = Integer.parseInt(sc.nextLine());
     }
 
     public void outputMayBay() {

@@ -31,13 +31,13 @@ public class SanBay {
 
 
     public void inputSanBay() {
-        Scanner scanner = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         System.out.print("Nhập mã sân bay: ");
-        this.maSanBay = scanner.nextLine();
+        this.maSanBay = sc.nextLine();
         System.out.print("Nhập tên sân bay: ");
-        this.tenSanBay = scanner.nextLine();
+        this.tenSanBay = sc.nextLine();
         System.out.print("Nhập địa điểm (tỉnh/thành phố): ");
-        this.diaDiem = scanner.nextLine();
+        this.diaDiem = sc.nextLine();
     }
 
     public void outputSanBay() {
