@@ -1,72 +1,142 @@
 package src;
-import java.util.Scanner;
-public class HanhKhach{
-    private String maHanhKhach, ho, ten, danhxung, cccd, sdt, loaiHanhKhach;
 
-    public HanhKhach(){
+import java.time.LocalDate;
+import java.util.Scanner;
+
+public class HanhKhach {
+
+    private String maHanhKhach, ho, ten, ngaysinh, danhxung, cccd, sdt, loaiHanhKhach;
+
+    public HanhKhach() {
         this.maHanhKhach = "";
         this.ho = "";
         this.ten = "";
+        this.ngaysinh = "";
         this.danhxung = "";
         this.cccd = "";
         this.sdt = "";
         this.loaiHanhKhach = "";
     }
-    public HanhKhach(String maHanhKhach, String ho, String ten, String danhxung, String cccd, String sdt, String loaiHanhKhach) {
+
+    public HanhKhach(String maHanhKhach, String ho, String ten, String ngaysinh, String danhxung, String cccd, String sdt, String loaiHanhKhach) {
         this.maHanhKhach = maHanhKhach;
         this.ho = ho;
         this.ten = ten;
+        this.ngaysinh = ngaysinh;
         this.danhxung = danhxung;
         this.cccd = cccd;
         this.sdt = sdt;
         this.loaiHanhKhach = loaiHanhKhach;
     }
+
     public HanhKhach(HanhKhach other) {
         this.maHanhKhach = other.maHanhKhach;
         this.ho = other.ho;
         this.ten = other.ten;
+        this.ngaysinh = other.ngaysinh;
         this.danhxung = other.danhxung;
         this.cccd = other.cccd;
         this.sdt = other.sdt;
         this.loaiHanhKhach = other.loaiHanhKhach;
     }
 
-    public void inputHanhKhach() {
+    public void nhapHanhKhach() {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Nhập mã Hành Khách: "); this.maHanhKhach = scanner.nextLine();
-        System.out.print("Nhập họ: "); this.ho = scanner.nextLine();
-        System.out.print("Nhập tên: "); this.ten = scanner.nextLine();
-        System.out.print("Nhập danh xưng: "); this.danhxung = scanner.nextLine();
-        System.out.print("Nhập căn cước công dân: "); this.cccd = scanner.nextLine();
-        System.out.print("Nhập số điện thoại: "); this.sdt = scanner.nextLine();
-        System.out.print("Nhập loại Hành Khách: "); this.loaiHanhKhach = scanner.nextLine();
+        System.out.print("Nhập mã Hành Khách: ");
+        this.maHanhKhach = scanner.nextLine();
+        System.out.print("Nhập họ: ");
+        this.ho = scanner.nextLine();
+        System.out.print("Nhập tên: ");
+        this.ten = scanner.nextLine();
+        System.out.print("Nhập ngày sinh(dd-mm-yy): ");
+        this.ngaysinh = scanner.nextLine();
+        System.out.print("Nhập danh xưng: ");
+        this.danhxung = scanner.nextLine();
+        System.out.print("Nhập căn cước công dân: ");
+        this.cccd = scanner.nextLine();
+        System.out.print("Nhập số điện thoại: ");
+        this.sdt = scanner.nextLine();
+        // chổ này là làm loại hành khách
+        System.out.println("===================================");
     }
 
-    public void outputHanhKhach() {
-        String fmt = "| %-15s | %-40s | %-10s | %-10s | %-15s | %-15s | %-15s |%n";
+    public void xuatHanhKhach() {
+        String fmt = "| %-15s | %-30s | %-10s | %-10s | %-10s | %-15s | %-15s | %-15s |%n";
         System.out.println("+-----------------+------------------------------------------+------------+------------+-----------------+-----------------+-----------------+");
-        System.out.printf(fmt, maHanhKhach, ho, ten, danhxung, cccd, sdt, loaiHanhKhach);
+        System.out.printf(fmt, maHanhKhach, ho, ten, ngaysinh, danhxung, cccd, sdt, loaiHanhKhach);
         System.out.println("+-----------------+------------------------------------------+------------+------------+-----------------+-----------------+-----------------+");
     }
 
-    public String getMaHanhKhach(){return maHanhKhach;}
-    public void setMaHanhKhach(String maHanhKhach){this.maHanhKhach = maHanhKhach;}
+    public int tuoi() {
+        return LocalDate.now().getYear() - Integer.parseInt(ngaysinh);
+    }
 
-    public String getHo(){return ho;}
-    public void setHo(String ho){this.ho = ho;}
+    @Override
+    public String toString() {
+        return maHanhKhach + "," + ho + "," + ten + "," + ngaysinh + "," + danhxung + "," + cccd + "," + sdt + "," + loaiHanhKhach;
+    }
 
-    public String getTen(){return ten;}
-    public void setTen(String ten){this.ten = ten;}
+    public String getMaHanhKhach() {
+        return maHanhKhach;
+    }
 
-    public String getDanhxung(){return danhxung;}
-    public void setDanhxung(String danhxung){this.danhxung = danhxung;}
+    public void setMaHanhKhach(String maHanhKhach) {
+        this.maHanhKhach = maHanhKhach;
+    }
 
-    public String getCCCD(){return cccd;}
-    public void setCCCD(String cccd){this.cccd = cccd;}
+    public String getHo() {
+        return ho;
+    }
 
-    public String getSdt(){return sdt;}
-    public void setSdt(String sdt){this.sdt = sdt;}
+    public void setHo(String ho) {
+        this.ho = ho;
+    }
 
-    public String getLoaiHanhKhach(){return loaiHanhKhach;}
-public void setLoaiHanhKhach(String loaiHanhKhach){this.loaiHanhKhach = loaiHanhKhach;}
+    public String getTen() {
+        return ten;
+    }
+
+    public void setTen(String ten) {
+        this.ten = ten;
+    }
+
+    public String getNgaysinh() {
+        return ngaysinh;
+    }
+
+    public void setNgaysinh(String ngaysinh) {
+        this.ngaysinh = ngaysinh;
+    }
+
+    public String getCccd() {
+        return cccd;
+    }
+
+    public void setCccd(String cccd) {
+        this.cccd = cccd;
+    }
+
+    public String getDanhxung() {
+        return danhxung;
+    }
+
+    public void setDanhxung(String danhxung) {
+        this.danhxung = danhxung;
+    }
+
+    public String getSdt() {
+        return sdt;
+    }
+
+    public void setSdt(String sdt) {
+        this.sdt = sdt;
+    }
+
+    public String getLoaiHanhKhach() {
+        return loaiHanhKhach;
+    }
+
+    public void setLoaiHanhKhach(String loaiHanhKhach) {
+        this.loaiHanhKhach = loaiHanhKhach;
+    }
 }
