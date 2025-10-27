@@ -23,7 +23,7 @@ public class ChiTietHoaDon {
         this.ve = ve;
         this.chuyenbay = chuyenbay;
         this.hanhkhach = hanhkhach;
-        this.tienve = ve.getDonGia();
+        this.tienve = ve.getGiaVe();
     }
 
     public ChiTietHoaDon(ChiTietHoaDon cthd1) {
@@ -44,7 +44,7 @@ public class ChiTietHoaDon {
         chuyenbay.setMachuyenbay(sc.nextLine());
         System.out.print("Nhập mã hành khách: ");
         hanhkhach.setMaHanhKhach(sc.nextLine());
-        tienve = ve.getTienVe();
+        tienve = ve.getGiaVe();
     }
 
     public void outputChiTietHoaDon() {

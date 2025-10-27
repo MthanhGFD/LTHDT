@@ -31,13 +31,13 @@ public class HangHangKhong {
 
 
     public void inputHangHangKhong() {
-        Scanner scanner = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         System.out.print("Nhập mã hãng hàng không: ");
-        this.maHang = scanner.nextLine();
+        this.maHang = sc.nextLine();
         System.out.print("Nhập tên hãng hàng không: ");
-        this.tenHang = scanner.nextLine();
+        this.tenHang = sc.nextLine();
         System.out.print("Nhập quốc gia: ");
-        this.quocGia = scanner.nextLine();
+        this.quocGia = sc.nextLine();
     }
 
     public void outputHangHangKhong() {
