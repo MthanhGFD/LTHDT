@@ -1,4 +1,3 @@
-package src;
 
 import java.util.Scanner;
 
@@ -24,8 +23,6 @@ public class Ghe{
     
     public void inputGhe() {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Nhập mã ghế: ");
-        this.maghe = sc.nextLine();
         System.out.print("Nhập vị trí ghế: ");
         this.vitrighe = sc.nextLine();
         System.out.print("Nhập mã số máy bay: ");
