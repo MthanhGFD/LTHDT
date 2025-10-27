@@ -33,7 +33,7 @@ public class HoaDonVe {
         chuyenbay = hd1.chuyenbay;
     }
 
-    public void inputHoaDonVe() {
+    public void nhapHoaDonVe() {
         Scanner sc = new Scanner(System.in);
         System.out.print("Nhập mã hóa đơn: ");
         mahoadon = sc.nextLine();
@@ -47,12 +47,12 @@ public class HoaDonVe {
         chuyenbay.setMachuyenbay(sc.nextLine());
     }
 
-    public void outputHoaDonVe() {
+    public void xuatHoaDonVe() {
         String fmt = "| %-12s | %-10s | %-5d | %-8.3f | %-15s | %-15s |%n";
 
-        System.out.println("+--------------+--------------+------------+------------+-----------------+");
+        System.out.println("|--------------|--------------|------------|------------|-----------------|");
         System.out.printf(fmt, mahoadon, ngaynhap, soluongve, "Tổng tiền", hanhkhach.getMaHanhKhach(), chuyenbay.getMachuyenbay());
-        System.out.println("+--------------+--------------+------------+------------+-----------------+");
+        System.out.println("|--------------|--------------|------------|------------|-----------------|");
     }
     
     public float tongTien(){

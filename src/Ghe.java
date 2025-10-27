@@ -23,7 +23,7 @@ public class Ghe{
         vitrighe = ghe1.vitrighe;
     }
     
-    public void inputGhe() {
+    public void nhapGhe() {
         Scanner sc = new Scanner(System.in);
         System.out.print("Nhập mã ghế: ");
         this.maghe = sc.nextLine();
@@ -33,11 +33,11 @@ public class Ghe{
         maybay.setMaMayBay(sc.nextLine());
     }
 
-    public void outputGhe() {
+    public void xuatGhe() {
         String fmt = "| %-15s | %-20s | %-20s |%\n";
-        System.out.println("+-----------------+----------------------+----------------------+");
+        System.out.println("|-----------------|----------------------|----------------------|");
         System.out.printf(fmt, maghe, vitrighe, maybay.getMaMayBay() );
-        System.out.println("+-----------------+----------------------+----------------------+");
+        System.out.println("|-----------------|----------------------|----------------------|");
     }
     
     public String getMaghe() {

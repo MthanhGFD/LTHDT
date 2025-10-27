@@ -58,9 +58,9 @@ public class ChuyenBay {
 
     public void xuatChuyenBay() {
         String fmt = "| %-12s | %-15s | %-12s | %-10s | %-10s | %-15s | %-20s | %-10s |%n";
-        System.out.println("+--------------+-----------------+--------------+------------+------------+-----------------+----------------------+------------+");
+        System.out.println("|--------------|-----------------|--------------|------------|------------|-----------------|----------------------|------------|");
         System.out.printf(fmt, machuyenbay, diemkhoihanh, ngaykhoihanh, giokhoihanh, tinhtrang, maybay.getMaMayBay(), hanghangkhong.getMaHang(), sanbay.getMaSanBay());
-        System.out.println("+--------------+-----------------+--------------+------------+------------+-----------------+----------------------+------------+");
+        System.out.println("|--------------|-----------------|--------------|------------|------------|-----------------|----------------------|------------|");
     }
 
     public String getMaChuyenBay() {

@@ -30,7 +30,7 @@ public class HangHangKhong {
     }
 
 
-    public void inputHangHangKhong() {
+    public void nhapHangHangKhong() {
         Scanner sc = new Scanner(System.in);
         System.out.print("Nhập mã hãng hàng không: ");
         this.maHang = sc.nextLine();
@@ -40,11 +40,11 @@ public class HangHangKhong {
         this.quocGia = sc.nextLine();
     }
 
-    public void outputHangHangKhong() {
+    public void xuatHangHangKhong() {
         String fmt = "| %-15s | %-35s | %-25s |%n";
-        System.out.println("+-----------------+-------------------------------------+---------------------------+");
+        System.out.println("|-----------------|-------------------------------------|---------------------------|");
         System.out.printf(fmt, maHang, tenHang, quocGia);
-        System.out.println("+-----------------+-------------------------------------+---------------------------+");
+        System.out.println("|-----------------|-------------------------------------|---------------------------|");
     }
 
 
