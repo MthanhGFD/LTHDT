@@ -36,13 +36,13 @@ public class ChiTietHoaDon {
 
     public void inputChiTietHoaDon() {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Nhập mã hóa đơn: ");
+        System.out.print("Nhap ma hoa don: ");
         mahoadon = sc.nextLine();
-        System.out.print("Nhập mã Vé: ");
+        System.out.print("Nhap ma ve: ");
         ve.setMaVe(sc.nextLine());
-        System.out.print("Nhập mã chuyến bay: ");
+        System.out.print("Nhap ma chuyen bay: ");
         chuyenbay.setMaChuyenBay(sc.nextLine());
-        System.out.print("Nhập mã hành khách: ");
+        System.out.print("Nhap ma hanh khach: ");
         hanhkhach.setMaHanhKhach(sc.nextLine());
         tienve = ve.getGiaVe();
     }
@@ -50,15 +50,15 @@ public class ChiTietHoaDon {
     public void outputChiTietHoaDon() {
         String fmt = "| %-15s | %-15s | %-15s | %-15s | %-15.2f |%n";
         System.out.println("+-----------------+-----------------+-----------------+-----------------+-----------------+");
-        System.out.printf(fmt, mahoadon, ve.getMaVe(), chuyenbay.getMachuyenbay(), hanhkhach.getMaHanhKhach(), "Tiền Vé");
+        System.out.printf(fmt, mahoadon, ve.getMaVe(), chuyenbay.getMaChuyenBay(), hanhkhach.getMaHanhKhach(), "Tiền Vé");
         System.out.println("+-----------------+-----------------+-----------------+-----------------+-----------------+");
     }
 
-    public String getMahoadon() {
+    public String getMaHoaDon() {
         return mahoadon;
     }
 
-    public void setMahoadon(String mahoadon) {
+    public void setMaHoaDon(String mahoadon) {
         this.mahoadon = mahoadon;
     }
 
@@ -70,27 +70,27 @@ public class ChiTietHoaDon {
         this.ve = ve;
     }
 
-    public ChuyenBay getChuyenbay() {
+    public ChuyenBay getChuyenBay() {
         return chuyenbay;
     }
 
-    public void setChuyenbay(ChuyenBay chuyenbay) {
+    public void setChuyenBay(ChuyenBay chuyenbay) {
         this.chuyenbay = chuyenbay;
     }
 
-    public HanhKhach getHanhkhach() {
+    public HanhKhach getHanhKhach() {
         return hanhkhach;
     }
 
-    public void setHanhkhach(HanhKhach hanhkhach) {
+    public void setHanhKhach(HanhKhach hanhkhach) {
         this.hanhkhach = hanhkhach;
     }
 
-    public float getTienve() {
+    public float getTienVe() {
         return tienve;
     }
 
-    public void setTienve(float tienve) {
+    public void setTienVe(float tienve) {
         this.tienve = tienve;
     }
 }

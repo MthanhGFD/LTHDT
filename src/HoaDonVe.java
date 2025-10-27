@@ -35,67 +35,67 @@ public class HoaDonVe {
 
     public void inputHoaDonVe() {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Nhập mã hóa đơn: ");
+        System.out.print("Nhap ma hoa don: ");
         mahoadon = sc.nextLine();
-        System.out.print("Nhập ngày nhập: ");
+        System.out.print("Nhap ngay nhap: ");
         ngaynhap = sc.nextLine();
-        System.out.print("Nhập số lượng vé: ");
+        System.out.print("Nhap so luong ve: ");
         soluongve = sc.nextInt();
-        System.out.print("Nhập mã hành khách: ");
+        System.out.print("Nhap ma hanh khach: ");
         hanhkhach.setMaHanhKhach(sc.nextLine());
-        System.out.print("Nhập mà chuyến bay: ");
-        chuyenbay.setMachuyenbay(sc.nextLine());
+        System.out.print("Nhap ma chuyen bay: ");
+        chuyenbay.setMaChuyenBay(sc.nextLine());
     }
 
     public void outputHoaDonVe() {
         String fmt = "| %-12s | %-10s | %-5d | %-8.3f | %-15s | %-15s |%n";
 
         System.out.println("+--------------+--------------+------------+------------+-----------------+");
-        System.out.printf(fmt, mahoadon, ngaynhap, soluongve, "Tổng tiền", hanhkhach.getMaHanhKhach(), chuyenbay.getMachuyenbay());
+        System.out.printf(fmt, mahoadon, ngaynhap, soluongve, "Tong tien", hanhkhach.getMaHanhKhach(), chuyenbay.getMaChuyenBay());
         System.out.println("+--------------+--------------+------------+------------+-----------------+");
     }
     
-    public float tongTien(){
+    // public float tongTien(){
         
-    }
+    // }
 
-    public String getMahoadon() {
+    public String getMaHoaDon() {
         return mahoadon;
     }
 
-    public void setMahoadon(String mahoadon) {
+    public void setMaHoaDon(String mahoadon) {
         this.mahoadon = mahoadon;
     }
 
-    public String getNgaynhap() {
+    public String getNgayNhap() {
         return ngaynhap;
     }
 
-    public void setNgaynhap(String ngaynhap) {
+    public void setNgayNhap(String ngaynhap) {
         this.ngaynhap = ngaynhap;
     }
 
-    public int getSoluongve() {
+    public int getSoLuongVe() {
         return soluongve;
     }
 
-    public void setSoluongve(int soluongve) {
+    public void setSoLuongVe(int soluongve) {
         this.soluongve = soluongve;
     }
 
-    public HanhKhach getHanhkhach() {
+    public HanhKhach getHanhKhach() {
         return hanhkhach;
     }
 
-    public void setHanhkhach(HanhKhach hanhkhach) {
+    public void setHanhKhach(HanhKhach hanhkhach) {
         this.hanhkhach = hanhkhach;
     }
 
-    public ChuyenBay getChuyenbay() {
+    public ChuyenBay getChuyenBay() {
         return chuyenbay;
     }
 
-    public void setChuyenbay(ChuyenBay chuyenbay) {
+    public void setChuyenBay(ChuyenBay chuyenbay) {
         this.chuyenbay = chuyenbay;
     }
     
