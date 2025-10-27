@@ -30,21 +30,21 @@ public class SanBay {
     }
 
 
-    public void inputSanBay() {
-        Scanner sc = new Scanner(System.in);
+    public void nhapSanBay() {
+        Scanner scanner = new Scanner(System.in);
         System.out.print("Nhập mã sân bay: ");
-        this.maSanBay = sc.nextLine();
+        this.maSanBay = scanner.nextLine();
         System.out.print("Nhập tên sân bay: ");
-        this.tenSanBay = sc.nextLine();
+        this.tenSanBay = scanner.nextLine();
         System.out.print("Nhập địa điểm (tỉnh/thành phố): ");
-        this.diaDiem = sc.nextLine();
+        this.diaDiem = scanner.nextLine();
     }
 
-    public void outputSanBay() {
+    public void xuatSanBay() {
         String fmt = "| %-15s | %-30s | %-25s |%n";
-        System.out.println("+-----------------+--------------------------------+---------------------------+");
+        System.out.println("|-----------------|--------------------------------|---------------------------|");
         System.out.printf(fmt, maSanBay, tenSanBay, diaDiem);
-        System.out.println("+-----------------+--------------------------------+---------------------------+");
+        System.out.println("|-----------------|--------------------------------|---------------------------|");
     }
 
 
