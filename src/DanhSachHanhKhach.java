@@ -61,13 +61,13 @@ public class DanhSachHanhKhach {
         try {
             FileReader f = new FileReader("dsHanhKhach.txt");
             Scanner doc = new Scanner(f);
-            while (doc.hasNextLine()) { // đọc từng dòng
+            while (doc.hasNextLine()) { // doc tung dong
                 String line = doc.nextLine();
                 String[] tokens = line.split(",");
                 dshanhkhach = Arrays.copyOf(dshanhkhach, dshanhkhach.length + 1);
                 dshanhkhach[i] = new HanhKhach();
                 dshanhkhach[i].setMaHanhKhach(tokens[0]);
-                // tách họ và tên thành 2
+                // tach ho va ten thanh 2
                 String ho, ten;
                 ten = tokens[1].substring(tokens[1].lastIndexOf(" ") + 1);
                 ho = tokens[1].substring(0, tokens[1].length() - ten.length());
@@ -81,7 +81,7 @@ public class DanhSachHanhKhach {
                 i++;
             }
             soluong = i;
-            f.close(); // đóng file
+            f.close(); // dong file
         } catch (FileNotFoundException e) {
             System.out.println("Khong tim thay file.");
         } catch (IOException e) {
@@ -102,10 +102,10 @@ public class DanhSachHanhKhach {
         }
     }
 
-    // thêm không tham số
+    // them khong tham so
     public void them() {
         String ma;
-        System.out.print("Nhập mã hành khách: ");
+    System.out.print("Nhap ma hanh khach: ");
         ma = sc.nextLine();
         if (tim(ma) == null) {
             dshanhkhach = Arrays.copyOf(dshanhkhach, soluong + 1);
@@ -118,7 +118,7 @@ public class DanhSachHanhKhach {
             System.out.println("Loi ma hanh khach.");
     }
 
-    // thêm có tham số
+    // them co tham so
     public void them(HanhKhach hanhkhach) {
         dshanhkhach = Arrays.copyOf(dshanhkhach, soluong + 1);
         dshanhkhach[soluong] = new HanhKhach();
@@ -127,7 +127,7 @@ public class DanhSachHanhKhach {
         soluong++;
     }
 
-    // xóa không tham số
+    // xoa khong tham so
     public void xoa(String mahanhkhach) {
         int vitrixoa = timViTri(mahanhkhach);
         if (vitrixoa != -1) {
@@ -141,7 +141,7 @@ public class DanhSachHanhKhach {
         }
     }
 
-    // xóa có tham số
+    // xoa co tham so
     public void xoa() {
         String mahanhkhach;
         mahanhkhach = sc.nextLine();
@@ -157,7 +157,7 @@ public class DanhSachHanhKhach {
         }
     }
 
-    // sửa không tham số
+    // sua khong tham so
     public void sua() {
         String mahanhkhach;
         mahanhkhach = sc.nextLine();
@@ -196,7 +196,7 @@ public class DanhSachHanhKhach {
 
     }
 
-    // sửa có tham số
+    // sua co tham so
     public void sua(String mahanhkhach) {
         int vitri = timViTri(mahanhkhach);
         if (vitri != -1) {
@@ -233,7 +233,7 @@ public class DanhSachHanhKhach {
 
     }
 
-    // tìm hành khách
+    // tim hanh khach
     public HanhKhach tim(String ma) {
         for (int i = 0; i < dshanhkhach.length; i++) {
             if (dshanhkhach[i].getMaHanhKhach().equals(ma)) {
@@ -264,7 +264,7 @@ public class DanhSachHanhKhach {
         return -1;
     }
 
-    // tìm theo tên không tham số
+    // tim theo ten khong tham so
     public HanhKhach[] timTen() {
         HanhKhach[] dsTen = new HanhKhach[0];
         int j = 0;
@@ -283,7 +283,7 @@ public class DanhSachHanhKhach {
         return dsTen;
     }
 
-    // tìm theo tên có tham số
+    // tim theo ten co tham so
     public HanhKhach[] timTen(String ten) {
         HanhKhach[] dsTen = new HanhKhach[0];
         int j = 0;
@@ -299,8 +299,8 @@ public class DanhSachHanhKhach {
         return dsTen;
     }
 
-    // thống kê hành khách theo loại vé
-    // vé vip
+    // thong ke hanh khach theo loai ve
+    // ve vip
     public HanhKhach[] dsVip() {
         HanhKhach[] dsvip = new HanhKhach[0];
         int j = 0;
@@ -316,7 +316,7 @@ public class DanhSachHanhKhach {
         return dsvip;
     }
 
-    // vé thường
+    // ve thuong
     public HanhKhach[] dsThuong() {
         HanhKhach[] dsthuong = new HanhKhach[0];
         int j = 0;
@@ -370,7 +370,7 @@ public class DanhSachHanhKhach {
         return slTuoi;
     }
 
-    // sort theo tên cho dễ nhìn
+    // sort theo ten cho de nhin
     private void sortTen(HanhKhach[] ds) {
         HanhKhach hk1 = new HanhKhach();
         for (int i = 0; i < ds.length - 1; i++) {
@@ -436,8 +436,8 @@ public class DanhSachHanhKhach {
                 case "4":
                     String x;
                     System.out.println("+--------------- XOA HANH KHACH ---------------+");
-                    System.out.println("|  1. Xóa hành khách không có tham số          |");
-                    System.out.println("|  2. Xóa hành khách có tham số                |");
+                    System.out.println("|  1. Xoa hanh khach khong co tham so          |");
+                    System.out.println("|  2. Xoa hanh khach co tham so                |");
                     System.out.println("+----------------------------------------------+");
                     System.out.print("Chon kieu \"Xoa hanh khach\": ");
                     x = sc.next();

@@ -49,7 +49,7 @@ public class ChuyenBay {
         Scanner sc = new Scanner(System.in);
         System.out.print("Nhap diem khoi hanh: ");
         diemkhoihanh = sc.nextLine();
-        System.out.print("Nhập ngya khoi hanh(dd-mm-yy): ");
+        System.out.print("Nhập ngay khoi hanh(dd-mm-yy): ");
         ngaykhoihanh = sc.nextLine();
         System.out.print("Nhap gio khoi hanh(hh:pp:ss): ");
         giokhoihanh = sc.nextLine();
