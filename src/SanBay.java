@@ -8,14 +8,14 @@ public class SanBay {
     private String diaDiem;
 
 
-    // Constructor không tham số
+    // Constructor khong tham so
     public SanBay() {
         this.maSanBay = "";
         this.tenSanBay = "";
         this.diaDiem = "";
     }
 
-    // Constructor có tham số
+    // Constructor co tham so
     public SanBay(String maSanBay, String tenSanBay, String diaDiem) {
         this.maSanBay = maSanBay;
         this.tenSanBay = tenSanBay;
@@ -31,13 +31,13 @@ public class SanBay {
 
 
     public void nhapSanBay() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Nhập mã sân bay: ");
-        this.maSanBay = scanner.nextLine();
-        System.out.print("Nhập tên sân bay: ");
-        this.tenSanBay = scanner.nextLine();
-        System.out.print("Nhập địa điểm (tỉnh/thành phố): ");
-        this.diaDiem = scanner.nextLine();
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Nhap ma san bay: ");
+        this.maSanBay = sc.nextLine();
+        System.out.print("Nhap ten san bay: ");
+        this.tenSanBay = sc.nextLine();
+        System.out.print("Nhap dia diem (Tinh/Thanh Pho): ");
+        this.diaDiem = sc.nextLine();
     }
 
     public void xuatSanBay() {

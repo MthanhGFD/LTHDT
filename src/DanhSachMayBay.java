@@ -31,7 +31,7 @@ public class DanhSachMayBay {
 
     public void nhapDS() {
         int sl;
-        System.out.print("Nhập số lượng máy bay: ");
+        System.out.print("Nhap so luong may bay: ");
         sl = sc.nextInt();
         soluong = sl;
         for (int i = 0; i < sl; i++) {
@@ -66,9 +66,9 @@ public class DanhSachMayBay {
             soluong = i;
 
         } catch (FileNotFoundException e) {
-            System.out.println("Không tìm thấy File!!!!");
+            System.out.println("Khong tim thay File!!!!");
         } catch (IOException e) {
-            System.out.println("Lỗi đọc file");
+            System.out.println("Loi doc file");
         }
     }
 
@@ -78,9 +78,9 @@ public class DanhSachMayBay {
             FileWriter ghif = new FileWriter(f, true);
             ghif.write(maybay.toString());
         } catch (FileNotFoundException e) {
-            System.out.println("Không tìm thấy file!!");
+            System.out.println("Khong tim thay file!!");
         } catch (IOException e) {
-            System.out.println("Lỗi ghi file");
+            System.out.println("Loi ghi file");
         }
     }
 
@@ -88,7 +88,7 @@ public class DanhSachMayBay {
     // không tham số
     public void them() {
         String ma;
-        System.out.print("Nhập mã máy bay: ");
+    System.out.print("Nhap ma may bay: ");
         ma = sc.nextLine();
         if (tim(ma) == null) {
             dsmaybay = Arrays.copyOf(dsmaybay, soluong + 1);
@@ -97,8 +97,8 @@ public class DanhSachMayBay {
             dsmaybay[soluong].nhapMayBay();
             ghiFile(dsmaybay[soluong]);
             soluong++;
-        } else {
-            System.out.println("Máy bay đã tồn tại");
+            } else {
+            System.out.println("May bay da ton tai");
         }
     }
 
@@ -111,8 +111,8 @@ public class DanhSachMayBay {
             dsmaybay[soluong].nhapMayBay();
             ghiFile(dsmaybay[soluong]);
             soluong++;
-        } else {
-            System.out.println("Máy bay đã tồn tại");
+            } else {
+            System.out.println("May bay da ton tai");
         }
     }
 
@@ -126,13 +126,13 @@ public class DanhSachMayBay {
             dsmaybay = Arrays.copyOf(dsmaybay, soluong - 1);
             soluong--;
         } else {
-            System.out.println("Không tìm thấy máy bay cần xóa!!!");
+            System.out.println("Khong tim thay may bay can xoa!!!");
         }
     }
 
 // Xóa máy bay không tham số (nhập mã từ bàn phím)
     public void xoa() {
-        System.out.print("Nhập mã máy bay cần xóa: ");
+    System.out.print("Nhap ma may bay can xoa: ");
         String maMayBay = sc.nextLine();
 
         int vitrixoa = timViTri(maMayBay);
@@ -149,8 +149,8 @@ public class DanhSachMayBay {
 
     // sửa không tham số
     public void sua() {
-        System.out.print("Nhập mã máy bay cần sửa: ");
-        String maMayBay = sc.nextLine();
+    System.out.print("Nhap ma may bay can sua: ");
+    String maMayBay = sc.nextLine();
 
         // tránh lỗi trôi dòng nếu trước đó có dùng nextInt()
         if (maMayBay.isEmpty()) {
@@ -160,27 +160,27 @@ public class DanhSachMayBay {
         int vitri = timViTri(maMayBay);
         if (vitri != -1) {
             String choice;
-            System.out.println("+-------------------SỬA THÔNG TIN MÁY BAY-------------------+");
-            System.out.println("|  1. Sửa loại máy bay                                      |");
-            System.out.println("|  2. Sửa sức chứa                                          |");
+            System.out.println("+-------------------SUA THONG TIN MAY BAY-------------------+");
+            System.out.println("|  1. Sua loai may bay                                      |");
+            System.out.println("|  2. Sua suc chua                                          |");
             System.out.println("+-----------------------------------------------------------+");
-            System.out.print("Chọn thông tin bạn muốn sửa: ");
+            System.out.print("Chon thong tin ban muon sua: ");
             choice = sc.next();
 
             switch (choice) {
                 case "1":
-                    System.out.print("Nhập loại máy bay mới: ");
+                    System.out.print("Nhap loai may bay moi: ");
                     dsmaybay[vitri].setLoaiMayBay(sc.nextLine());
                     break;
                 case "2":
-                    System.out.print("Nhập sức chứa mới: ");
+                    System.out.print("Nhap suc chua moi: ");
                     dsmaybay[vitri].setSucChua(sc.nextInt());
                     break;
                 default:
-                    System.out.println("Lựa chọn không hợp lệ!");
+                    System.out.println("Lua chon khong hop le!");
             }
         } else {
-            System.out.println("Không tìm thấy máy bay muốn sửa!");
+            System.out.println("Khong tim thay may bay muon sua!");
         }
     }
 
@@ -275,15 +275,15 @@ public class DanhSachMayBay {
     }
 
     public void menu(){
-        System.out.println("+--------------------Danh sách máy bay--------------------+");
-        System.out.println("|  1. Nhập danh sách máy bay                              |");
-        System.out.println("|  2. Đọc danh sách máy bay từ File                       |");
-        System.out.println("|  3. Thêm 1 máy bay vào danh sách                        |");
-        System.out.println("|  4. Xóa 1 máy bay khỏi danh sách                        |");
-        System.out.println("|  5. Sửa thông tin máy bay                               |");
-        System.out.println("|  6. Tìm máy bay                                         |");
-        System.out.println("|  7. Thống kê máy bay theo loại máy bay                  |");
-        System.out.println("+---------------------------------------------------------+");
+    System.out.println("+--------------------Danh sach may bay--------------------+");
+    System.out.println("|  1. Nhap danh sach may bay                              |");
+    System.out.println("|  2. Doc danh sach may bay tu File                       |");
+    System.out.println("|  3. Them 1 may bay vao danh sach                        |");
+    System.out.println("|  4. Xoa 1 may bay khoi danh sach                        |");
+    System.out.println("|  5. Sua thong tin may bay                               |");
+    System.out.println("|  6. Tim may bay                                         |");
+    System.out.println("|  7. Thong ke may bay theo loai may bay                  |");
+    System.out.println("+---------------------------------------------------------+");
     }
     
     public void choice() {

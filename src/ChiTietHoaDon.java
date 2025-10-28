@@ -8,7 +8,7 @@ public class ChiTietHoaDon {
     private Ve ve;
     private ChuyenBay chuyenbay;
     private HanhKhach hanhkhach;
-    private float tienve;
+    private double tienve;
 
     public ChiTietHoaDon() {
         mahoadon = "";
@@ -50,7 +50,7 @@ public class ChiTietHoaDon {
     public void outputChiTietHoaDon() {
         String fmt = "| %-15s | %-15s | %-15s | %-15s | %-15.2f |%n";
         System.out.println("+-----------------+-----------------+-----------------+-----------------+-----------------+");
-        System.out.printf(fmt, mahoadon, ve.getMaVe(), chuyenbay.getMaChuyenBay(), hanhkhach.getMaHanhKhach(), "Tiền Vé");
+        System.out.printf(fmt, mahoadon, ve.getMaVe(), chuyenbay.getMaChuyenBay(), hanhkhach.getMaHanhKhach(), "Tien ve");
         System.out.println("+-----------------+-----------------+-----------------+-----------------+-----------------+");
     }
 
@@ -86,7 +86,7 @@ public class ChiTietHoaDon {
         this.hanhkhach = hanhkhach;
     }
 
-    public float getTienVe() {
+    public double getTienVe() {
         return tienve;
     }
 

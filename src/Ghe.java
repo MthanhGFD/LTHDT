@@ -25,11 +25,11 @@ public class Ghe{
     
     public void inputGhe() {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Nhập mã ghế: ");
+    System.out.print("Nhap ma ghe: ");
         this.maghe = sc.nextLine();
-        System.out.print("Nhập vị trí ghế: ");
+    System.out.print("Nhap vi tri ghe: ");
         this.vitrighe = sc.nextLine();
-        System.out.print("Nhập mã số máy bay: ");
+    System.out.print("Nhap ma so may bay: ");
         maybay.setMaMayBay(sc.nextLine());
     }
 

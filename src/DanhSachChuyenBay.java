@@ -62,8 +62,8 @@ public class DanhSachChuyenBay {
 //        } catch (Exception e) {
 //        } 
 //    }
-// tìm Chuyến bay
-// không tham số
+// tim Chuyen bay
+// khong tham so
     
 public ChuyenBay tim(){
         String ma;
@@ -76,7 +76,7 @@ public ChuyenBay tim(){
         return null;
     }
     
-    // có tham số
+    // co tham so
     public ChuyenBay tim(String ma){
         for (int i = 0; i < dschuyenbay.length; i++) {
             if(dschuyenbay[i].getMaChuyenBay().equals(ma))
@@ -85,7 +85,7 @@ public ChuyenBay tim(){
         return null;
     }
     
-    // tìm vị trí
+    // tim vi tri
     public int timViTri(String ma){
         for (int i = 0; i < dschuyenbay.length; i++) {
             if(dschuyenbay[i].getMaChuyenBay().equals(ma))
@@ -94,11 +94,11 @@ public ChuyenBay tim(){
         return -1;
     }
 
-    // tìm máy bay trong chuyến bay
-    // không tham số mã chuyến bay
+    // tim may bay trong chuyen bay
+    // khong tham so ma chuyen bay
     public MayBay timMayBay(String machuyenbay){
         String mamaybay;
-        System.out.print("Nhập mã máy bay: ");
+        System.out.print("Nhap ma may bay: ");
         mamaybay = sc.nextLine();
         for (int i = 0; i < dschuyenbay.length; i++) {
             if(dschuyenbay[i].getMayBay().getMaMayBay().equals(mamaybay) && dschuyenbay[i].getMaChuyenBay().equals(machuyenbay))
@@ -106,7 +106,7 @@ public ChuyenBay tim(){
         }
         return null;
     }
-    // có tham số mã chuyến bay
+    // co tham so ma chuyen bay
     public MayBay timMayBay(String machuyenbay, String mamaybay){
         for (int i = 0; i < dschuyenbay.length; i++) {
             if(dschuyenbay[i].getMayBay().getMaMayBay().equals(mamaybay) && dschuyenbay[i].getMaChuyenBay().equals(machuyenbay))
@@ -115,11 +115,11 @@ public ChuyenBay tim(){
         return null;
     }
     
-    // tìm hãng hàng không
-    // không tham số hãng hàng không
+    // tim hang hang khong
+    // khong tham so hang hang khong
     public HangHangKhong timHangHangKhong(String machuyenbay){
         String mahanghangkhong;
-        System.out.print("Nhập mã hãng hàng không: ");
+    System.out.print("Nhap ma hang hang khong: ");
         mahanghangkhong = sc.nextLine();
         for (int i = 0; i < dschuyenbay.length; i++) {
             if(dschuyenbay[i].getHangHangKhong().getMaHang().equals(mahanghangkhong) && dschuyenbay[i].getMaChuyenBay().equals(machuyenbay))
@@ -141,7 +141,7 @@ public ChuyenBay tim(){
     // không có tham số sân bay
     public SanBay timSanBay(String machuyenbay){
         String masanbay;
-        System.out.print("Nhập mã sân bay: ");
+        System.out.print("Nhap ma san bay: ");
         masanbay = sc.nextLine();
         for (int i = 0; i < dschuyenbay.length; i++) {
             if(dschuyenbay[i].getSanBay().getMaSanBay().equals(masanbay) && dschuyenbay[i].getMaChuyenBay().equals(machuyenbay))

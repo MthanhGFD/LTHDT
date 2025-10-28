@@ -30,19 +30,19 @@ public class MayBay {
 
     // ======== Input / Output ========
 
-    public void inputMayBay() {
+    public void nhapMayBay() {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Nhập mã máy bay: ");
+       System.out.print("Nhap ma may bay: ");
         this.maMayBay = sc.nextLine();
-       try {
-            int choice;
-            System.out.println("+-------------------- Loại máy bay --------------------+");
-            System.out.println("|  1. Airbus A321                                      |");
-            System.out.println("|  2. Airbus A350-900                                  |");
-            System.out.println("|  3. Boeing 787-10                                    |");
-            System.out.println("|  4. Airbus A320                                      |");
-            System.out.println("+------------------------------------------------------+");
-            System.out.print("Chọn loại Hành Khách: ");
+      try {
+          int choice;
+          System.out.println("+-------------------- Loai may bay --------------------+");
+          System.out.println("|  1. Airbus A321                                      |");
+          System.out.println("|  2. Airbus A350-900                                  |");
+          System.out.println("|  3. Boeing 787-10                                    |");
+          System.out.println("|  4. Airbus A320                                      |");
+          System.out.println("+------------------------------------------------------+");
+          System.out.print("Chon loai Hanh Khach: ");
             choice = sc.nextInt();
             switch (choice) {
                 case 1: this.loaiMayBay = "Airbus A321"; break;
@@ -53,11 +53,11 @@ public class MayBay {
         } catch (Exception e) {
             this.loaiMayBay = "Airbus A321";
         }
-        System.out.print("Nhập sức chứa: ");
+    System.out.print("Nhap suc chua: ");
         this.sucChua = Integer.parseInt(sc.nextLine());
     }
 
-    public void outputMayBay() {
+    public void xuatMayBay() {
         String fmt = "| %-15s | %-25s | %-10d |%n";
         System.out.println("+-----------------+---------------------------+------------+");
         System.out.printf(fmt, maMayBay, loaiMayBay, sucChua);
