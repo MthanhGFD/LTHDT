@@ -42,21 +42,21 @@ public class HanhKhach {
 
     public void nhapHanhKhach() {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Nhập mã Hành Khách: ");
+    System.out.print("Nhap ma Hanh Khach: ");
         this.maHanhKhach = sc.nextLine();
-        System.out.print("Nhập họ: ");
+    System.out.print("Nhap ho: ");
         this.ho = sc.nextLine();
-        System.out.print("Nhập tên: ");
+    System.out.print("Nhap ten: ");
         this.ten = sc.nextLine();
-        System.out.print("Nhập ngày sinh(dd-mm-yy): ");
+    System.out.print("Nhap ngay sinh(dd-mm-yy): ");
         this.ngaysinh = sc.nextLine();
-        System.out.print("Nhập danh xưng: ");
+    System.out.print("Nhap danh xung: ");
         this.danhxung = sc.nextLine();
-        System.out.print("Nhập căn cước công dân: ");
+    System.out.print("Nhap can cuoc cong dan: ");
         this.cccd = sc.nextLine();
-        System.out.print("Nhập số điện thoại: ");
+    System.out.print("Nhap so dien thoai: ");
         this.sdt = sc.nextLine();
-        // chổ này là làm loại hành khách
+    // cho nay la lam loai hanh khach
         System.out.println("===================================");
     }
 

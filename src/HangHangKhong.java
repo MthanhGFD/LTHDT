@@ -3,19 +3,19 @@ package src;
 import java.util.Scanner;
 
 public class HangHangKhong {
-    private String maHang;          // Mã hãng (PK)
-    private String tenHang;         // Tên hãng hàng không
-    private String quocGia;         // Quốc gia
+    private String maHang;          // Ma hang (PK)
+    private String tenHang;         // Ten hang hang khong
+    private String quocGia;         // Quoc gia
 
 
-    // Constructor không tham số
+    // Constructor khong tham so
     public HangHangKhong() {
         this.maHang = "";
         this.tenHang = "";
         this.quocGia = "";
     }
 
-    // Constructor có tham số
+    // Constructor co tham so
     public HangHangKhong(String maHang, String tenHang, String quocGia) {
         this.maHang = maHang;
         this.tenHang = tenHang;
@@ -32,11 +32,11 @@ public class HangHangKhong {
 
     public void inputHangHangKhong() {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Nhập mã hãng hàng không: ");
+    System.out.print("Nhap ma hang hang khong: ");
         this.maHang = sc.nextLine();
-        System.out.print("Nhập tên hãng hàng không: ");
+    System.out.print("Nhap ten hang hang khong: ");
         this.tenHang = sc.nextLine();
-        System.out.print("Nhập quốc gia: ");
+    System.out.print("Nhap quoc gia: ");
         this.quocGia = sc.nextLine();
     }
 

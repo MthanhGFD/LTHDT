@@ -47,13 +47,13 @@ public class ChuyenBay {
 
     public void nhapChuyenBay() {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Nhập điểm khởi hành: ");
+        System.out.print("Nhap diem khoi hanh: ");
         diemkhoihanh = sc.nextLine();
-        System.out.print("Nhập ngày khởi hành(dd-mm-yy): ");
+        System.out.print("Nhập ngay khoi hanh(dd-mm-yy): ");
         ngaykhoihanh = sc.nextLine();
-        System.out.print("Nhập giờ khởi hành(hh:pp:ss): ");
+        System.out.print("Nhap gio khoi hanh(hh:pp:ss): ");
         giokhoihanh = sc.nextLine();
-        System.out.print("Nhập mã hãng hàng không: ");
+        System.out.print("Nhap ma hang hang khong: ");
     }
 
     public void xuatChuyenBay() {

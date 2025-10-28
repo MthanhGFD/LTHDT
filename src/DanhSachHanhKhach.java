@@ -31,12 +31,12 @@ public class DanhSachHanhKhach {
 
     public void nhapDS() {
         int sl;
-        System.out.print("Nhập số lượng Hành Khách: ");
+        System.out.print("Nhap so luong Hanh Khach: ");
         sl = sc.nextInt();
         soluong = sl;
         for (int i = 0; i < sl; i++) {
             String ma;
-            System.out.print("Nhập mã hành khách: ");
+            System.out.print("Nhap ma hanh khach: ");
             ma = sc.nextLine();
             if (tim(ma) != null) {
                 dshanhkhach = Arrays.copyOf(dshanhkhach, i + 1);
@@ -61,13 +61,13 @@ public class DanhSachHanhKhach {
         try {
             FileReader f = new FileReader("dsHanhKhach.txt");
             Scanner doc = new Scanner(f);
-            while (doc.hasNextLine()) { // đọc từng dòng
+            while (doc.hasNextLine()) { // doc tung dong
                 String line = doc.nextLine();
                 String[] tokens = line.split(",");
                 dshanhkhach = Arrays.copyOf(dshanhkhach, dshanhkhach.length + 1);
                 dshanhkhach[i] = new HanhKhach();
                 dshanhkhach[i].setMaHanhKhach(tokens[0]);
-                // tách họ và tên thành 2
+                // tach ho va ten thanh 2
                 String ho, ten;
                 ten = tokens[1].substring(tokens[1].lastIndexOf(" ") + 1);
                 ho = tokens[1].substring(0, tokens[1].length() - ten.length());
@@ -81,11 +81,11 @@ public class DanhSachHanhKhach {
                 i++;
             }
             soluong = i;
-            f.close(); // đóng file
+            f.close(); // dong file
         } catch (FileNotFoundException e) {
-            System.out.println("Không tìm thấy file!");
+            System.out.println("Khong tim thay file.");
         } catch (IOException e) {
-            System.out.println("Lỗi khi đọc file!");
+            System.out.println("Loi khi doc file!");
         }
     }
 
@@ -102,10 +102,10 @@ public class DanhSachHanhKhach {
         }
     }
 
-    // thêm không tham số
+    // them khong tham so
     public void them() {
         String ma;
-        System.out.print("Nhập mã hành khách: ");
+    System.out.print("Nhap ma hanh khach: ");
         ma = sc.nextLine();
         if (tim(ma) == null) {
             dshanhkhach = Arrays.copyOf(dshanhkhach, soluong + 1);
@@ -115,10 +115,10 @@ public class DanhSachHanhKhach {
             ghiFile(dshanhkhach[soluong]);
             soluong++;
         } else
-            System.out.println("LỖI, trùng mã hành khách!!!");
+            System.out.println("Loi ma hanh khach.");
     }
 
-    // thêm có tham số
+    // them co tham so
     public void them(HanhKhach hanhkhach) {
         dshanhkhach = Arrays.copyOf(dshanhkhach, soluong + 1);
         dshanhkhach[soluong] = new HanhKhach();
@@ -127,7 +127,7 @@ public class DanhSachHanhKhach {
         soluong++;
     }
 
-    // xóa không tham số
+    // xoa khong tham so
     public void xoa(String mahanhkhach) {
         int vitrixoa = timViTri(mahanhkhach);
         if (vitrixoa != -1) {
@@ -137,11 +137,11 @@ public class DanhSachHanhKhach {
             dshanhkhach = Arrays.copyOf(dshanhkhach, soluong - 1);
             soluong--;
         } else {
-            System.out.print("không tìm thấy hành khách cần xóa!!!");
+            System.out.print("Khong tim thay hanh khach can xoa");
         }
     }
 
-    // xóa có tham số
+    // xoa co tham so
     public void xoa() {
         String mahanhkhach;
         mahanhkhach = sc.nextLine();
@@ -153,87 +153,87 @@ public class DanhSachHanhKhach {
             dshanhkhach = Arrays.copyOf(dshanhkhach, soluong - 1);
             soluong--;
         } else {
-            System.out.print("không tìm thấy hành khách cần xóa!!!");
+            System.out.print("Khong tim thay hanh khach can xoa");
         }
     }
 
-    // sửa không tham số
+    // sua khong tham so
     public void sua() {
         String mahanhkhach;
         mahanhkhach = sc.nextLine();
         int vitri = timViTri(mahanhkhach);
         if (vitri != -1) {
             String choice;
-            System.out.println("+-------------------SỬA THÔNG TIN HÀNH KHÁCH------------------+");
-            System.out.println("|  1. Sửa họ                                                  |");
-            System.out.println("|  2. Sửa tên                                                 |");
-            System.out.println("|  3. Sửa số điện thoại                                       |");
-            System.out.println("|  4. Sửa loại hành khách                                     |");
+            System.out.println("+-------------------SUA THONG TIN HANH KHACH------------------+");
+            System.out.println("|  1. Sua ho                                                  |");
+            System.out.println("|  2. Sua ten                                                 |");
+            System.out.println("|  3. Sua so dien thoai                                       |");
+            System.out.println("|  4. Sua loai hanh khach                                     |");
             System.out.println("+-------------------------------------------------------------+");
-            System.out.print("Chọn thông tin bạn muốn sửa: ");
+            System.out.print("Chon thong tin muon sua: ");
             choice = sc.next();
             switch (choice) {
                 case "1":
-                    System.out.print("Mòi nhập họ muốn sửa: ");
+                    System.out.print("Moi nhap ho muon sua: ");
                     dshanhkhach[vitri].setHo(sc.nextLine());
                     break;
                 case "2":
-                    System.out.print("Mòi nhập tên muốn sửa: ");
+                    System.out.print("Moi nhap ten muon sua: ");
                     dshanhkhach[vitri].setTen(sc.nextLine());
                     break;
                 case "3":
-                    System.out.print("Mòi nhập số điện thoại muốn sửa: ");
+                    System.out.print("Moi nhap so dien thoai muon sua: ");
                     dshanhkhach[vitri].setSdt(sc.nextLine());
                     break;
                 case "4":
-                    System.out.print("Mòi nhập loại hành khách muốn sửa: ");
+                    System.out.print("Moi nhap loai hanh khach muon sua: ");
                     dshanhkhach[vitri].setLoaiHanhKhach(sc.nextLine());
                     break;
             }
         } else {
-            System.out.println("Không tìm thấy hành khách muốn sửa");
+            System.out.println("Khong tim thay hanh khach muon sua");
         }
 
     }
 
-    // sửa có tham số
+    // sua co tham so
     public void sua(String mahanhkhach) {
         int vitri = timViTri(mahanhkhach);
         if (vitri != -1) {
             String choice;
-            System.out.println("+-------------------SỬA THÔNG TIN HÀNH KHÁCH------------------+");
-            System.out.println("|  1. Sửa họ                                                  |");
-            System.out.println("|  2. Sửa tên                                                 |");
-            System.out.println("|  3. Sửa số điện thoại                                       |");
-            System.out.println("|  4. Sửa loại hành khách                                     |");
+            System.out.println("+-------------------SUA THONG TIN HANH KHACH------------------+");
+            System.out.println("|  1. Sua ho                                                  |");
+            System.out.println("|  2. Sua ten                                                 |");
+            System.out.println("|  3. Sua so dien thoai                                       |");
+            System.out.println("|  4. Sua loai hanh khach                                     |");
             System.out.println("+-------------------------------------------------------------+");
-            System.out.print("Chọn thông tin bạn muốn sửa: ");
-            choice = sc.nextLine();
+            System.out.print("Chon thong tin muon sua: ");
+            choice = sc.next();
             switch (choice) {
                 case "1":
-                    System.out.print("Mòi nhập họ muốn sửa: ");
+                    System.out.print("Moi nhap ho muon sua: ");
                     dshanhkhach[vitri].setHo(sc.nextLine());
                     break;
                 case "2":
-                    System.out.print("Mòi nhập tên muốn sửa: ");
+                    System.out.print("Moi nhap ten muon sua: ");
                     dshanhkhach[vitri].setTen(sc.nextLine());
                     break;
                 case "3":
-                    System.out.print("Mòi nhập số điện thoại muốn sửa: ");
+                    System.out.print("Moi nhap so dien thoai muon sua: ");
                     dshanhkhach[vitri].setSdt(sc.nextLine());
                     break;
                 case "4":
-                    System.out.print("Mòi nhập loại hành khách muốn sửa: ");
+                    System.out.print("Moi nhap loai hanh khach muon sua: ");
                     dshanhkhach[vitri].setLoaiHanhKhach(sc.nextLine());
                     break;
             }
         } else {
-            System.out.println("Không tìm thấy hành khách muốn sửa");
+            System.out.println("Khong tim thay hanh khach muon sua");
         }
 
     }
 
-    // tìm hành khách
+    // tim hanh khach
     public HanhKhach tim(String ma) {
         for (int i = 0; i < dshanhkhach.length; i++) {
             if (dshanhkhach[i].getMaHanhKhach().equals(ma)) {
@@ -245,7 +245,7 @@ public class DanhSachHanhKhach {
 
     public HanhKhach tim() {
         String ma;
-        System.out.print("Nhập mã hành khách cần tìm: ");
+        System.out.print("Nhap ma hanh khach can tim: ");
         ma = sc.nextLine();
         for (int i = 0; i < dshanhkhach.length; i++) {
             if (dshanhkhach[i].getMaHanhKhach().equals(ma)) {
@@ -264,12 +264,12 @@ public class DanhSachHanhKhach {
         return -1;
     }
 
-    // tìm theo tên không tham số
+    // tim theo ten khong tham so
     public HanhKhach[] timTen() {
         HanhKhach[] dsTen = new HanhKhach[0];
         int j = 0;
         String ten;
-        System.out.print("Nhập tên cần tìm: ");
+        System.out.print("Nhap ten can tim: ");
         ten = sc.nextLine();
         for (int i = 0; i < dshanhkhach.length; i++) {
             if (dshanhkhach[i].getTen().equalsIgnoreCase(ten)) {
@@ -283,7 +283,7 @@ public class DanhSachHanhKhach {
         return dsTen;
     }
 
-    // tìm theo tên có tham số
+    // tim theo ten co tham so
     public HanhKhach[] timTen(String ten) {
         HanhKhach[] dsTen = new HanhKhach[0];
         int j = 0;
@@ -299,8 +299,8 @@ public class DanhSachHanhKhach {
         return dsTen;
     }
 
-    // thống kê hành khách theo loại vé
-    // vé vip
+    // thong ke hanh khach theo loai ve
+    // ve vip
     public HanhKhach[] dsVip() {
         HanhKhach[] dsvip = new HanhKhach[0];
         int j = 0;
@@ -316,7 +316,7 @@ public class DanhSachHanhKhach {
         return dsvip;
     }
 
-    // vé thường
+    // ve thuong
     public HanhKhach[] dsThuong() {
         HanhKhach[] dsthuong = new HanhKhach[0];
         int j = 0;
@@ -370,7 +370,7 @@ public class DanhSachHanhKhach {
         return slTuoi;
     }
 
-    // sort theo tên cho dễ nhìn
+    // sort theo ten cho de nhin
     private void sortTen(HanhKhach[] ds) {
         HanhKhach hk1 = new HanhKhach();
         for (int i = 0; i < ds.length - 1; i++) {
@@ -385,18 +385,18 @@ public class DanhSachHanhKhach {
     }
 
     public void menu() {
-        System.out.println("+------------QUẢN LÝ DANH SÁCH HÀNH KHÁCH------------+");
-        System.out.println("|  1. Đọc danh sách từ file                          |");
-        System.out.println("|  2. Nhập danh sách mới                             |");
-        System.out.println("|  3. Thêm hành khách                                |");
-        System.out.println("|  4. Xóa hành khách                                 |");
-        System.out.println("|  5. Sửa thông tin hành khách                       |");
-        System.out.println("|  6. Tìm hành khách theo mã                         |");
-        System.out.println("|  7. Tìm hành khách theo tên                        |");
-        System.out.println("|  8. Thống kê loại hành khách                       |");
-        System.out.println("|  9. Thống kê tuổi từng hành khách                  |");
-        System.out.println("|  10. Xuất danh sách ra màn hình                    |");
-        System.out.println("|  0. Thoát                                          |");
+        System.out.println("+------------QUAN LY DANH SACH HANH KHACH------------+");
+        System.out.println("|  1. Doc danh sach tu file                          |");
+        System.out.println("|  2. Nhap danh sach moi                             |");
+        System.out.println("|  3. Them hanh khach                                |");
+        System.out.println("|  4. Xoa hanh khach                                 |");
+        System.out.println("|  5. Sua thong tin hanh khach                       |");
+        System.out.println("|  6. Tim hanh khach theo ma                         |");
+        System.out.println("|  7. Tim hanh khach theo ten                        |");
+        System.out.println("|  8. Thong ke loai hanh khach                       |");
+        System.out.println("|  9. Thong ke tuoi tung hanh khach                  |");
+        System.out.println("|  10. Xuat danh sach ra man hinh                    |");
+        System.out.println("|  0. Thoat                                          |");
         System.out.println("+--------------------------------- ------------------+");
     }
 
@@ -405,11 +405,11 @@ public class DanhSachHanhKhach {
         boolean nhapSai = false;
         do {
             menu();
-            System.out.print("Mời chọn chức năng: ");
+            System.out.print("Moi chon chuc nang: ");
             c = sc.next();
             switch (c) {
                 case "0":
-                    System.out.println("cảm ơn đã sử dụng chương trình!!!");
+                    System.out.println("Da thoat chuong trinh.");
                     break;
                 case "1":
                     docFile();
@@ -419,120 +419,120 @@ public class DanhSachHanhKhach {
                     break;
                 case "3":
                     String t;
-                    System.out.println("+-------------- Thêm Hành Khách --------------+");
-                    System.out.println("|  1. Thêm hành khách không có tham số        |");
-                    System.out.println("|  2. Thêm hành khách có tham số              |");
+                    System.out.println("+-------------- THEM HANH KHACH --------------+");
+                    System.out.println("|  1. Them hanh khach khong co tham so        |");
+                    System.out.println("|  2. Them hanh khach co tham so              |");
                     System.out.println("+---------------------------------------------+");
-                    System.out.print("Chọn kiểu thêm hành khách: ");
+                    System.out.print("Chon kieu \"Them hanh khach\": ");
                     t = sc.next();
                     if (t.equals("1")) {
                         them();
                     }
                     if (t.equals("2")) {
-                        HanhKhach hk1 = new HanhKhach("A01", "Nguyễn Văn", "Tèo", "01-01-2005", "Ông", "0892001", "0357522", "Vip");
+                        HanhKhach hk1 = new HanhKhach("A01", "Nguyen Van", "Teo", "01-01-2005", "Ong", "0892001", "0357522", "Vip");
                         them(hk1);
                     }
                     break;
                 case "4":
                     String x;
-                    System.out.println("+--------------- Xóa Hành Khách ---------------+");
-                    System.out.println("|  1. Xóa hành khách không có tham số          |");
-                    System.out.println("|  2. Xóa hành khách có tham số                |");
+                    System.out.println("+--------------- XOA HANH KHACH ---------------+");
+                    System.out.println("|  1. Xoa hanh khach khong co tham so          |");
+                    System.out.println("|  2. Xoa hanh khach co tham so                |");
                     System.out.println("+----------------------------------------------+");
-                    System.out.print("Chọn kiểu xóa hành khách: ");
+                    System.out.print("Chon kieu \"Xoa hanh khach\": ");
                     x = sc.next();
                     if (x.equals("1")) {
                         xoa();
                     }
                     if (x.equals("2")) {
-                        System.out.print("Nhập mã hành khách cần xóa: ");
+                        System.out.print("Nhap ma hanh khach can xoa: ");
                         xoa(sc.nextLine());
                     }
                     break;
                 case "5":
                     String s;
-                    System.out.println("+--------------- Sửa Hành Khách ---------------+");
-                    System.out.println("|  1. Sửa hành khách không có tham số          |");
-                    System.out.println("|  2. Sửa hành khách có tham số                |");
+                    System.out.println("+---------- SUA THONG TIN HANH KHACH ----------+");
+                    System.out.println("|  1. Sua khong co tham so                     |");
+                    System.out.println("|  2. Sửa co tham so                           |");
                     System.out.println("+----------------------------------------------+");
-                    System.out.print("Chọn kiểu Sửa hành khách: ");
+                    System.out.print("Chon kieu \"Sua hanh khach\": ");
                     s = sc.next();
                     if (s.equals("1")) {
                         sua();
                     }
                     if (s.equals("2")) {
-                        System.out.print("Nhập mã hành khách cần sửa: ");
+                        System.out.print("Nhap ma hanh khach can sua: ");
                         sua(sc.nextLine());
                     }
                     break;
                 case "6":
                     String tm;
-                    System.out.println("+--------------- Tìm Hành Khách ---------------+");
-                    System.out.println("|  1. Tìm hành khách không có tham số          |");
-                    System.out.println("|  2. Tìm hành khách có tham số                |");
-                    System.out.println("|  3. Tìm vị trí của hành khách                |");
+                    System.out.println("+--------------- TIM HANH KHACH ---------------+");
+                    System.out.println("|  1. Tim hanh khach khong co tham so          |");
+                    System.out.println("|  2. Tim hanh khach co tham so                |");
+                    System.out.println("|  3. Tim vi tri cua hanh khach                |");
                     System.out.println("+----------------------------------------------+");
-                    System.out.print("Chọn kiểu Tìm hành khách: ");
+                    System.out.print("Chon kieu \"Tim hanh khach\": ");
                     tm = sc.next();
                     switch (tm) {
                         case "1":
                             if (tim() != null) {
                                 tim().xuatHanhKhach();
                             } else {
-                                System.out.println("Không có hành khách cần tìm");
+                                System.out.println("Khong co hanh khach can tim");
                             }
                         case "2":
                             String ma;
-                            System.out.print("Nhập mã hành khách cần tìm: ");
+                            System.out.print("Nhap ma hanh khach can tim: ");
                             ma = sc.nextLine();
                             if (tim(ma) != null) {
                                 tim(ma).xuatHanhKhach();
                             } else {
-                                System.out.println("Không tìm thấy mã cần tìm");
+                                System.out.println("Khong tim thay ma can tim");
                             }
                         case "3":
                             String mahk;
-                            System.out.println("Nhập mã hành khách cần tìm: ");
+                            System.out.println("Nhap ma hanh khach can tim: ");
                             mahk = sc.nextLine();
                             if (timViTri(mahk) != -1) {
-                                System.out.println("Hành khách ở vị trí " + timViTri(mahk) + " trong danh sách");
+                                System.out.println("Hanh khach o vi tri " + timViTri(mahk) + " trong danh sach");
                             } else {
-                                System.out.println("Không tìm thấy vị trí hành khách");
+                                System.out.println("Khong tim thay vi tri hanh khach");
                             }
 
                         case "7":
                             String tt;
-                            System.out.println("+--------------- Danh sách tên ---------------+");
-                            System.out.println("|  1. Tìm theo tên không tham số              |");
-                            System.out.println("|  2. Tìm theo tên có tham số                 |");
+                            System.out.println("+--------------- DANH SACH TEN ---------------+");
+                            System.out.println("|  1. Tim theo ten khong tham so              |");
+                            System.out.println("|  2. Tim theo ten co tham so                 |");
                             System.out.println("+---------------------------------------------+");
-                            System.out.print("Chọn kiểu tìm tên: ");
+                            System.out.print("Chon kieu tim ten: ");
                             tt = sc.nextLine();
                             HanhKhach[] ds;
                             switch (tt) {
                                 case "1":
                                     ds = timTen();
                                     if (ds != null) {
-                                        System.out.println("Số lượng hành khách có tên " + tt + " là: ");
+                                        System.out.println("So luong hanh khach co ten " + tt + " la: ");
                                         for (int i = 0; i < ds.length; i++) {
                                             ds[i].xuatHanhKhach();
                                         }
                                     } else {
-                                        System.out.println("Không có hành khách nào tên " + tt);
+                                        System.out.println("Khong co hanh khach nao ten " + tt);
                                     }
                                     break;
                                 case "2":
                                     String ten;
-                                    System.out.print("Nhập tên cần tìm: ");
+                                    System.out.print("Nhap ten can tim: ");
                                     ten = sc.nextLine();
                                     ds = timTen(ten);
                                     if (ds != null) {
-                                        System.out.println("Số lượng hành khách có tên " + tt + " là: ");
+                                        System.out.println("So luong hanh khach co ten " + tt + " la: ");
                                         for (int i = 0; i < ds.length; i++) {
                                             ds[i].xuatHanhKhach();
                                         }
                                     } else {
-                                        System.out.println("Không có hành khách nào tên " + tt);
+                                        System.out.println("Khong co hanh khach nao ten " + tt);
                                     }
                                     break;
                                 case "8":
@@ -541,21 +541,21 @@ public class DanhSachHanhKhach {
                                 case "9":
                                     int[] tk = thongKeTuoi();
                                     for (int i = 0; i < tk.length; i++) {
-                                        System.out.println("Số lượng hành khách có tuổi " + i + " là " + tk[i]);
+                                        System.out.println("So luong hanh khach co tuoi " + i + " la " + tk[i]);
                                     }
                                     break;
                                 case "10":
                                     xuatDS();
                                     break;
                                 default:
-                                    System.out.println("Chọn không đúng, hãy chọn lại cho đúng chức năng (0-10): ");
+                                    System.out.println("Chon khong dung, moi chon lai: ");
                                     nhapSai = true;
                             }
                     }
             }
             if (!nhapSai && !c.equals("0")) {
-                System.out.println("Bạn có muốn thoát chương trình??");
-                System.out.println("Nếu có -> (0) | thao tác tiếp -> (1-10)");
+                System.out.println("Ban co muon thoat chuong trinh?");
+                System.out.println("Thoat chuong trinh (0) | thao tac tiep -> (1-10)");
             }
         } while (!c.equals("0"));
     }
