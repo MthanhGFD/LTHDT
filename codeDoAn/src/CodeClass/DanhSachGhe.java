@@ -77,35 +77,13 @@ public class DanhSachGhe {
 
     // Xuat danh sach ghe
     public void xuatDS() {
-        System.out.println("+-----------------+----------------------+----------------------+");
-        System.out.printf("| %-15s | %-20s | %-20s |\n", "Ma ghe", "Ma may bay", "Vi tri ghe");
-        System.out.println("+-----------------+----------------------+----------------------+");
+        System.out.println("+-----------------+----------------------+-----------------+");
+        System.out.println("|     Ma ghe      |      Vi tri ghe      |   May may bay   |" );
+        System.out.println("+-----------------+----------------------+-----------------+");
         for (int i = 0; i < soLuong; i++) {
-            System.out.printf("| %-15s | %-20s | %-20s |\n",
-                    dsGhe[i].getMaGhe(),
-                    dsGhe[i].getMaMayBay(),
-                    dsGhe[i].getViTriGhe());
+            dsGhe[i].xuatGhe();
         }
         System.out.println("+-----------------+----------------------+----------------------+");
-    }
-
-    // Tim vi tri ghe
-    public int timViTri(String maGhe) {
-        for (int i = 0; i < soLuong; i++) {
-            if (dsGhe[i].getMaGhe().equalsIgnoreCase(maGhe)) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    // Tim ghe theo ma
-    public Ghe tim(String maGhe) {
-        int vt = timViTri(maGhe);
-        if (vt != -1) {
-            return dsGhe[vt];
-        }
-        return null;
     }
 
     // Them ghe (khong tham so)
@@ -177,88 +155,49 @@ public class DanhSachGhe {
         }
     }
 
-    // Menu
-    public void menu() {
-        System.out.println("+--------------- QUAN LY DANH SACH GHE ---------------+");
-        System.out.println("| 1. Doc danh sach ghe tu file                        |");
-        System.out.println("| 2. Nhap danh sach ghe                               |");
-        System.out.println("| 3. Them ghe                                         |");
-        System.out.println("| 4. Xoa ghe                                          |");
-        System.out.println("| 5. Sua vi tri ghe                                   |");
-        System.out.println("| 6. Tim ghe theo ma                                  |");
-        System.out.println("| 7. Xuat danh sach ghe                               |");
-        System.out.println("| 0. Thoat chuong trinh                               |");
-        System.out.println("+-----------------------------------------------------+");
+    public void sua(String ma) {
+        int vt = timViTri(ma);
+        if (vt != -1) {
+            System.out.print("Nhap vi tri ghe moi: ");
+            String viTriMoi = sc.nextLine();
+            dsGhe[vt].setViTriGhe(viTriMoi);
+            System.out.println("Da sua thanh cong!");
+        } else {
+            System.out.println("Khong tim thay ma ghe!");
+        }
     }
 
-    // Lua chon chuc nang
-    public void choice() {
-        String chon;
-        do {
-            menu();
-            System.out.print("Chon chuc nang: ");
-            chon = sc.next();
-            switch (chon) {
-                case "1":
-                    docFile();
-                    break;
-                case "2":
-                    nhapDS();
-                    break;
-                case "3":
-                    String t;
-                    System.out.println("+------------------ THEM GHE ------------------+");
-                    System.out.println("| 1. Them ghe khong tham so                   |");
-                    System.out.println("| 2. Them ghe co tham so                      |");
-                    System.out.println("+---------------------------------------------+");
-                    System.out.print("Chon kieu them ghe: ");
-                    t = sc.next();
-                    if (t.equals("1")) {
-                        them();
-                    } else if (t.equals("2")) {
-                        Ghe g1 = new Ghe("GH01", "MB01", "A00");
-                        them(g1);
-                    }
-                    break;
-                case "4":
-                    String x;
-                    System.out.println("+------------------ XOA GHE ------------------+");
-                    System.out.println("| 1. Xoa ghe khong tham so                   |");
-                    System.out.println("| 2. Xoa ghe co tham so                      |");
-                    System.out.println("+--------------------------------------------+");
-                    System.out.print("Chon kieu xoa ghe: ");
-                    x = sc.next();
-                    if (x.equals("1")) {
-                        xoa();
-                    } else if (x.equals("2")) {
-                        sc.nextLine();
-                        System.out.print("Nhap ma ghe can xoa: ");
-                        xoa(sc.nextLine());
-                    }
-                    break;
-                case "5":
-                    sua();
-                    break;
-                case "6":
-                    sc.nextLine();
-                    System.out.print("Nhap ma ghe can tim: ");
-                    String ma = sc.nextLine();
-                    Ghe g = tim(ma);
-                    if (g != null) {
-                        g.xuatGhe();
-                    } else {
-                        System.out.println("Khong tim thay ghe!");
-                    }
-                    break;
-                case "7":
-                    xuatDS();
-                    break;
-                case "0":
-                    System.out.println("Cam on da su dung chuong trinh!");
-                    break;
-                default:
-                    System.out.println("Chon khong hop le!");
+    // Tim ghe khong tham so
+    public Ghe tim() {
+        String maghe;
+        System.out.print("Nhap ma ghe can tim: ");
+        maghe = sc.nextLine();
+        for (int i = 0; i < dsGhe.length; i++) {
+            if (dsGhe[i].equals(maghe)) {
+                return dsGhe[i];
             }
-        } while (!chon.equals("0"));
+        }
+        return null;
     }
+
+    // Tim ghe theo ma
+    public Ghe tim(String maghe) {
+        for (int i = 0; i < dsGhe.length; i++) {
+            if (dsGhe[i].equals(maghe)) {
+                return dsGhe[i];
+            }
+        }
+        return null;
+    }
+
+    // Tim vi tri ghe
+    public int timViTri(String maGhe) {
+        for (int i = 0; i < soLuong; i++) {
+            if (dsGhe[i].getMaGhe().equalsIgnoreCase(maGhe)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
 }

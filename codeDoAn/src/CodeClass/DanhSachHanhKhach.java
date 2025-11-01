@@ -57,9 +57,13 @@ public class DanhSachHanhKhach {
     }
 
     public void xuatDS() {
+        System.out.println("+-----------------+--------------------------------+------------+------------+------------+-----------------+-----------------+-----------------+");
+        System.out.println("|  Ma Hanh Khach  |                Ho              |    Ten     |  Ngay Sinh | Danh Xung  |   So Can Cuoc   |  So Dien Thoai  | Loai Hanh Khach |");
+        System.out.println("+-----------------+--------------------------------+------------+------------+------------+-----------------+-----------------+-----------------+");
         for (int i = 0; i < dshanhkhach.length; i++) {
             dshanhkhach[i].xuatHanhKhach();
         }
+        System.out.println("+-----------------+--------------------------------+------------+------------+------------+-----------------+-----------------+-----------------+");
     }
 
     public void docFile() {

@@ -3,21 +3,33 @@ package CodeClass;
 import static CodeClass.DanhSachHangHangKhong.sc;
 import java.util.Arrays;
 
+public class QuanLyHangHangKhong extends QuanLyVeMayBay {
 
-public class QuanLyHangHangKhong {
     private DanhSachHangHangKhong dshanghangkhong;
-    
-    public void menu() {
-        System.out.println("+------------------Danh sach Hang Hang Khong------------------+");
-        System.out.println("|  1. Nhap danh sach hang hang khong                         |");
-        System.out.println("|  2. Them 1 hang hang khong                                 |");
-        System.out.println("|  3. Xoa 1 hang hang khong                                  |");
-        System.out.println("|  4. Sua thong tin hang hang khong                          |");
-        System.out.println("|  5. Tim hang hang khong                                    |");
-        System.out.println("|  6. Xuat danh sach hang hang khong                         |");
-        System.out.println("+-------------------------------------------------------------+");
+
+    public QuanLyHangHangKhong() {
+        dshanghangkhong = new DanhSachHangHangKhong();
     }
 
+    public QuanLyHangHangKhong(DanhSachHangHangKhong dshanghangkhong) {
+        this.dshanghangkhong = dshanghangkhong;
+    }
+
+    @Override
+    public void menu() {
+        System.out.println("+=====================================================+");
+        System.out.println("|              DANH SACH HANG HANG KHONG              |");
+        System.out.println("+=====================================================+");
+        System.out.println("|  1. Nhap danh sach hang hang khong                  |");
+        System.out.println("|  2. Them 1 hang hang khong                          |");
+        System.out.println("|  3. Xoa 1 hang hang khong                           |");
+        System.out.println("|  4. Sua thong tin hang hang khong                   |");
+        System.out.println("|  5. Tim hang hang khong                             |");
+        System.out.println("|  6. Xuat danh sach hang hang khong                  |");
+        System.out.println("+-----------------------------------------------------+");
+    }
+
+    @Override
     public void choice() {
         String c;
         boolean nhapSai;
@@ -38,10 +50,12 @@ public class QuanLyHangHangKhong {
                     break;
 
                 case "2":
-                    System.out.println("+----------- Them Hang Hang Khong -----------+");
-                    System.out.println("|  1. Them hang khong co tham so             |");
-                    System.out.println("|  2. Them hang co tham so                   |");
-                    System.out.println("+--------------------------------------------+");
+                    System.out.println("+======================================================+");
+                    System.out.println("|                 THEM HANG HANG KHONG                 |");
+                    System.out.println("+======================================================+");
+                    System.out.println("|  1. Them hang khong co tham so                       |");
+                    System.out.println("|  2. Them hang co tham so                             |");
+                    System.out.println("+------------------------------------------------------+");
                     System.out.print("Chon kieu them: ");
                     String t = sc.next();
                     sc.nextLine();
@@ -58,10 +72,12 @@ public class QuanLyHangHangKhong {
                     break;
 
                 case "3":
-                    System.out.println("+------------ Xoa Hang Hang Khong -----------+");
-                    System.out.println("|  1. Xoa hang khong co tham so              |");
-                    System.out.println("|  2. Xoa hang co tham so                    |");
-                    System.out.println("+--------------------------------------------+");
+                    System.out.println("+=================================================+");
+                    System.out.println("|               XOA HANG HANG KHONG               |");
+                    System.out.println("+=================================================+");
+                    System.out.println("|  1. Xoa hang khong co tham so                   |");
+                    System.out.println("|  2. Xoa hang co tham so                         |");
+                    System.out.println("+-------------------------------------------------+");
                     System.out.print("Chon kieu xoa: ");
                     String x = sc.next();
                     sc.nextLine();
@@ -74,10 +90,12 @@ public class QuanLyHangHangKhong {
                     break;
 
                 case "4":
-                    System.out.println("+------------ Sua Hang Hang Khong -----------+");
-                    System.out.println("|  1. Sua hang khong co tham so              |");
-                    System.out.println("|  2. Sua hang co tham so                    |");
-                    System.out.println("+--------------------------------------------+");
+                    System.out.println("+=================================================+");
+                    System.out.println("|               SUA HANG HANG KHONG               |");
+                    System.out.println("+=================================================+");
+                    System.out.println("|  1. Sua hang khong co tham so                   |");
+                    System.out.println("|  2. Sua hang co tham so                         |");
+                    System.out.println("+-------------------------------------------------+");
                     System.out.print("Chon kieu sua: ");
                     String s = sc.next();
                     sc.nextLine();
@@ -94,11 +112,13 @@ public class QuanLyHangHangKhong {
                     break;
 
                 case "5":
-                    System.out.println("+------------ Tim Hang Hang Khong -----------+");
-                    System.out.println("|  1. Tim hang khong co tham so              |");
-                    System.out.println("|  2. Tim hang co tham so                    |");
-                    System.out.println("|  3. Tim vi tri hang                        |");
-                    System.out.println("+--------------------------------------------+");
+                    System.out.println("+=================================================+");
+                    System.out.println("|               TIM HANG HANG KHONG               |");
+                    System.out.println("+=================================================+");
+                    System.out.println("|  1. Tim hang khong co tham so                   |");
+                    System.out.println("|  2. Tim hang co tham so                         |");
+                    System.out.println("|  3. Tim vi tri hang                             |");
+                    System.out.println("+-------------------------------------------------+");
                     System.out.print("Chon kieu tim: ");
                     String tm = sc.next();
                     sc.nextLine();

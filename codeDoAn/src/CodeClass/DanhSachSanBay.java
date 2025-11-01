@@ -49,9 +49,13 @@ public class DanhSachSanBay {
 
     // xuất danh sách sân bay
     public void xuatDS() {
+        System.out.println("+-----------------+--------------------------------+---------------------------+");
+        System.out.println("|   Ma san bay    |          Ten san bay           |         Dia diem          |");
+        System.out.println("+-----------------+--------------------------------+---------------------------+");
         for (int i = 0; i < dssanbay.length; i++) {
             dssanbay[i].xuatSanBay();
         }
+        System.out.println("+-----------------+--------------------------------+---------------------------+");
     }
 
     // đọc file

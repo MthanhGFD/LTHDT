@@ -39,7 +39,7 @@ public class SanBay {
     }
 
     public void xuatSanBay() {
-        String fmt = "| %-15s | %-30s | %-25s |%n";
+        String fmt = "| %-15s | %-30s | %-25s |\n";
         System.out.println("|-----------------|--------------------------------|---------------------------|");
         System.out.printf(fmt, maSanBay, tenSanBay, diaDiem);
         System.out.println("|-----------------|--------------------------------|---------------------------|");

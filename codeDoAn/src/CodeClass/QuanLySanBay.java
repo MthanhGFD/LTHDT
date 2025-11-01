@@ -3,23 +3,31 @@ package CodeClass;
 import static CodeClass.DanhSachSanBay.sc;
 
 
-public class QuanLySanBay {
+public class QuanLySanBay extends QuanLyVeMayBay {
     private DanhSachSanBay dssanbay;
     
+    public QuanLySanBay(){
+        dssanbay = new DanhSachSanBay();
+    }
+    
     // ==================== MENU ====================
+    @Override
     public void menu() {
-        System.out.println("+----------------- QUAN LY DANH SACH SAN BAY -----------------+");
-        System.out.println("|  1. Doc danh sach tu file                                  |");
-        System.out.println("|  2. Nhap danh sach moi                                     |");
-        System.out.println("|  3. Them san bay                                           |");
-        System.out.println("|  4. Xoa san bay                                            |");
-        System.out.println("|  5. Sua ten san bay                                        |");
-        System.out.println("|  6. Tim san bay                                            |");
-        System.out.println("|  7. Xuat danh sach ra man hinh                             |");
-        System.out.println("|  0. Thoat                                                  |");
-        System.out.println("+-------------------------------------------------------------+");
+        System.out.println("+=====================================================+");
+        System.out.println("|                   QUAN LY SAN BAY                   |");
+        System.out.println("+=====================================================+");
+        System.out.println("|  1. Doc danh sach tu file                           |");
+        System.out.println("|  2. Nhap danh sach moi                              |");
+        System.out.println("|  3. Them san bay                                    |");
+        System.out.println("|  4. Xoa san bay                                     |");
+        System.out.println("|  5. Sua ten san bay                                 |");
+        System.out.println("|  6. Tim san bay                                     |");
+        System.out.println("|  7. Xuat danh sach ra man hinh                      |");
+        System.out.println("|  0. Thoat                                           |");
+        System.out.println("+-----------------------------------------------------+");
     }
 
+    @Override
     public void choice() {
         String c;
         boolean nhapSai = false;
@@ -45,10 +53,12 @@ public class QuanLySanBay {
 
                 case "3": {
                     String t;
-                    System.out.println("+----------------- Them San Bay -----------------+");
-                    System.out.println("|  1. Them san bay khong co tham so              |");
-                    System.out.println("|  2. Them san bay co tham so                    |");
-                    System.out.println("+------------------------------------------------+");
+                    System.out.println("+==============================================+");
+                    System.out.println("|                 THEM SAN BAY                 |");
+                    System.out.println("+==============================================+");
+                    System.out.println("|  1. Them san bay khong co tham so             |");
+                    System.out.println("|  2. Them san bay co tham so                   |");
+                    System.out.println("+-----------------------------------------------+");
                     System.out.print("Chon kieu them: ");
                     t = sc.next();
                     sc.nextLine();
@@ -65,10 +75,12 @@ public class QuanLySanBay {
 
                 case "4": {
                     String x;
-                    System.out.println("+----------------- Xoa San Bay -----------------+");
-                    System.out.println("|  1. Xoa san bay khong co tham so              |");
-                    System.out.println("|  2. Xoa san bay co tham so                    |");
-                    System.out.println("+-----------------------------------------------+");
+                    System.out.println("+=============================================+");
+                    System.out.println("|                 XOA SAN BAY                 |");
+                    System.out.println("+=============================================+");
+                    System.out.println("|  1. Xoa san bay khong co tham so            |");
+                    System.out.println("|  2. Xoa san bay co tham so                  |");
+                    System.out.println("+---------------------------------------------+");
                     System.out.print("Chon kieu xoa: ");
                     x = sc.next();
                     sc.nextLine();
@@ -86,10 +98,12 @@ public class QuanLySanBay {
 
                 case "5": {
                     String s;
-                    System.out.println("+----------------- Sua San Bay -----------------+");
-                    System.out.println("|  1. Sua san bay khong co tham so              |");
-                    System.out.println("|  2. Sua san bay co tham so                    |");
-                    System.out.println("+-----------------------------------------------+");
+                    System.out.println("+=============================================+");
+                    System.out.println("|                 SUA SAN BAY                 |");
+                    System.out.println("+=============================================+");
+                    System.out.println("|  1. Sua san bay khong co tham so            |");
+                    System.out.println("|  2. Sua san bay co tham so                  |");
+                    System.out.println("+---------------------------------------------+");
                     System.out.print("Chon kieu sua: ");
                     s = sc.next();
                     sc.nextLine();
@@ -107,11 +121,13 @@ public class QuanLySanBay {
 
                 case "6": {
                     String tm;
-                    System.out.println("+----------------- Tim San Bay -----------------+");
-                    System.out.println("|  1. Tim san bay khong co tham so              |");
-                    System.out.println("|  2. Tim san bay co tham so                    |");
-                    System.out.println("|  3. Tim vi tri san bay                        |");
-                    System.out.println("+-----------------------------------------------+");
+                    System.out.println("+=============================================+");
+                    System.out.println("|                 TIM SAN BAY                 |");
+                    System.out.println("+=============================================+");
+                    System.out.println("|  1. Tim san bay khong co tham so            |");
+                    System.out.println("|  2. Tim san bay co tham so                  |");
+                    System.out.println("|  3. Tim vi tri san bay                      |");
+                    System.out.println("+---------------------------------------------+");
                     System.out.print("Chon kieu tim: ");
                     tm = sc.next();
                     sc.nextLine();

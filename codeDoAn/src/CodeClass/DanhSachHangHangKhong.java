@@ -44,9 +44,13 @@ public class DanhSachHangHangKhong {
     }
 
     public void xuatDS() {
+        System.out.println("+-----------------+-------------------------------------+---------------------------+");
+        System.out.println("|     Ma Hang     |              Ten hang               |         Quoc gia          |");
+        System.out.println("+-----------------+-------------------------------------+---------------------------+");
         for (int i = 0; i < dshanghangkhong.length; i++) {
             dshanghangkhong[i].xuatHangHangKhong();
         }
+        System.out.println("+-----------------+-------------------------------------+---------------------------+");
     }
 
     // them

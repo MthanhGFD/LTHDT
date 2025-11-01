@@ -40,9 +40,7 @@ public class HangHangKhong {
 
     public void xuatHangHangKhong() {
         String fmt = "| %-15s | %-35s | %-25s |%n";
-        System.out.println("+-----------------+-------------------------------------+---------------------------+");
         System.out.printf(fmt, maHang, tenHang, quocGia);
-        System.out.println("+-----------------+-------------------------------------+---------------------------+");
     }
 
 

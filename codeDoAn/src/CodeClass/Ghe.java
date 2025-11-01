@@ -31,10 +31,8 @@ public class Ghe{
     }
 
     public void xuatGhe() {
-        String fmt = "| %-15s | %-20s | %-20s |%\n";
-        System.out.println("+-----------------+----------------------+----------------------+");
+        String fmt = "| %-15s | %-20s | %-15s |\n";
         System.out.printf(fmt, maghe, vitrighe, mamaybay );
-        System.out.println("+-----------------+----------------------+----------------------+");
     }
     
     public String getMaGhe() {

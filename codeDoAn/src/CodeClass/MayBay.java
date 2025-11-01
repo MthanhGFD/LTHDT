@@ -58,10 +58,8 @@ public class MayBay {
     }
 
     public void xuatMayBay() {
-        String fmt = "| %-15s | %-25s | %-10d |%n";
-        System.out.println("+-----------------+---------------------------+------------+");
+        String fmt = "| %-15s | %-25s | %-6d |\n";
         System.out.printf(fmt, maMayBay, loaiMayBay, sucChua);
-        System.out.println("+-----------------+---------------------------+------------+");
     }
 
     @Override

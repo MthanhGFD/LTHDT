@@ -44,9 +44,13 @@ public class DanhSachMayBay {
     }
 
     public void xuatDS() {
+        System.out.println("+-----------------+---------------------------+--------+");
+        System.out.println("|   Ma may bay    |       Loai may bay        |Suc chua|");
+        System.out.println("+-----------------+---------------------------+--------+");
         for (int i = 0; i < dsmaybay.length; i++) {
             dsmaybay[i].xuatMayBay();
         }
+        System.out.println("+-----------------+---------------------------+--------+");
     }
 
     public void docFile() {

@@ -1,5 +1,6 @@
 package CodeClass;
 
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class ChuyenBay {
@@ -54,10 +55,13 @@ public class ChuyenBay {
     }
 
     public void xuatChuyenBay() {
-        String fmt = "| %-12s | %-15s | %-12s | %-10s | %-10s | %-15s | %-20s | %-10s |%n";
-        System.out.println("+--------------+-----------------+--------------+------------+------------+-----------------+----------------------+------------+");
+        String fmt = "| %-15s | %-15s | %-12s | %-12s | %-12s | %-15s | %-15s | %-15s |\n";
         System.out.printf(fmt, machuyenbay, diemkhoihanh, ngaykhoihanh, giokhoihanh, tinhtrang, mamaybay, mahanghangkhong, masanbay);
-        System.out.println("+--------------+-----------------+--------------+------------+------------+-----------------+----------------------+------------+");
+    }
+    
+    // ngày chuyến bay
+    public int ngay(){
+        return LocalDate.now().getDayOfMonth() - Integer.parseInt(ngaykhoihanh.substring(0, 2));
     }
 
     public String getMaChuyenBay() {

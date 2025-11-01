@@ -42,7 +42,7 @@ public class HanhKhach {
 
     public void nhapHanhKhach() {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Nhap ma hanh khach: ");
+        System.out.print("Nhap ma hanh khach (HK...): ");
         this.maHanhKhach = sc.nextLine();
         System.out.print("Nhap ho: ");
         this.ho = sc.nextLine();
@@ -50,7 +50,7 @@ public class HanhKhach {
         this.ten = sc.nextLine();
         System.out.print("Nhap ngay sinh(dd-mm-yy): ");
         this.ngaysinh = sc.nextLine();
-        System.out.print("Nhap danh xung: ");
+        System.out.print("Nhap danh xung (Ong/Ba): ");
         this.danhxung = sc.nextLine();
         System.out.print("Nhap can cuoc cong dan: ");
         this.cccd = sc.nextLine();
@@ -60,12 +60,10 @@ public class HanhKhach {
         System.out.println("===================================");
     }
 
-    public void xuatHanhKhach() {
-        String fmt = "| %-15s | %-30s | %-10s | %-10s | %-10s | %-15s | %-15s | %-15s |\n";
-        System.out.println("+-----------------+------------------------------------------+------------+------------+-----------------+-----------------+-----------------+");
-        System.out.printf(fmt, maHanhKhach, ho, ten, ngaysinh, danhxung, cccd, sdt, loaiHanhKhach);
-        System.out.println("+-----------------+------------------------------------------+------------+------------+-----------------+-----------------+-----------------+");
-    }
+        public void xuatHanhKhach() {
+            String fmt = "| %-15s | %-30s | %-10s | %-10s | %-10s | %-15s | %-15s | %-15s |\n";
+            System.out.printf(fmt, maHanhKhach, ho, ten, ngaysinh, danhxung, cccd, sdt, loaiHanhKhach);
+        }
 
     public int tuoi() {
         return LocalDate.now().getYear() - Integer.parseInt(ngaysinh);
