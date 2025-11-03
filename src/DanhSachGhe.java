@@ -1,4 +1,4 @@
-package CodeClass;
+package src;
 
 import java.io.*;
 import java.util.*;
@@ -169,11 +169,11 @@ public class DanhSachGhe {
 
     // Tim ghe khong tham so
     public Ghe tim() {
-        String maghe;
+        String maGhe;
         System.out.print("Nhap ma ghe can tim: ");
-        maghe = sc.nextLine();
+        maGhe = sc.nextLine();
         for (int i = 0; i < dsGhe.length; i++) {
-            if (dsGhe[i].equals(maghe)) {
+            if (dsGhe[i].equals(maGhe)) {
                 return dsGhe[i];
             }
         }

@@ -1,51 +1,51 @@
-package CodeClass;
+package src;
 
-import CodeClass.ChuyenBay;
+import src.ChuyenBay;
 import java.io.*;
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class DanhSachChuyenBay {
 
-    private ChuyenBay dschuyenbay[];
-    private int soluong;
+    private ChuyenBay dsChuyenBay[];
+    private int soLuong;
     static Scanner sc = new Scanner(System.in);
 
     public DanhSachChuyenBay() {
-        dschuyenbay = new ChuyenBay[0];
-        soluong = 0;
+        dsChuyenBay = new ChuyenBay[0];
+        soLuong = 0;
     }
 
-    public DanhSachChuyenBay(ChuyenBay[] dschuyenbay, int soluong) {
-        this.dschuyenbay = dschuyenbay;
-        this.soluong = soluong;
+    public DanhSachChuyenBay(ChuyenBay[] dsChuyenBay, int soLuong) {
+        this.dsChuyenBay = dsChuyenBay;
+        this.soLuong = soLuong;
     }
 
     public DanhSachChuyenBay(DanhSachChuyenBay ds) {
-        dschuyenbay = ds.dschuyenbay;
-        soluong = ds.soluong;
+        dsChuyenBay = ds.dsChuyenBay;
+        soLuong = ds.soLuong;
     }
 
     public void nhapDS() {
         int sl;
         System.out.print("Nhap so luong chuyen bay: ");
         sl = sc.nextInt();
-        soluong = sl;
+        soLuong = sl;
         for (int i = 0; i < sl; i++) {
             String machuyenbay;
             System.out.print("Nhap ma chuyen bay: ");
             machuyenbay = sc.nextLine();
             if (tim(machuyenbay) == null) {
-                dschuyenbay = Arrays.copyOf(dschuyenbay, i + 1);
-                dschuyenbay[dschuyenbay.length] = new ChuyenBay();
-                dschuyenbay[i].nhapChuyenBay();
-                String mamaybay, mahang, masanbay;
+                dsChuyenBay = Arrays.copyOf(dsChuyenBay, i + 1);
+                dsChuyenBay[dsChuyenBay.length] = new ChuyenBay();
+                dsChuyenBay[i].nhapChuyenBay();
+                String maMayBay, maHang, maSanBay;
                 System.out.print("Nhap ma may bay: ");
-                mamaybay = sc.nextLine();
+                maMayBay = sc.nextLine();
                 System.out.print("Nhap ma hang hang khong: ");
-                mahang = sc.nextLine();
+                maHang = sc.nextLine();
                 System.out.print("Nhap ma san bay: ");
-                masanbay = sc.nextLine();
+                maSanBay = sc.nextLine();
             } else {
                 i--;
             }
@@ -56,28 +56,28 @@ public class DanhSachChuyenBay {
         System.out.println("+-----------------+-----------------+--------------+--------------+--------------+-----------------+-----------------+-----------------+");
         System.out.println("|  Ma chuyen bay  | Diem khoi hanh  |Ngay khoi hanh|Gio khoi hanh |  Tinh trang  |   May may bay   |     Ma hang     |   Ma san bay    |");
         System.out.println("+-----------------+-----------------+--------------+--------------+--------------+-----------------+-----------------+-----------------+");
-        for (int i = 0; i < soluong; i++) {
-            dschuyenbay[i].xuatChuyenBay();
+        for (int i = 0; i < soLuong; i++) {
+            dsChuyenBay[i].xuatChuyenBay();
         }
         System.out.println("+-----------------+-----------------+--------------+--------------+--------------+-----------------+-----------------+-----------------+");
     }
 
     public void docFile() {
-        int i = soluong;
+        int i = soLuong;
         try {
             FileReader f = new FileReader("dsChuyenBay.txt");
             Scanner doc = new Scanner(f);
             while (doc.hasNextLine()) {
                 String line = doc.nextLine();
                 String tokens[] = line.split(",");
-                dschuyenbay[i].setMaChuyenBay(tokens[0]);
-                dschuyenbay[i].setDiemKhoiHanh(tokens[1]);
-                dschuyenbay[i].setNgayKhoiHanh(tokens[2]);
-                dschuyenbay[i].setGioKhoiHanh(tokens[3]);
-                dschuyenbay[i].setTinhTrang(tokens[4]);
+                dsChuyenBay[i].setMaChuyenBay(tokens[0]);
+                dsChuyenBay[i].setDiemKhoiHanh(tokens[1]);
+                dsChuyenBay[i].setNgayKhoiHanh(tokens[2]);
+                dsChuyenBay[i].setGioKhoiHanh(tokens[3]);
+                dsChuyenBay[i].setTinhTrang(tokens[4]);
                 i++;
             }
-            soluong = i;
+            soLuong = i;
             f.close();
             doc.close();
         } catch (FileNotFoundException e) {
@@ -106,20 +106,20 @@ public class DanhSachChuyenBay {
         System.out.print("Nhap ma chuyen bay: ");
         ma = sc.nextLine();
         if (tim(ma) != null) {
-            dschuyenbay = Arrays.copyOf(dschuyenbay, soluong + 1);
-            dschuyenbay[soluong] = new ChuyenBay();
-            dschuyenbay[soluong].nhapChuyenBay();
-            soluong++;
+            dsChuyenBay = Arrays.copyOf(dsChuyenBay, soLuong + 1);
+            dsChuyenBay[soLuong] = new ChuyenBay();
+            dsChuyenBay[soLuong].nhapChuyenBay();
+            soLuong++;
         }
     }
 
     // có tham số
     public void them(String ma) {
         if (tim(ma) != null) {
-            dschuyenbay = Arrays.copyOf(dschuyenbay, soluong + 1);
-            dschuyenbay[soluong] = new ChuyenBay();
-            dschuyenbay[soluong].nhapChuyenBay();
-            soluong++;
+            dsChuyenBay = Arrays.copyOf(dsChuyenBay, soLuong + 1);
+            dsChuyenBay[soLuong] = new ChuyenBay();
+            dsChuyenBay[soLuong].nhapChuyenBay();
+            soLuong++;
         }
     }
 
@@ -130,11 +130,11 @@ public class DanhSachChuyenBay {
         ma = sc.nextLine();
         int vitri = timViTri(ma);
         if (vitri != -1) {
-            for (int i = vitri; i < soluong - 1; i++) {
-                dschuyenbay[i] = dschuyenbay[i + 1];
+            for (int i = vitri; i < soLuong - 1; i++) {
+                dsChuyenBay[i] = dsChuyenBay[i + 1];
             }
-            dschuyenbay = Arrays.copyOf(dschuyenbay, soluong - 1);
-            soluong--;
+            dsChuyenBay = Arrays.copyOf(dsChuyenBay, soLuong - 1);
+            soLuong--;
         } else {
             System.out.println("Khong tim thay ma can xoa");
         }
@@ -144,12 +144,12 @@ public class DanhSachChuyenBay {
     public void xoa(String ma) {
         int vitri = timViTri(ma);
         if (vitri != -1) {
-            dschuyenbay[vitri].setTinhTrang("huy");
-            for (int i = vitri; i < soluong - 1; i++) {
-                dschuyenbay[i] = dschuyenbay[i + 1];
+            dsChuyenBay[vitri].setTinhTrang("huy");
+            for (int i = vitri; i < soLuong - 1; i++) {
+                dsChuyenBay[i] = dsChuyenBay[i + 1];
             }
-            dschuyenbay = Arrays.copyOf(dschuyenbay, soluong - 1);
-            soluong--;
+            dsChuyenBay = Arrays.copyOf(dsChuyenBay, soLuong - 1);
+            soLuong--;
 
         } else {
             System.out.println("Khong tim thay ma can xoa");
@@ -287,9 +287,9 @@ public class DanhSachChuyenBay {
         String ma;
         System.out.print("Nhap ma chuyen bay can tim:");
         ma = sc.nextLine();
-        for (int i = 0; i < dschuyenbay.length; i++) {
-            if (dschuyenbay[i].getMaChuyenBay().equals(ma)) {
-                return dschuyenbay[i];
+        for (int i = 0; i < dsChuyenBay.length; i++) {
+            if (dsChuyenBay[i].getMaChuyenBay().equals(ma)) {
+                return dsChuyenBay[i];
             }
         }
         return null;
@@ -297,9 +297,9 @@ public class DanhSachChuyenBay {
 
     // có tham số
     public ChuyenBay tim(String ma) {
-        for (int i = 0; i < dschuyenbay.length; i++) {
-            if (dschuyenbay[i].getMaChuyenBay().equals(ma)) {
-                return dschuyenbay[i];
+        for (int i = 0; i < dsChuyenBay.length; i++) {
+            if (dsChuyenBay[i].getMaChuyenBay().equals(ma)) {
+                return dsChuyenBay[i];
             }
         }
         return null;
@@ -307,8 +307,8 @@ public class DanhSachChuyenBay {
 
     // tìm vị trí
     public int timViTri(String ma) {
-        for (int i = 0; i < dschuyenbay.length; i++) {
-            if (dschuyenbay[i].getMaChuyenBay().equals(ma)) {
+        for (int i = 0; i < dsChuyenBay.length; i++) {
+            if (dsChuyenBay[i].getMaChuyenBay().equals(ma)) {
                 return i;
             }
         }
@@ -319,11 +319,11 @@ public class DanhSachChuyenBay {
     public ChuyenBay[] dsNgay(int ngay) {
         ChuyenBay[] ds = new ChuyenBay[0];
         int j = 0;
-        for (int i = 0; i < dschuyenbay.length; i++) {
-            if (dschuyenbay[i].ngay() == ngay) {
+        for (int i = 0; i < dsChuyenBay.length; i++) {
+            if (dsChuyenBay[i].ngay() == ngay) {
                 ds = Arrays.copyOf(ds, j + 1);
                 ds[j] = new ChuyenBay();
-                ds[j] = dschuyenbay[i];
+                ds[j] = dsChuyenBay[i];
                 j++;
             }
         }
@@ -342,11 +342,11 @@ public class DanhSachChuyenBay {
     public ChuyenBay[] dsTinhTrang(String tinhtrang) {
         ChuyenBay[] ds = new ChuyenBay[0];
         int j = 0;
-        for (int i = 0; i < dschuyenbay.length; i++) {
-            if (dschuyenbay[i].getTinhTrang().equalsIgnoreCase(tinhtrang)) {
+        for (int i = 0; i < dsChuyenBay.length; i++) {
+            if (dsChuyenBay[i].getTinhTrang().equalsIgnoreCase(tinhtrang)) {
                 ds = Arrays.copyOf(ds, j + 1);
                 ds[j] = new ChuyenBay();
-                ds[j] = dschuyenbay[i];
+                ds[j] = dsChuyenBay[i];
                 j++;
             }
         }

@@ -1,21 +1,21 @@
-package CodeClass;
+package src;
 
-import static CodeClass.DanhSachGhe.sc;
-import static CodeClass.DanhSachMayBay.sc;
+import static src.DanhSachGhe.sc;
+import static src.DanhSachMayBay.sc;
 
 public class QuanLyGhe extends QuanLyVeMayBay {
 
-    private DanhSachGhe dsghe;
-    private DanhSachMayBay dsmaybay;
+    private DanhSachGhe dsGhe;
+    private DanhSachMayBay dsMayBay;
 
     public QuanLyGhe() {
-        dsghe = new DanhSachGhe();
-        dsmaybay = new DanhSachMayBay();
+        dsGhe = new DanhSachGhe();
+        dsMayBay = new DanhSachMayBay();
     }
 
-    public QuanLyGhe(DanhSachGhe dsghe, DanhSachMayBay dsmaybay) {
-        this.dsghe = dsghe;
-        this.dsmaybay = dsmaybay;
+    public QuanLyGhe(DanhSachGhe dsGhe, DanhSachMayBay dsMayBay) {
+        this.dsGhe = dsGhe;
+        this.dsMayBay = dsMayBay;
     }
 
     // Menu
@@ -60,10 +60,10 @@ public class QuanLyGhe extends QuanLyVeMayBay {
                     chon = DanhSachGhe.sc.next();
                     switch (chondsghe) {
                         case "1":
-                            dsghe.docFile();
+                            dsGhe.docFile();
                             break;
                         case "2":
-                            dsghe.nhapDS();
+                            dsGhe.nhapDS();
                             break;
                         case "3":
                             String t;
@@ -76,10 +76,10 @@ public class QuanLyGhe extends QuanLyVeMayBay {
                             System.out.print("Chon kieu them ghe: ");
                             t = DanhSachGhe.sc.next();
                             if (t.equals("1")) {
-                                dsghe.them();
+                                dsGhe.them();
                             } else if (t.equals("2")) {
                                 Ghe g1 = new Ghe("GH01", "MB01", "A00");
-                                dsghe.them(g1);
+                                dsGhe.them(g1);
                             }
                             break;
                         case "4":
@@ -93,11 +93,11 @@ public class QuanLyGhe extends QuanLyVeMayBay {
                             System.out.print("Chon kieu xoa ghe: ");
                             x = DanhSachGhe.sc.next();
                             if (x.equals("1")) {
-                                dsghe.xoa();
+                                dsGhe.xoa();
                             } else if (x.equals("2")) {
                                 DanhSachGhe.sc.nextLine();
                                 System.out.print("Nhap ma ghe can xoa: ");
-                                dsghe.xoa(DanhSachGhe.sc.nextLine());
+                                dsGhe.xoa(DanhSachGhe.sc.nextLine());
                             }
                             break;
                         case "5":
@@ -113,13 +113,13 @@ public class QuanLyGhe extends QuanLyVeMayBay {
 
                             switch (chonsua) {
                                 case "1":
-                                    dsghe.sua(); // gọi hàm không tham số
+                                    dsGhe.sua(); // gọi hàm không tham số
                                     break;
 
                                 case "2":
                                     System.out.print("Nhap ma ghe can sua: ");
                                     String maGhe = DanhSachGhe.sc.nextLine();
-                                    dsghe.sua(maGhe); // gọi hàm có tham số
+                                    dsGhe.sua(maGhe); // gọi hàm có tham số
                                     break;
                                 default:
                                     System.out.println("chon sai thao tac sua ghe!!");
@@ -139,13 +139,13 @@ public class QuanLyGhe extends QuanLyVeMayBay {
 
                             switch (chonTim) {
                                 case "1":
-                                    dsghe.tim(); // không tham số
+                                    dsGhe.tim(); // không tham số
                                     break;
 
                                 case "2":
                                     System.out.print("Nhap ma ghe can tim: ");
                                     String maTim = DanhSachGhe.sc.nextLine();
-                                    Ghe g = dsghe.tim(maTim); // có tham số
+                                    Ghe g = dsGhe.tim(maTim); // có tham số
                                     if (g != null) {
                                         g.xuatGhe();
                                     } else {
@@ -156,7 +156,7 @@ public class QuanLyGhe extends QuanLyVeMayBay {
                                 case "3":
                                     System.out.print("Nhap ma ghe can tim: ");
                                     String maViTri = DanhSachGhe.sc.nextLine();
-                                    int vt = dsghe.timViTri(maViTri); // trả về vị trí
+                                    int vt = dsGhe.timViTri(maViTri); // trả về vị trí
                                     if (vt != -1) {
                                         System.out.println("Tim thay ghe o vi tri thu " + vt);
                                     } else {
@@ -171,7 +171,7 @@ public class QuanLyGhe extends QuanLyVeMayBay {
                             break;
 
                         case "7":
-                            dsghe.xuatDS();
+                            dsGhe.xuatDS();
                             break;
                         case "0":
                             System.out.println("Cam on da su dung chuong trinh!");
@@ -206,10 +206,10 @@ public class QuanLyGhe extends QuanLyVeMayBay {
                             System.out.println("Cam on ban da su dung chuong trinh!");
                             break;
                         case "1":
-                            dsmaybay.nhapDS();
+                            dsMayBay.nhapDS();
                             break;
                         case "2":
-                            dsmaybay.docFile();
+                            dsMayBay.docFile();
                             break;
                         case "3":
                             System.out.println("+==============================================+");
@@ -221,11 +221,11 @@ public class QuanLyGhe extends QuanLyVeMayBay {
                             System.out.print("Chon kieu them: ");
                             String t = DanhSachMayBay.sc.nextLine();
                             if (t.equals("1")) {
-                                dsmaybay.them();
+                                dsMayBay.them();
                             } else if (t.equals("2")) {
                                 System.out.print("Nhap ma may bay muon them: ");
                                 String ma = DanhSachMayBay.sc.nextLine();
-                                dsmaybay.them(ma);
+                                dsMayBay.them(ma);
                             } else {
                                 System.out.println("Lua chon khong hop le!");
                             }
@@ -240,11 +240,11 @@ public class QuanLyGhe extends QuanLyVeMayBay {
                             System.out.print("Chon kieu xoa: ");
                             String x = DanhSachMayBay.sc.nextLine();
                             if (x.equals("1")) {
-                                dsmaybay.xoa();
+                                dsMayBay.xoa();
                             } else if (x.equals("2")) {
                                 System.out.print("Nhap ma may bay can xoa: ");
                                 String ma = DanhSachMayBay.sc.nextLine();
-                                dsmaybay.xoa(ma);
+                                dsMayBay.xoa(ma);
                             } else {
                                 System.out.println("Lua chon khong hop le!");
                             }
@@ -259,11 +259,11 @@ public class QuanLyGhe extends QuanLyVeMayBay {
                             System.out.print("Chon kieu sua: ");
                             String s = DanhSachMayBay.sc.nextLine();
                             if (s.equals("1")) {
-                                dsmaybay.sua();
+                                dsMayBay.sua();
                             } else if (s.equals("2")) {
                                 System.out.print("Nhap ma may bay can sua: ");
                                 String ma = DanhSachMayBay.sc.nextLine();
-                                dsmaybay.sua(ma);
+                                dsMayBay.sua(ma);
                             } else {
                                 System.out.println("Lua chon khong hop le!");
                             }
@@ -280,7 +280,7 @@ public class QuanLyGhe extends QuanLyVeMayBay {
                             String tm = DanhSachMayBay.sc.nextLine();
                             switch (tm) {
                                 case "1":
-                                    MayBay mb1 = dsmaybay.tim();
+                                    MayBay mb1 = dsMayBay.tim();
                                     if (mb1 != null) {
                                         mb1.xuatMayBay();
                                     } else {
@@ -290,7 +290,7 @@ public class QuanLyGhe extends QuanLyVeMayBay {
                                 case "2":
                                     System.out.print("Nhap ma may bay can tim: ");
                                     String ma = DanhSachMayBay.sc.nextLine();
-                                    MayBay mb2 = dsmaybay.tim(ma);
+                                    MayBay mb2 = dsMayBay.tim(ma);
                                     if (mb2 != null) {
                                         mb2.xuatMayBay();
                                     } else {
@@ -300,7 +300,7 @@ public class QuanLyGhe extends QuanLyVeMayBay {
                                 case "3":
                                     System.out.print("Nhap ma may bay can tim vi tri: ");
                                     String maVT = DanhSachMayBay.sc.nextLine();
-                                    int vt = dsmaybay.timViTri(maVT);
+                                    int vt = dsMayBay.timViTri(maVT);
                                     if (vt != -1) {
                                         System.out.println("May bay o vi tri: " + vt);
                                     } else {
@@ -313,7 +313,7 @@ public class QuanLyGhe extends QuanLyVeMayBay {
                             break;
                         case "7":
                             System.out.println("+---------- THONG KE THEO LOAI MAY BAY ----------+");
-                            MayBay[][] tk = dsmaybay.thongKeLoaiMayBay();
+                            MayBay[][] tk = dsMayBay.thongKeLoaiMayBay();
                             String[] loai = {"Airbus A321", "Airbus A350-900", "Boeing 787-10", "Airbus A320"};
                             for (int i = 0; i < tk.length; i++) {
                                 System.out.println("Loai: " + loai[i]);
@@ -329,7 +329,7 @@ public class QuanLyGhe extends QuanLyVeMayBay {
                             break;
                         case "8":
                             System.out.println("+------------ DANH SACH MAY BAY ----------------+");
-                            dsmaybay.xuatDS();
+                            dsMayBay.xuatDS();
                             System.out.println("+-----------------------------------------------+");
                             break;
                         default:
