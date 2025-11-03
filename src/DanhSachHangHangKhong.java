@@ -1,4 +1,4 @@
-package src;
+package CodeClass;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -36,7 +36,7 @@ public class DanhSachHangHangKhong {
             if (tim(ma) == null) {
                 dshanghangkhong = Arrays.copyOf(dshanghangkhong, i + 1);
                 dshanghangkhong[i] = new HangHangKhong();
-                dshanghangkhong[i].inputHangHangKhong();
+                dshanghangkhong[i].nhapHangHangKhong();
             } else {
                 i--;
             }
@@ -44,13 +44,17 @@ public class DanhSachHangHangKhong {
     }
 
     public void xuatDS() {
+        System.out.println("+-----------------+-------------------------------------+---------------------------+");
+        System.out.println("|     Ma Hang     |              Ten hang               |         Quoc gia          |");
+        System.out.println("+-----------------+-------------------------------------+---------------------------+");
         for (int i = 0; i < dshanghangkhong.length; i++) {
-            dshanghangkhong[i].outputHangHangKhong();
+            dshanghangkhong[i].xuatHangHangKhong();
         }
+        System.out.println("+-----------------+-------------------------------------+---------------------------+");
     }
 
-    // thêm
-    // không tham số
+    // them
+    // khong tham so
     public void them() {
         String ma;
         System.out.print("Nhap ma hang hang khong: ");
@@ -58,27 +62,29 @@ public class DanhSachHangHangKhong {
         if (tim(ma) == null) {
             dshanghangkhong = Arrays.copyOf(dshanghangkhong, soluong + 1);
             dshanghangkhong[soluong] = new HangHangKhong();
-            dshanghangkhong[soluong].inputHangHangKhong();
+            dshanghangkhong[soluong].nhapHangHangKhong();
             soluong++;
+            System.out.println("Them thanh cong");
         } else {
             System.out.println("Hang hang khong da ton tai!!");
         }
     }
 
-    // có tham số
+    // co tham so
     public void them(String ma) {
         if (tim(ma) == null) {
             dshanghangkhong = Arrays.copyOf(dshanghangkhong, soluong + 1);
             dshanghangkhong[soluong] = new HangHangKhong();
-            dshanghangkhong[soluong].inputHangHangKhong();
+            dshanghangkhong[soluong].xuatHangHangKhong();
             soluong++;
+            System.out.println("Them thanh cong");
         } else {
             System.out.println("Hang hang khong da ton tai!!");
         }
     }
 
-    // xóa hãng hàng không
-    // không tham số
+    // xoa hang hang khong
+    // khong tham so
     public void xoa() {
         String ma;
         System.out.print("Nhap ma hang hang khong: ");
@@ -90,40 +96,56 @@ public class DanhSachHangHangKhong {
             }
             dshanghangkhong = Arrays.copyOf(dshanghangkhong, soluong - 1);
             soluong--;
-        }
+            System.out.println("Xoa thanh cong");
+        } else
+            System.out.println("Khong tim thay vi tri cua hang hang khong");
+    }
+    
+    // xóa có tham số
+    public void xoa(String ma){
+        int vitri = timViTri(ma);
+        if (vitri != -1) {
+            for (int i = vitri; i < dshanghangkhong.length; i++) {
+                dshanghangkhong[i] = dshanghangkhong[i + 1];
+            }
+            dshanghangkhong = Arrays.copyOf(dshanghangkhong, soluong - 1);
+            soluong--;
+            System.out.println("Xoa thanh cong");
+        } else
+            System.out.println("Khon tim thay vi tri cua hang hang khong");
     }
 
-    // sửa
-    // sửa không tham số
+    // sua
+    // sua khong tham so
     public void sua() {
         System.out.print("Nhap ma hang hang khong: ");
         String ma = sc.nextLine();
         int vitri = timViTri(ma);
         if (vitri != -1) {
-            System.out.print("Nhap ten hang hang khong: ");
+            System.out.print("Nhap ten hang hang khong moi: ");
             String tenMoi = sc.nextLine();
             dshanghangkhong[vitri].setTenHang(tenMoi);
-            System.out.println("Đa sua ten hang hang khong.");
+            System.out.println("Da sua ten hang hang khong thanh cong!");
         } else {
-            System.out.println("Khong tim thay hang hang khong.");
+            System.out.println("Khong tim thay hang hang khong can sua!");
         }
     }
 
-// sửa có tham số
+    // sua co tham so
     public void sua(String ma) {
         int vitri = timViTri(ma);
         if (vitri != -1) {
             System.out.print("Nhap ten hang hang khong moi: ");
             String tenMoi = sc.nextLine();
             dshanghangkhong[vitri].setTenHang(tenMoi);
-            System.out.println("Đa sua ten hang hang khong.");
+            System.out.println("Da sua ten hang hang khong thanh cong!");
         } else {
-            System.out.println("Khong tim thay hang hang khong.");
+            System.out.println("Khong tim thay hang hang khong can sua!");
         }
     }
 
-    // tìm mã hãng hàng không
-    // không tham số
+    // tim ma hang hang khong
+    // khong tham so
     public HangHangKhong tim() {
         String ma;
         System.out.print("Nhap ma may bay: ");
@@ -136,7 +158,7 @@ public class DanhSachHangHangKhong {
         return null;
     }
 
-    // có tham số
+    // co tham so
     public HangHangKhong tim(String ma) {
         for (int i = 0; i < dshanghangkhong.length; i++) {
             if (dshanghangkhong[i].getMaHang().equals(ma)) {
@@ -146,7 +168,7 @@ public class DanhSachHangHangKhong {
         return null;
     }
 
-    // trả về vị trí
+    // tra ve vi tri
     public int timViTri(String ma) {
         for (int i = 0; i < dshanghangkhong.length; i++) {
             if (dshanghangkhong[i].getMaHang().equals(ma)) {
@@ -169,172 +191,4 @@ public class DanhSachHangHangKhong {
         }
         return ds;
     }
-
-    public void menu() {
-        System.out.println("+------------------DANH SACH HANG HANG KHONG------------------+");
-        System.out.println("|  1. Nhap danh sach hang hang khong                         |");
-        System.out.println("|  2. Them 1 hang hang khong                                 |");
-        System.out.println("|  3. Xoa 1 hang hang khong                                  |");
-        System.out.println("|  4. Sua thong tin hang hang khong                          |");
-        System.out.println("|  5. Tim hang hang khong                                    |");
-        System.out.println("|  6. Xuat danh sach hang hang khong                         |");
-        System.out.println("|  0. Thoat                                                  |");
-        System.out.println("+-------------------------------------------------------------+");
-    }
-
-    public void choice() {
-        String c;
-        boolean nhapSai;
-
-        do {
-            nhapSai = false;
-            menu();
-            System.out.print("Moi chon chuc nang: ");
-            c = sc.next();
-
-            switch (c) {
-                case "0":
-                    System.out.println("Da thoat chuong trinh.");
-                    break;
-
-                case "1": // Nhập DS
-                    nhapDS();
-                    break;
-
-                case "2": // Thêm Hãng
-                    System.out.println("+----------- THEM HANG HANG KHONG -----------+");
-                    System.out.println("|  1. Thêm hang khong co tham so             |");
-                    System.out.println("|  2. Thêm hang co tham so                   |");
-                    System.out.println("+--------------------------------------------+");
-                    System.out.print("Chon kieu them: ");
-                    String t = sc.next();
-                    sc.nextLine(); // bỏ Enter
-
-                    if (t.equals("1")) {
-                        them();
-                    } else if (t.equals("2")) {
-                        System.out.print("Nhap ma hang hang khong: ");
-                        String ma = sc.nextLine();
-                        them(ma);
-                    } else {
-                        System.out.println("Lua chon khong hop le.");
-                    }
-                    break;
-
-                case "3": // Xóa Hãng
-                    System.out.println("+------------ XOA HANG HANG KHONG -----------+");
-                    System.out.println("|  1. Xoa hang khong co tham so              |");
-                    System.out.println("|  2. Xóa hang co tham so                    |");
-                    System.out.println("+--------------------------------------------+");
-                    System.out.print("Chon kieu xoa: ");
-                    String x = sc.next();
-                    sc.nextLine();
-
-                    if (x.equals("1")) {
-                        xoa();
-                    } else if (x.equals("2")) {
-                        System.out.print("Nhap ma hang can xoa: ");
-                        String ma = sc.nextLine();
-                        int vt = timViTri(ma);
-                        if (vt != -1) {
-                            for (int i = vt; i < dshanghangkhong.length - 1; i++) {
-                                dshanghangkhong[i] = dshanghangkhong[i + 1];
-                            }
-                            dshanghangkhong = Arrays.copyOf(dshanghangkhong, soluong - 1);
-                            soluong--;
-                            System.out.println("Đa xoa hang hang khong.");
-                        } else {
-                            System.out.println("Khong tim thay hang can xoa");
-                        }
-                    } else {
-                        System.out.println("Lua chon khong hop le.");
-                    }
-                    break;
-
-                case "4": // Sửa Hãng
-                    System.out.println("+------------ SUA HANG HANG KHONG -----------+");
-                    System.out.println("|  1. Sua hang khong co tham so              |");
-                    System.out.println("|  2. Sua hang co tham so                    |");
-                    System.out.println("+--------------------------------------------+");
-                    System.out.print("Chon kieu sua: ");
-                    String s = sc.next();
-                    sc.nextLine();
-
-                    if (s.equals("1")) {
-                        sua();
-                    } else if (s.equals("2")) {
-                        System.out.print("Nhap ma hang can sua: ");
-                        String ma = sc.nextLine();
-                        sua(ma);
-                    } else {
-                        System.out.println("Lua chon khong hop le.");
-                    }
-                    break;
-
-                case "5": // Tìm Hãng
-                    System.out.println("+------------ TIM HANG HANG KHONG -----------+");
-                    System.out.println("|  1. Tim hang khong co tham so              |");
-                    System.out.println("|  2. Tim hang co tham so                    |");
-                    System.out.println("|  3. Tim vi tri hang                        |");
-                    System.out.println("+--------------------------------------------+");
-                    System.out.print("Chon kieu tim: ");
-                    String tm = sc.next();
-                    sc.nextLine();
-
-                    switch (tm) {
-                        case "1":
-                            HangHangKhong h1 = tim();
-                            if (h1 != null) {
-                                h1.outputHangHangKhong();
-                            } else {
-                                System.out.println("Khong tim thay hang hang khong.");
-                            }
-                            break;
-
-                        case "2":
-                            System.out.print("Nhap ma hang can tim: ");
-                            String ma = sc.nextLine();
-                            HangHangKhong h2 = tim(ma);
-                            if (h2 != null) {
-                                h2.outputHangHangKhong();
-                            } else {
-                                System.out.println("Khong tim thay hang hang khong.");
-                            }
-                            break;
-
-                        case "3":
-                            System.out.print("Nhap ma hang can tim vi tri: ");
-                            String maVT = sc.nextLine();
-                            int vt = timViTri(maVT);
-                            if (vt != -1) {
-                                System.out.println("Hang hang khong o vi tri: " + vt);
-                            } else {
-                                System.out.println("Khong tim thay hang hang khong.");
-                            }
-                            break;
-
-                        default:
-                            System.out.println("Lua chon khong hop le.");
-                    }
-                    break;
-
-                case "6": // Xuất DS
-                    System.out.println("+------------ DANH SACH HANG HANG KHONG -----------+");
-                    xuatDS();
-                    System.out.println("+--------------------------------------------------+");
-                    break;
-
-                default:
-                    System.out.println("Chon khong hop le, moi chon lai (0-6)");
-                    nhapSai = true;
-            }
-
-            if (!nhapSai && !c.equals("0")) {
-                System.out.println("Ban co muon thoat?");
-                System.out.println("Thoat (0) | Thao tac tiep -> (1-6)");
-            }
-
-        } while (!c.equals("0"));
-    }
-
 }

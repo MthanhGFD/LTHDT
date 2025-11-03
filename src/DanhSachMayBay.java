@@ -1,4 +1,4 @@
-package src;
+package CodeClass;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -30,9 +30,9 @@ public class DanhSachMayBay {
     }
 
     public void nhapDS() {
-        int sl;
         System.out.print("Nhap so luong may bay: ");
-        sl = sc.nextInt();
+        int sl = sc.nextInt();
+        sc.nextLine();
         soluong = sl;
         for (int i = 0; i < sl; i++) {
             dsmaybay = Arrays.copyOf(dsmaybay, dsmaybay.length + 1);
@@ -44,31 +44,38 @@ public class DanhSachMayBay {
     }
 
     public void xuatDS() {
+        System.out.println("+-----------------+---------------------------+--------+");
+        System.out.println("|   Ma may bay    |       Loai may bay        |Suc chua|");
+        System.out.println("+-----------------+---------------------------+--------+");
         for (int i = 0; i < dsmaybay.length; i++) {
             dsmaybay[i].xuatMayBay();
         }
+        System.out.println("+-----------------+---------------------------+--------+");
     }
 
     public void docFile() {
         int i = soluong;
         try {
-            FileReader f = new FileReader("dsMayBay.txt");
+            File f = new File("dsMayBay.txt");
+            FileReader rf = new FileReader(f);
             Scanner docf = new Scanner(f);
             while (docf.hasNextLine()) {
                 String line = docf.nextLine();
                 String tokens[] = line.split(",");
+                dsmaybay = Arrays.copyOf(dsmaybay, dsmaybay.length + 1);
+                dsmaybay[i] = new MayBay();
                 dsmaybay[i].setMaMayBay(tokens[0]);
                 dsmaybay[i].setLoaiMayBay(tokens[1]);
                 dsmaybay[i].setSucChua(Integer.parseInt(tokens[2]));
                 i++;
             }
-            f.close();
+            rf.close();
+            docf.close();
             soluong = i;
-
         } catch (FileNotFoundException e) {
-            System.out.println("Khong tim thay File!!!!");
+            System.out.println("Khong tim thay file!");
         } catch (IOException e) {
-            System.out.println("Loi doc file");
+            System.out.println("Loi doc file!");
         }
     }
 
@@ -76,20 +83,19 @@ public class DanhSachMayBay {
         try {
             File f = new File("dsMayBay.txt");
             FileWriter ghif = new FileWriter(f, true);
-            ghif.write(maybay.toString());
+            ghif.write(maybay.toString() + "\n");
+            ghif.close();
         } catch (FileNotFoundException e) {
-            System.out.println("Khong tim thay file!!");
+            System.out.println("Khong tim thay file!");
         } catch (IOException e) {
-            System.out.println("Loi ghi file");
+            System.out.println("Loi ghi file!");
         }
     }
 
-    // thêm máy bay
-    // không tham số
+    // them may bay khong tham so
     public void them() {
-        String ma;
-    System.out.print("Nhap ma may bay: ");
-        ma = sc.nextLine();
+        System.out.print("Nhap ma may bay: ");
+        String ma = sc.nextLine();
         if (tim(ma) == null) {
             dsmaybay = Arrays.copyOf(dsmaybay, soluong + 1);
             dsmaybay[soluong] = new MayBay();
@@ -97,12 +103,12 @@ public class DanhSachMayBay {
             dsmaybay[soluong].nhapMayBay();
             ghiFile(dsmaybay[soluong]);
             soluong++;
-            } else {
-            System.out.println("May bay da ton tai");
+        } else {
+            System.out.println("May bay da ton tai!");
         }
     }
 
-    // có tham số
+    // them may bay co tham so
     public void them(String ma) {
         if (tim(ma) == null) {
             dsmaybay = Arrays.copyOf(dsmaybay, soluong + 1);
@@ -111,108 +117,76 @@ public class DanhSachMayBay {
             dsmaybay[soluong].nhapMayBay();
             ghiFile(dsmaybay[soluong]);
             soluong++;
-            } else {
-            System.out.println("May bay da ton tai");
-        }
-    }
-
-    // Xóa máy bay có tham số (truyền mã máy bay cần xóa)
-    public void xoa(String maMayBay) {
-        int vitrixoa = timViTri(maMayBay);
-        if (vitrixoa != -1) {
-            for (int i = vitrixoa; i < dsmaybay.length - 1; i++) {
-                dsmaybay[i] = dsmaybay[i + 1];
-            }
-            dsmaybay = Arrays.copyOf(dsmaybay, soluong - 1);
-            soluong--;
         } else {
-            System.out.println("Khong tim thay may bay can xoa!!!");
+            System.out.println("May bay da ton tai!");
         }
     }
 
-// Xóa máy bay không tham số (nhập mã từ bàn phím)
+    // xoa may bay khong tham so
     public void xoa() {
-    System.out.print("Nhap ma may bay can xoa: ");
-        String maMayBay = sc.nextLine();
+        System.out.print("Nhap ma may bay can xoa: ");
+        String ma = sc.nextLine();
+        xoa(ma);
+    }
 
-        int vitrixoa = timViTri(maMayBay);
-        if (vitrixoa != -1) {
-            for (int i = vitrixoa; i < dsmaybay.length - 1; i++) {
+    // xoa may bay co tham so
+    public void xoa(String ma) {
+        int vt = timViTri(ma);
+        if (vt != -1) {
+            for (int i = vt; i < dsmaybay.length - 1; i++) {
                 dsmaybay[i] = dsmaybay[i + 1];
             }
             dsmaybay = Arrays.copyOf(dsmaybay, soluong - 1);
             soluong--;
+            System.out.println("Da xoa may bay!");
         } else {
-            System.out.println("Không tìm thấy máy bay cần xóa!!!");
+            System.out.println("Khong tim thay may bay!");
         }
     }
 
-    // sửa không tham số
+    // sua may bay khong tham so
     public void sua() {
-    System.out.print("Nhap ma may bay can sua: ");
-    String maMayBay = sc.nextLine();
+        System.out.print("Nhap ma may bay can sua: ");
+        String ma = sc.nextLine();
+        sua(ma);
+    }
 
-        // tránh lỗi trôi dòng nếu trước đó có dùng nextInt()
-        if (maMayBay.isEmpty()) {
-            maMayBay = sc.nextLine();
-        }
-
-        int vitri = timViTri(maMayBay);
-        if (vitri != -1) {
-            String choice;
-            System.out.println("+-------------------SUA THONG TIN MAY BAY-------------------+");
+    // sua may bay co tham so
+    public void sua(String ma) {
+        int vt = timViTri(ma);
+        if (vt != -1) {
+            System.out.println("+------------------- SUA THONG TIN MAY BAY -------------------+");
             System.out.println("|  1. Sua loai may bay                                      |");
             System.out.println("|  2. Sua suc chua                                          |");
             System.out.println("+-----------------------------------------------------------+");
-            System.out.print("Chon thong tin ban muon sua: ");
-            choice = sc.next();
-
-            switch (choice) {
+            System.out.print("Chon thong tin muon sua: ");
+            String chon = sc.nextLine();
+            switch (chon) {
                 case "1":
                     System.out.print("Nhap loai may bay moi: ");
-                    dsmaybay[vitri].setLoaiMayBay(sc.nextLine());
+                    dsmaybay[vt].setLoaiMayBay(sc.nextLine());
                     break;
                 case "2":
                     System.out.print("Nhap suc chua moi: ");
-                    dsmaybay[vitri].setSucChua(sc.nextInt());
+                    dsmaybay[vt].setSucChua(sc.nextInt());
+                    sc.nextLine();
                     break;
                 default:
                     System.out.println("Lua chon khong hop le!");
             }
         } else {
-            System.out.println("Khong tim thay may bay muon sua!");
+            System.out.println("Khong tim thay may bay!");
         }
     }
 
-// sửa có tham số
-    public void sua(String maMayBay) {
-        int vitri = timViTri(maMayBay);
-        if (vitri != -1) {
-            String choice;
-            System.out.println("+-------------------SỬA THÔNG TIN MÁY BAY-------------------+");
-            System.out.println("|  1. Sửa loại máy bay                                      |");
-            System.out.println("|  2. Sửa sức chứa                                          |");
-            System.out.println("+-----------------------------------------------------------+");
-            System.out.print("Chọn thông tin bạn muốn sửa: ");
-            choice = sc.next();
-            switch (choice) {
-                case "1":
-                    System.out.print("Nhập loại máy bay mới: ");
-                    dsmaybay[vitri].setLoaiMayBay(sc.nextLine());
-                    break;
-                case "2":
-                    System.out.print("Nhập sức chứa mới: ");
-                    dsmaybay[vitri].setSucChua(sc.nextInt());
-                    break;
-                default:
-                    System.out.println("Lựa chọn không hợp lệ!");
-            }
-        } else {
-            System.out.println("Không tìm thấy máy bay muốn sửa!");
-        }
+    // tim may bay khong tham so
+    public MayBay tim() {
+        System.out.print("Nhap ma may bay can tim: ");
+        String ma = sc.nextLine();
+        return tim(ma);
     }
 
-    // Tìm máy bay theo mã (truyền mã trực tiếp)
+    // tim may bay co tham so
     public MayBay tim(String ma) {
         for (int i = 0; i < soluong; i++) {
             if (dsmaybay[i].getMaMayBay().equals(ma)) {
@@ -222,20 +196,7 @@ public class DanhSachMayBay {
         return null;
     }
 
-// Tìm máy bay (nhập mã từ bàn phím)
-    public MayBay tim() {
-        System.out.print("Nhập mã máy bay cần tìm: ");
-        String ma = sc.nextLine();
-
-        for (int i = 0; i < soluong; i++) {
-            if (dsmaybay[i].getMaMayBay().equals(ma)) {
-                return dsmaybay[i];
-            }
-        }
-        return null;
-    }
-
-// Tìm vị trí của máy bay trong mảng (phục vụ xóa/sửa)
+    // tim vi tri may bay
     public int timViTri(String ma) {
         for (int i = 0; i < soluong; i++) {
             if (dsmaybay[i].getMaMayBay().equals(ma)) {
@@ -244,200 +205,29 @@ public class DanhSachMayBay {
         }
         return -1;
     }
-    
-    public MayBay[] dsLoaiMayBay(String loaimaybay){
-        MayBay ds[] = new MayBay[0];
+
+    // ds theo loai may bay
+    public MayBay[] dsLoaiMayBay(String loai) {
+        MayBay[] ds = new MayBay[0];
         int j = 0;
         for (int i = 0; i < dsmaybay.length; i++) {
-            if(dsmaybay[i].getLoaiMayBay().equals(loaimaybay)){
-                ds = Arrays.copyOf(dsmaybay, j + 1);
-                ds[j] = new MayBay();
+            if (dsmaybay[i].getLoaiMayBay().equals(loai)) {
+                ds = Arrays.copyOf(ds, j + 1);
                 ds[j] = dsmaybay[i];
                 j++;
             }
         }
         return ds;
     }
-    
-    public MayBay[][] thongKeLoaiMayBay(){
-        String loai[] = {"Airbus A321", "Airbus A350-900", "Boeing 787-10", "Airbus A320"};
-        MayBay[][] cacds= new MayBay[0][0];
+
+    // thong ke theo loai may bay
+    public MayBay[][] thongKeLoaiMayBay() {
+        String[] loai = {"Airbus A321", "Airbus A350-900", "Boeing 787-10", "Airbus A320"};
+        MayBay[][] cacds = new MayBay[loai.length][];
         for (int i = 0; i < loai.length; i++) {
-            cacds = Arrays.copyOf(cacds, i + 1);
-            MayBay[] ds = new MayBay[dsLoaiMayBay(loai[i]).length];
-            ds = dsLoaiMayBay(loai[i]);
-            if(ds != null){
-                cacds[i] = Arrays.copyOf(cacds[i], cacds[i].length  + ds.length);
-                cacds[i] = ds;
-            }
+            cacds[i] = dsLoaiMayBay(loai[i]);
         }
         return cacds;
     }
-
-    public void menu(){
-    System.out.println("+--------------------Danh sach may bay--------------------+");
-    System.out.println("|  1. Nhap danh sach may bay                              |");
-    System.out.println("|  2. Doc danh sach may bay tu File                       |");
-    System.out.println("|  3. Them 1 may bay vao danh sach                        |");
-    System.out.println("|  4. Xoa 1 may bay khoi danh sach                        |");
-    System.out.println("|  5. Sua thong tin may bay                               |");
-    System.out.println("|  6. Tim may bay                                         |");
-    System.out.println("|  7. Thong ke may bay theo loai may bay                  |");
-    System.out.println("+---------------------------------------------------------+");
-    }
-    
-    public void choice() {
-    String c;
-    boolean nhapSai;
-
-    do {
-        nhapSai = false;
-        menu();
-        System.out.print("Mời chọn chức năng (0 để thoát): ");
-        c = sc.next();
-
-        switch (c) {
-            case "0":
-                System.out.println("Cảm ơn bạn đã sử dụng chương trình!");
-                break;
-
-            case "1":
-                nhapDS();
-                break;
-
-            case "2":
-                docFile();
-                break;
-
-            case "3": // thêm máy bay
-                System.out.println("+-------------- Thêm Máy Bay --------------+");
-                System.out.println("|  1. Thêm máy bay không có tham số        |");
-                System.out.println("|  2. Thêm máy bay có tham số              |");
-                System.out.println("+------------------------------------------+");
-                System.out.print("Chọn kiểu thêm máy bay: ");
-                String t = sc.next();
-                sc.nextLine(); // bỏ Enter
-
-                if (t.equals("1")) {
-                    them();
-                } else if (t.equals("2")) {
-                    System.out.print("Nhập mã máy bay muốn thêm: ");
-                    String ma = sc.nextLine();
-                    them(ma);
-                } else {
-                    System.out.println("Lựa chọn không hợp lệ!");
-                }
-                break;
-
-            case "4": // xóa máy bay
-                System.out.println("+--------------- Xóa Máy Bay ---------------+");
-                System.out.println("|  1. Xóa máy bay không có tham số          |");
-                System.out.println("|  2. Xóa máy bay có tham số                |");
-                System.out.println("+-------------------------------------------+");
-                System.out.print("Chọn kiểu xóa máy bay: ");
-                String x = sc.next();
-                sc.nextLine();
-
-                if (x.equals("1")) {
-                    xoa();
-                } else if (x.equals("2")) {
-                    System.out.print("Nhập mã máy bay cần xóa: ");
-                    String ma = sc.nextLine();
-                    xoa(ma);
-                } else {
-                    System.out.println("Lựa chọn không hợp lệ!");
-                }
-                break;
-
-            case "5": // sửa máy bay
-                System.out.println("+--------------- Sửa Máy Bay ---------------+");
-                System.out.println("|  1. Sửa máy bay không có tham số          |");
-                System.out.println("|  2. Sửa máy bay có tham số                |");
-                System.out.println("+-------------------------------------------+");
-                System.out.print("Chọn kiểu sửa máy bay: ");
-                String s = sc.next();
-                sc.nextLine();
-
-                if (s.equals("1")) {
-                    sua();
-                } else if (s.equals("2")) {
-                    System.out.print("Nhập mã máy bay cần sửa: ");
-                    String ma = sc.nextLine();
-                    sua(ma);
-                } else {
-                    System.out.println("Lựa chọn không hợp lệ!");
-                }
-                break;
-
-            case "6": // tìm máy bay
-                System.out.println("+--------------- Tìm Máy Bay ---------------+");
-                System.out.println("|  1. Tìm máy bay không có tham số          |");
-                System.out.println("|  2. Tìm máy bay có tham số                |");
-                System.out.println("|  3. Tìm vị trí máy bay                    |");
-                System.out.println("+-------------------------------------------+");
-                System.out.print("Chọn kiểu tìm: ");
-                String tm = sc.next();
-                sc.nextLine();
-
-                switch (tm) {
-                    case "1":
-                        MayBay mb1 = tim();
-                        if (mb1 != null) mb1.xuatMayBay();
-                        else System.out.println("Không tìm thấy máy bay!");
-                        break;
-
-                    case "2":
-                        System.out.print("Nhập mã máy bay cần tìm: ");
-                        String ma = sc.nextLine();
-                        MayBay mb2 = tim(ma);
-                        if (mb2 != null) mb2.xuatMayBay();
-                        else System.out.println("Không tìm thấy máy bay!");
-                        break;
-
-                    case "3":
-                        System.out.print("Nhập mã máy bay cần tìm vị trí: ");
-                        String maVT = sc.nextLine();
-                        int vt = timViTri(maVT);
-                        if (vt != -1)
-                            System.out.println("Máy bay ở vị trí: " + vt);
-                        else
-                            System.out.println("Không tìm thấy máy bay!");
-                        break;
-
-                    default:
-                        System.out.println("Lựa chọn không hợp lệ!");
-                }
-                break;
-
-            case "7": // thống kê loại máy bay
-                System.out.println("+---------- Thống Kê Theo Loại Máy Bay ----------+");
-                MayBay[][] tk = thongKeLoaiMayBay();
-                String[] loai = {"Airbus A321", "Airbus A350-900", "Boeing 787-10", "Airbus A320"};
-                
-                for (int i = 0; i < tk.length; i++) {
-                    System.out.println("Loại: " + loai[i]);
-                    if (tk[i] != null && tk[i].length > 0) {
-                        for (MayBay mb : tk[i]) {
-                            mb.xuatMayBay();
-                        }
-                    } else {
-                        System.out.println("Không có máy bay loại này.");
-                    }
-                    System.out.println("------------------------------------------------");
-                }
-                break;
-
-            default:
-                System.out.println("Chọn không đúng, hãy chọn lại chức năng (0-7)");
-                nhapSai = true;
-        }
-
-        if (!nhapSai && !c.equals("0")) {
-            System.out.println("Bạn có muốn thoát chương trình?");
-            System.out.println("Nếu có -> (0) | Thao tác tiếp -> (1-7)");
-        }
-
-    } while (!c.equals("0"));
-}
 
 }

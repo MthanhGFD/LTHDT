@@ -1,4 +1,4 @@
-package src;
+package CodeClass;
 
 import java.util.Scanner;
 
@@ -30,21 +30,17 @@ public class HangHangKhong {
     }
 
 
-    public void inputHangHangKhong() {
+    public void nhapHangHangKhong() {
         Scanner sc = new Scanner(System.in);
-    System.out.print("Nhap ma hang hang khong: ");
-        this.maHang = sc.nextLine();
-    System.out.print("Nhap ten hang hang khong: ");
+        System.out.print("Nhap ten hang hang khong: ");
         this.tenHang = sc.nextLine();
-    System.out.print("Nhap quoc gia: ");
+        System.out.print("Nhap quoc gia: ");
         this.quocGia = sc.nextLine();
     }
 
-    public void outputHangHangKhong() {
+    public void xuatHangHangKhong() {
         String fmt = "| %-15s | %-35s | %-25s |%n";
-        System.out.println("+-----------------+-------------------------------------+---------------------------+");
         System.out.printf(fmt, maHang, tenHang, quocGia);
-        System.out.println("+-----------------+-------------------------------------+---------------------------+");
     }
 
 

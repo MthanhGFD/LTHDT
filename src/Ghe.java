@@ -1,66 +1,61 @@
-package src;
+package CodeClass;
 
 import java.util.Scanner;
 
 public class Ghe{
-    private String maghe, vitrighe;
-    private MayBay maybay;
+    private String maghe, vitrighe, mamaybay;
     public Ghe(){
         maghe = "";
-        maybay = new MayBay();
+        mamaybay = "";
         vitrighe = "";
     }
     
-    public Ghe(String maghe, MayBay maybay, String vitrighe){
+    public Ghe(String maghe, String mamaybay, String vitrighe){
         this.maghe = maghe;
-        this.maybay = maybay;
+        this.mamaybay = mamaybay;
         this.vitrighe = vitrighe;
     }
     
     public Ghe(Ghe ghe1){
         maghe = ghe1.maghe;
-        maybay = ghe1.maybay;
+        mamaybay = ghe1.mamaybay;
         vitrighe = ghe1.vitrighe;
     }
     
-    public void inputGhe() {
+    public void nhapGhe() {
         Scanner sc = new Scanner(System.in);
-    System.out.print("Nhap ma ghe: ");
-        this.maghe = sc.nextLine();
-    System.out.print("Nhap vi tri ghe: ");
+        System.out.print("nhap vi tri ghe: ");
         this.vitrighe = sc.nextLine();
-    System.out.print("Nhap ma so may bay: ");
-        maybay.setMaMayBay(sc.nextLine());
+        System.out.print("Nhap ma so may bay: ");
+        mamaybay = sc.nextLine();
     }
 
-    public void outputGhe() {
-        String fmt = "| %-15s | %-20s | %-20s |%\n";
-        System.out.println("+-----------------+----------------------+----------------------+");
-        System.out.printf(fmt, maghe, vitrighe, maybay.getMaMayBay() );
-        System.out.println("+-----------------+----------------------+----------------------+");
+    public void xuatGhe() {
+        String fmt = "| %-15s | %-20s | %-15s |\n";
+        System.out.printf(fmt, maghe, vitrighe, mamaybay );
     }
     
-    public String getMaghe() {
+    public String getMaGhe() {
         return maghe;
     }
 
-    public void setMaghe(String maghe) {
+    public void setMaGhe(String maghe) {
         this.maghe = maghe;
     }
 
-    public MayBay getMaybay() {
-        return maybay;
+    public String getMaMayBay() {
+        return mamaybay;
     }
 
-    public void setMaybay(MayBay maybay) {
-        this.maybay = maybay;
+    public void setMaMayBay(String mamaybay) {
+        this.mamaybay = mamaybay;
     }
 
-    public String getVitrighe() {
+    public String getViTriGhe() {
         return vitrighe;
     }
 
-    public void setVitrighe(String vitrighe) {
+    public void setViTriGhe(String vitrighe) {
         this.vitrighe = vitrighe;
     }
     

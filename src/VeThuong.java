@@ -1,4 +1,4 @@
-package src;
+package CodeClass;
 
 public class VeThuong extends Ve {
     
@@ -25,5 +25,10 @@ public class VeThuong extends Ve {
         System.out.println("=== VE THUONG ===");
         super.xuatThongTin();
         System.out.println("Tong tien: " + tinhTien());
+    }
+
+    @Override
+    public double tinhGiaVe() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

@@ -1,4 +1,4 @@
-package src;
+package CodeClass;
 
 import java.time.LocalDate;
 import java.util.Scanner;
@@ -42,29 +42,27 @@ public class HanhKhach {
 
     public void nhapHanhKhach() {
         Scanner sc = new Scanner(System.in);
-    System.out.print("Nhap ma Hanh Khach: ");
+        System.out.print("Nhap ma hanh khach (HK...): ");
         this.maHanhKhach = sc.nextLine();
-    System.out.print("Nhap ho: ");
+        System.out.print("Nhap ho: ");
         this.ho = sc.nextLine();
-    System.out.print("Nhap ten: ");
+        System.out.print("Nhap ten: ");
         this.ten = sc.nextLine();
-    System.out.print("Nhap ngay sinh(dd-mm-yy): ");
+        System.out.print("Nhap ngay sinh(dd-mm-yy): ");
         this.ngaysinh = sc.nextLine();
-    System.out.print("Nhap danh xung: ");
+        System.out.print("Nhap danh xung (Ong/Ba): ");
         this.danhxung = sc.nextLine();
-    System.out.print("Nhap can cuoc cong dan: ");
+        System.out.print("Nhap can cuoc cong dan: ");
         this.cccd = sc.nextLine();
-    System.out.print("Nhap so dien thoai: ");
+        System.out.print("Nhap so dien thoai: ");
         this.sdt = sc.nextLine();
-    // cho nay la lam loai hanh khach
+        // cho phep nhap loai hanh khach
         System.out.println("===================================");
     }
 
     public void xuatHanhKhach() {
-        String fmt = "| %-15s | %-30s | %-10s | %-10s | %-10s | %-15s | %-15s | %-15s |%n";
-        System.out.println("+-----------------+------------------------------------------+------------+------------+-----------------+-----------------+-----------------+");
+        String fmt = "| %-15s | %-30s | %-10s | %-10s | %-10s | %-15s | %-15s | %-15s |\n";
         System.out.printf(fmt, maHanhKhach, ho, ten, ngaysinh, danhxung, cccd, sdt, loaiHanhKhach);
-        System.out.println("+-----------------+------------------------------------------+------------+------------+-----------------+-----------------+-----------------+");
     }
 
     public int tuoi() {
@@ -73,7 +71,7 @@ public class HanhKhach {
 
     @Override
     public String toString() {
-        return maHanhKhach + "," + ho + "," + ten + "," + ngaysinh + "," + danhxung + "," + cccd + "," + sdt + "," + loaiHanhKhach;
+        return maHanhKhach + "," + ho + " " + ten + "," + ngaysinh + "," + danhxung + "," + cccd + "," + sdt + "," + loaiHanhKhach;
     }
 
     public String getMaHanhKhach() {

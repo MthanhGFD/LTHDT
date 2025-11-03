@@ -1,4 +1,4 @@
-package src;
+package CodeClass;
 
 import java.util.Scanner;
 

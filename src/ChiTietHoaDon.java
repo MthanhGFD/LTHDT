@@ -1,56 +1,50 @@
-package src;
+package CodeClass;
 
 import java.util.Scanner;
 
 public class ChiTietHoaDon {
 
-    private String mahoadon;
-    private Ve ve;
-    private ChuyenBay chuyenbay;
-    private HanhKhach hanhkhach;
-    private double tienve;
+    private String mahoadon, mave, machuyenbay, mahanhkhach;
+    private float tienve;
 
     public ChiTietHoaDon() {
         mahoadon = "";
-        ve = new Ve();
-        chuyenbay = new ChuyenBay();
-        hanhkhach = new HanhKhach();
+        mave = "";
+        machuyenbay = "";
+        mahanhkhach = "";
         tienve = 0;
     }
 
-    public ChiTietHoaDon(String mahoadon, Ve ve, ChuyenBay chuyenbay, HanhKhach hanhkhach) {
+    public ChiTietHoaDon(String mahoadon, String mave, String machuyenbay, String mahanhkhach) {
         this.mahoadon = mahoadon;
-        this.ve = ve;
-        this.chuyenbay = chuyenbay;
-        this.hanhkhach = hanhkhach;
-        this.tienve = ve.getGiaVe();
+        this.mave = mave;
+        this.machuyenbay = machuyenbay;
+        this.mahanhkhach = mahanhkhach;
     }
 
     public ChiTietHoaDon(ChiTietHoaDon cthd1) {
         mahoadon = cthd1.mahoadon;
-        ve = cthd1.ve;
-        chuyenbay = cthd1.chuyenbay;
-        hanhkhach = cthd1.hanhkhach;
+        this.mave = cthd1.mave;
+        this.machuyenbay = cthd1.machuyenbay;
         tienve = cthd1.tienve;
     }
 
-    public void inputChiTietHoaDon() {
+    public void nhapChiTietHoaDon() {
         Scanner sc = new Scanner(System.in);
         System.out.print("Nhap ma hoa don: ");
         mahoadon = sc.nextLine();
         System.out.print("Nhap ma ve: ");
-        ve.setMaVe(sc.nextLine());
+        mave = sc.nextLine();
         System.out.print("Nhap ma chuyen bay: ");
-        chuyenbay.setMaChuyenBay(sc.nextLine());
+        machuyenbay = sc.nextLine();
         System.out.print("Nhap ma hanh khach: ");
-        hanhkhach.setMaHanhKhach(sc.nextLine());
-        tienve = ve.getGiaVe();
+        mahanhkhach = sc.nextLine();
     }
 
-    public void outputChiTietHoaDon() {
-        String fmt = "| %-15s | %-15s | %-15s | %-15s | %-15.2f |%n";
+    public void xuatChiTietHoaDon() {
+        String fmt = "| %-15s | %-15s | %-15s | %-15s | %-15.2f |\n";
         System.out.println("+-----------------+-----------------+-----------------+-----------------+-----------------+");
-        System.out.printf(fmt, mahoadon, ve.getMaVe(), chuyenbay.getMaChuyenBay(), hanhkhach.getMaHanhKhach(), "Tien ve");
+        System.out.printf(fmt, mahoadon, mave, machuyenbay, mahanhkhach);
         System.out.println("+-----------------+-----------------+-----------------+-----------------+-----------------+");
     }
 
@@ -62,28 +56,28 @@ public class ChiTietHoaDon {
         this.mahoadon = mahoadon;
     }
 
-    public Ve getVe() {
-        return ve;
+    public String getMaVe() {
+        return mave;
     }
 
-    public void setVe(Ve ve) {
-        this.ve = ve;
+    public void setMaVe(String mave) {
+        this.mave = mave;
     }
 
-    public ChuyenBay getChuyenBay() {
-        return chuyenbay;
+    public String getMaChuyenbay() {
+        return machuyenbay;
     }
 
-    public void setChuyenBay(ChuyenBay chuyenbay) {
-        this.chuyenbay = chuyenbay;
+    public void setMaChuyenbay(String machuyenbay) {
+        this.machuyenbay = machuyenbay;
     }
 
-    public HanhKhach getHanhKhach() {
-        return hanhkhach;
+    public String getHanhkhach() {
+        return mahanhkhach;
     }
 
-    public void setHanhKhach(HanhKhach hanhkhach) {
-        this.hanhkhach = hanhkhach;
+    public void setHanhkhach(String mahanhkhach) {
+        this.mahanhkhach = mahanhkhach;
     }
 
     public double getTienVe() {

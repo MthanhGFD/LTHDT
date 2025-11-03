@@ -1,4 +1,4 @@
-package src;
+package CodeClass;
 
 import java.util.Scanner;
 
@@ -6,31 +6,31 @@ public class HoaDonVe {
 
     private String mahoadon, ngaynhap;
     private int soluongve;
-    private HanhKhach hanhkhach;
-    private ChuyenBay chuyenbay;
+    private String mahanhkhach;
+    private String machuyenbay;
 
     public HoaDonVe() {
         mahoadon = "";
         ngaynhap = "";
         soluongve = 0;
-        hanhkhach = new HanhKhach();
-        chuyenbay = new ChuyenBay();
+        mahanhkhach = "";
+        machuyenbay = "";
     }
 
-    public HoaDonVe(String mahoadon, String ngaynhap, int soluongve, HanhKhach hanhkhach, ChuyenBay chuyenbay) {
+    public HoaDonVe(String mahoadon, String ngaynhap, int soluongve, String mahanhkhach, String machuyenbay) {
         this.mahoadon = mahoadon;
         this.ngaynhap = ngaynhap;
         this.soluongve = soluongve;
-        this.hanhkhach = hanhkhach;
-        this.chuyenbay = chuyenbay;
+        this.mahanhkhach = mahanhkhach;
+        this.machuyenbay = machuyenbay;
     }
 
     public HoaDonVe(HoaDonVe hd1) {
         mahoadon = hd1.mahoadon;
         ngaynhap = hd1.ngaynhap;
         soluongve = hd1.soluongve;
-        hanhkhach = hd1.hanhkhach;
-        chuyenbay = hd1.chuyenbay;
+        mahanhkhach = hd1.mahanhkhach;
+        machuyenbay = hd1.machuyenbay;
     }
 
     public void inputHoaDonVe() {
@@ -41,23 +41,24 @@ public class HoaDonVe {
         ngaynhap = sc.nextLine();
         System.out.print("Nhap so luong ve: ");
         soluongve = sc.nextInt();
+        sc.nextLine(); // de bo enter sau khi nhap int
         System.out.print("Nhap ma hanh khach: ");
-        hanhkhach.setMaHanhKhach(sc.nextLine());
+        mahanhkhach = sc.nextLine();
         System.out.print("Nhap ma chuyen bay: ");
-        chuyenbay.setMaChuyenBay(sc.nextLine());
+        machuyenbay = sc.nextLine();
     }
 
     public void outputHoaDonVe() {
-        String fmt = "| %-12s | %-10s | %-5d | %-8.3f | %-15s | %-15s |%n";
+        String fmt = "| %-12s | %-10s | %-5d | %-10s | %-15s | %-15s |%n";
 
-        System.out.println("+--------------+--------------+------------+------------+-----------------+");
-        System.out.printf(fmt, mahoadon, ngaynhap, soluongve, "Tong tien", hanhkhach.getMaHanhKhach(), chuyenbay.getMaChuyenBay());
-        System.out.println("+--------------+--------------+------------+------------+-----------------+");
+        System.out.println("+--------------+------------+-------+------------+-----------------+-----------------+");
+        System.out.printf(fmt, mahoadon, ngaynhap, soluongve, "Tong tien", mahanhkhach, machuyenbay);
+        System.out.println("+--------------+------------+-------+------------+-----------------+-----------------+");
     }
     
-    // public float tongTien(){
-        
-    // }
+//    public float tongTien(){
+//        // ham tinh tong tien
+//    }
 
     public String getMaHoaDon() {
         return mahoadon;
@@ -83,21 +84,19 @@ public class HoaDonVe {
         this.soluongve = soluongve;
     }
 
-    public HanhKhach getHanhKhach() {
-        return hanhkhach;
+    public String getMahanhkhach() {
+        return mahanhkhach;
     }
 
-    public void setHanhKhach(HanhKhach hanhkhach) {
-        this.hanhkhach = hanhkhach;
+    public void setMahanhkhach(String mahanhkhach) {
+        this.mahanhkhach = mahanhkhach;
     }
 
-    public ChuyenBay getChuyenBay() {
-        return chuyenbay;
+    public String getMachuyenbay() {
+        return machuyenbay;
     }
 
-    public void setChuyenBay(ChuyenBay chuyenbay) {
-        this.chuyenbay = chuyenbay;
+    public void setMachuyenbay(String machuyenbay) {
+        this.machuyenbay = machuyenbay;
     }
-    
-    
 }

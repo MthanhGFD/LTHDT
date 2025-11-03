@@ -1,4 +1,4 @@
-package src;
+package CodeClass;
 
 import java.util.Scanner;
 
@@ -7,14 +7,14 @@ public class MayBay {
     private String loaiMayBay;
     private int sucChua;
 
-    // Constructor không tham số
+    // Constructor khong tham so
     public MayBay() {
         this.maMayBay = "";
         this.loaiMayBay = "";
         this.sucChua = 0;
     }
 
-    // Constructor có tham số
+    // Constructor co tham so
     public MayBay(String maMayBay, String loaiMayBay, int sucChua) {
         this.maMayBay = maMayBay;
         this.loaiMayBay = loaiMayBay;
@@ -32,17 +32,17 @@ public class MayBay {
 
     public void nhapMayBay() {
         Scanner sc = new Scanner(System.in);
-       System.out.print("Nhap ma may bay: ");
+        System.out.print("Nhap ma may bay: ");
         this.maMayBay = sc.nextLine();
-      try {
-          int choice;
-          System.out.println("+-------------------- Loai may bay --------------------+");
-          System.out.println("|  1. Airbus A321                                      |");
-          System.out.println("|  2. Airbus A350-900                                  |");
-          System.out.println("|  3. Boeing 787-10                                    |");
-          System.out.println("|  4. Airbus A320                                      |");
-          System.out.println("+------------------------------------------------------+");
-          System.out.print("Chon loai Hanh Khach: ");
+       try {
+            int choice;
+            System.out.println("+-------------------- Loai may bay --------------------+");
+            System.out.println("|  1. Airbus A321                                      |");
+            System.out.println("|  2. Airbus A350-900                                  |");
+            System.out.println("|  3. Boeing 787-10                                    |");
+            System.out.println("|  4. Airbus A320                                      |");
+            System.out.println("+------------------------------------------------------+");
+            System.out.print("Chon loai may bay: ");
             choice = sc.nextInt();
             switch (choice) {
                 case 1: this.loaiMayBay = "Airbus A321"; break;
@@ -53,17 +53,19 @@ public class MayBay {
         } catch (Exception e) {
             this.loaiMayBay = "Airbus A321";
         }
-    System.out.print("Nhap suc chua: ");
+        System.out.print("Nhap suc chua: ");
         this.sucChua = Integer.parseInt(sc.nextLine());
     }
 
     public void xuatMayBay() {
-        String fmt = "| %-15s | %-25s | %-10d |%n";
-        System.out.println("+-----------------+---------------------------+------------+");
+        String fmt = "| %-15s | %-25s | %-6d |\n";
         System.out.printf(fmt, maMayBay, loaiMayBay, sucChua);
-        System.out.println("+-----------------+---------------------------+------------+");
     }
 
+    @Override
+    public String toString() {
+        return  maMayBay + "," + loaiMayBay +"," + sucChua;
+    }
 
     public String getMaMayBay() {
         return maMayBay;

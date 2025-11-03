@@ -1,4 +1,4 @@
-package src;
+package CodeClass;
 
 import java.util.Scanner;
 
@@ -31,17 +31,15 @@ public class SanBay {
 
 
     public void nhapSanBay() {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Nhap ma san bay: ");
-        this.maSanBay = sc.nextLine();
+        Scanner scanner = new Scanner(System.in);
         System.out.print("Nhap ten san bay: ");
-        this.tenSanBay = sc.nextLine();
-        System.out.print("Nhap dia diem (Tinh/Thanh Pho): ");
-        this.diaDiem = sc.nextLine();
+        this.tenSanBay = scanner.nextLine();
+        System.out.print("Nhap dia diem (tinh/ thanh pho): ");
+        this.diaDiem = scanner.nextLine();
     }
 
     public void xuatSanBay() {
-        String fmt = "| %-15s | %-30s | %-25s |%n";
+        String fmt = "| %-15s | %-30s | %-25s |\n";
         System.out.println("|-----------------|--------------------------------|---------------------------|");
         System.out.printf(fmt, maSanBay, tenSanBay, diaDiem);
         System.out.println("|-----------------|--------------------------------|---------------------------|");
