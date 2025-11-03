@@ -5,135 +5,135 @@ import java.util.Scanner;
 
 public class ChuyenBay {
 
-    private String machuyenbay, diemkhoihanh, diemden, ngaykhoihanh, giokhoihanh, tinhtrang, mamaybay, mahanghangkhong, masanbay;
+    private String maChuyenBay, diemKhoiHanh, diemDen, ngayKhoiHanh, gioKhoiHanh, tinhTrang, maMayBay, maHangHangKhong, maSanBay;
 
     public ChuyenBay() {
-        machuyenbay = "";
-        diemkhoihanh = "";
-        diemden = "";
-        ngaykhoihanh = "";
-        giokhoihanh = "";
-        tinhtrang = "";
-        mamaybay = "";
-        mahanghangkhong = "";
-        masanbay = "";
+        maChuyenBay = "";
+        diemKhoiHanh = "";
+        diemDen = "";
+        ngayKhoiHanh = "";
+        gioKhoiHanh = "";
+        tinhTrang = "";
+        maMayBay = "";
+        maHangHangKhong = "";
+        maSanBay = "";
     }
 
-    public ChuyenBay(String machuyenbay, String diemkhoihanh, String diemden, String ngaykhoihanh, String giokhoihanh, String mamaybay, String mayhanghangkhong, String masanbay) {
-        this.machuyenbay = machuyenbay;
-        this.diemkhoihanh = diemkhoihanh;
-        this.diemden = diemden;
-        this.ngaykhoihanh = ngaykhoihanh;
-        this.giokhoihanh = giokhoihanh;
-        this.tinhtrang = "hoat dong";
-        this.mamaybay = mamaybay;
-        this.mahanghangkhong = mahanghangkhong;
-        this.masanbay = masanbay;
+    public ChuyenBay(String maChuyenBay, String diemKhoiHanh, String diemDen, String ngayKhoiHanh, String gioKhoiHanh, String maMayBay, String maHangHangKhong, String maSanBay) {
+        this.maChuyenBay = maChuyenBay;
+        this.diemKhoiHanh = diemKhoiHanh;
+        this.diemDen = diemDen;
+        this.ngayKhoiHanh = ngayKhoiHanh;
+        this.gioKhoiHanh = gioKhoiHanh;
+        this.tinhTrang = "hoat dong";
+        this.maMayBay = maMayBay;
+        this.maHangHangKhong = maHangHangKhong;
+        this.maSanBay = maSanBay;
     }
 
     public ChuyenBay(ChuyenBay cb1) {
-        machuyenbay = cb1.machuyenbay;
-        diemkhoihanh = cb1.diemkhoihanh;
-        diemden = cb1.diemden;
-        ngaykhoihanh = cb1.ngaykhoihanh;
-        giokhoihanh = cb1.giokhoihanh;
-        tinhtrang = cb1.tinhtrang;
-        mamaybay = cb1.mamaybay;
-        mahanghangkhong = cb1.mahanghangkhong;
-        masanbay = cb1.masanbay;
+        maChuyenBay = cb1.maChuyenBay;
+        diemKhoiHanh = cb1.diemKhoiHanh;
+        diemDen = cb1.diemDen;
+        ngayKhoiHanh = cb1.ngayKhoiHanh;
+        gioKhoiHanh = cb1.gioKhoiHanh;
+        tinhTrang = cb1.tinhTrang;
+        maMayBay = cb1.maMayBay;
+        maHangHangKhong = cb1.maHangHangKhong;
+        maSanBay = cb1.maSanBay;
     }
 
     public void nhapChuyenBay() {
         Scanner sc = new Scanner(System.in);
         System.out.print("Nhap diem khoi hanh: ");
-        diemkhoihanh = sc.nextLine();
+        diemKhoiHanh = sc.nextLine();
         System.out.print("Nhap ngay khoi hanh(dd-mm-yy): ");
-        ngaykhoihanh = sc.nextLine();
+        ngayKhoiHanh = sc.nextLine();
         System.out.print("Nhap gio khoi hanh(hh:pp:ss): ");
-        giokhoihanh = sc.nextLine();
+        gioKhoiHanh = sc.nextLine();
         System.out.print("Nhap hang hang khong: ");
     }
 
     public void xuatChuyenBay() {
         String fmt = "| %-15s | %-15s | %-12s | %-12s | %-12s | %-15s | %-15s | %-15s |\n";
-        System.out.printf(fmt, machuyenbay, diemkhoihanh, ngaykhoihanh, giokhoihanh, tinhtrang, mamaybay, mahanghangkhong, masanbay);
+        System.out.printf(fmt, maChuyenBay, diemKhoiHanh, ngayKhoiHanh, gioKhoiHanh, tinhTrang, maMayBay, maHangHangKhong, maSanBay);
     }
     
     // ngày chuyến bay
     public int ngay(){
-        return LocalDate.now().getDayOfMonth() - Integer.parseInt(ngaykhoihanh.substring(0, 2));
+        return LocalDate.now().getDayOfMonth() - Integer.parseInt(ngayKhoiHanh.substring(0, 2));
     }
 
     public String getMaChuyenBay() {
-        return machuyenbay;
+        return maChuyenBay;
     }
 
-    public void setMaChuyenBay(String machuyenbay) {
-        this.machuyenbay = machuyenbay;
+    public void setMaChuyenBay(String maChuyenBay) {
+        this.maChuyenBay = maChuyenBay;
     }
 
     public String getDiemKhoiHanh() {
-        return diemkhoihanh;
+        return diemKhoiHanh;
     }
 
-    public void setDiemKhoiHanh(String diemkhoihanh) {
-        this.diemkhoihanh = diemkhoihanh;
+    public void setDiemKhoiHanh(String diemKhoiHanh) {
+        this.diemKhoiHanh = diemKhoiHanh;
     }
 
     public String getDiemDen() {
-        return diemden;
+        return diemDen;
     }
 
-    public void setDiemDen(String diemden) {
-        this.diemden = diemden;
+    public void setDiemDen(String diemDen) {
+        this.diemDen = diemDen;
     }
 
     public String getNgayKhoiHanh() {
-        return ngaykhoihanh;
+        return ngayKhoiHanh;
     }
 
-    public void setNgayKhoiHanh(String ngaykhoihanh) {
-        this.ngaykhoihanh = ngaykhoihanh;
+    public void setNgayKhoiHanh(String ngayKhoiHanh) {
+        this.ngayKhoiHanh = ngayKhoiHanh;
     }
 
     public String getGioKhoiHanh() {
-        return giokhoihanh;
+        return gioKhoiHanh;
     }
 
-    public void setGioKhoiHanh(String giokhoihanh) {
-        this.giokhoihanh = giokhoihanh;
+    public void setGioKhoiHanh(String gioKhoiHanh) {
+        this.gioKhoiHanh = gioKhoiHanh;
     }
 
     public String getTinhTrang() {
-        return tinhtrang;
+        return tinhTrang;
     }
 
-    public void setTinhTrang(String tinhtrang) {
-        this.tinhtrang = tinhtrang;
+    public void setTinhTrang(String tinhTrang) {
+        this.tinhTrang = tinhTrang;
     }
 
-    public String getMamaybay() {
-        return mamaybay;
+    public String getMaMayBay() {
+        return maMayBay;
     }
 
-    public void setMamaybay(String mamaybay) {
-        this.mamaybay = mamaybay;
+    public void setMaMayBay(String maMayBay) {
+        this.maMayBay = maMayBay;
     }
 
-    public String getMahanghangkhong() {
-        return mahanghangkhong;
+    public String getMaHangHangKhong() {
+        return maHangHangKhong;
     }
 
-    public void setMahanghangkhong(String mahanghangkhong) {
-        this.mahanghangkhong = mahanghangkhong;
+    public void setMaHangHangKhong(String maHangHangKhong) {
+        this.maHangHangKhong = maHangHangKhong;
     }
 
-    public String getMasanbay() {
-        return masanbay;
+    public String getMaSanBay() {
+        return maSanBay;
     }
 
-    public void setMasanbay(String masanbay) {
-        this.masanbay = masanbay;
+    public void setMaSanBay(String maSanBay) {
+        this.maSanBay = maSanBay;
     }
 
     

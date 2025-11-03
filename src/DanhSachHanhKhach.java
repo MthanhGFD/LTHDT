@@ -15,41 +15,41 @@ public class DanhSachHanhKhach {
         dshk.docFile();
         dshk.xuatDS();
     }
-    private HanhKhach dshanhkhach[];
-    private int soluong;
+    private HanhKhach dsHanhKhach[];
+    private int soLuong;
     static Scanner sc = new Scanner(System.in);
 
     public DanhSachHanhKhach() {
-        dshanhkhach = new HanhKhach[0];
-        soluong = 0;
+        dsHanhKhach = new HanhKhach[0];
+        soLuong = 0;
     }
 
-    public DanhSachHanhKhach(HanhKhach[] dshanhkhach, int soluong) {
-        this.dshanhkhach = dshanhkhach;
-        this.soluong = soluong;
+    public DanhSachHanhKhach(HanhKhach[] dsHanhKhach, int soLuong) {
+        this.dsHanhKhach = dsHanhKhach;
+        this.soLuong = soLuong;
     }
 
     public DanhSachHanhKhach(DanhSachHanhKhach ds) {
-        dshanhkhach = ds.dshanhkhach;
-        soluong = ds.soluong;
+        dsHanhKhach = ds.dsHanhKhach;
+        soLuong = ds.soLuong;
     }
 
     public void nhapDS() {
         int sl;
         System.out.print("Nhap so luong hanh khach: ");
         sl = sc.nextInt();
-        soluong = sl;
+        soLuong = sl;
         sc.nextLine(); // đọc bỏ dấu xuống dòng
         for (int i = 0; i < sl; i++) {
             String ma;
             System.out.print("Nhap ma hanh khach: ");
             ma = sc.nextLine();
             if (tim(ma) != null) {
-                dshanhkhach = Arrays.copyOf(dshanhkhach, i + 1);
-                dshanhkhach[i] = new HanhKhach();
-                dshanhkhach[i].setMaHanhKhach(ma);
-                dshanhkhach[i].nhapHanhKhach();
-                ghiFile(dshanhkhach[i]);
+                dsHanhKhach = Arrays.copyOf(dsHanhKhach, i + 1);
+                dsHanhKhach[i] = new HanhKhach();
+                dsHanhKhach[i].setMaHanhKhach(ma);
+                dsHanhKhach[i].nhapHanhKhach();
+                ghiFile(dsHanhKhach[i]);
             } else {
                 i--;
             }
@@ -60,36 +60,36 @@ public class DanhSachHanhKhach {
         System.out.println("+-----------------+--------------------------------+------------+------------+------------+-----------------+-----------------+-----------------+");
         System.out.println("|  Ma Hanh Khach  |                Ho              |    Ten     |  Ngay Sinh | Danh Xung  |   So Can Cuoc   |  So Dien Thoai  | Loai Hanh Khach |");
         System.out.println("+-----------------+--------------------------------+------------+------------+------------+-----------------+-----------------+-----------------+");
-        for (int i = 0; i < dshanhkhach.length; i++) {
-            dshanhkhach[i].xuatHanhKhach();
+        for (int i = 0; i < dsHanhKhach.length; i++) {
+            dsHanhKhach[i].xuatHanhKhach();
         }
         System.out.println("+-----------------+--------------------------------+------------+------------+------------+-----------------+-----------------+-----------------+");
     }
 
     public void docFile() {
-        int i = soluong;
+        int i = soLuong;
         try {
             FileReader f = new FileReader("dsHanhKhach.txt");
             Scanner doc = new Scanner(f);
             while (doc.hasNextLine()) { // doc tung dong
                 String line = doc.nextLine();
                 String[] tokens = line.split(",");
-                dshanhkhach = Arrays.copyOf(dshanhkhach, dshanhkhach.length + 1);
-                dshanhkhach[i] = new HanhKhach();
-                dshanhkhach[i].setMaHanhKhach(tokens[0]);
+                dsHanhKhach = Arrays.copyOf(dsHanhKhach, dsHanhKhach.length + 1);
+                dsHanhKhach[i] = new HanhKhach();
+                dsHanhKhach[i].setMaHanhKhach(tokens[0]);
                 String ho, ten;
                 ten = tokens[1].substring(tokens[1].lastIndexOf(" ") + 1);
                 ho = tokens[1].substring(0, tokens[1].length() - ten.length());
-                dshanhkhach[i].setHo(ho);
-                dshanhkhach[i].setTen(ten);
-                dshanhkhach[i].setNgaysinh(tokens[2]);
-                dshanhkhach[i].setDanhxung(tokens[3]);
-                dshanhkhach[i].setCccd(tokens[4]);
-                dshanhkhach[i].setSdt(tokens[5]);
-                dshanhkhach[i].setLoaiHanhKhach(tokens[6]);
+                dsHanhKhach[i].setHo(ho);
+                dsHanhKhach[i].setTen(ten);
+                dsHanhKhach[i].setNgaysinh(tokens[2]);
+                dsHanhKhach[i].setDanhxung(tokens[3]);
+                dsHanhKhach[i].setCccd(tokens[4]);
+                dsHanhKhach[i].setSdt(tokens[5]);
+                dsHanhKhach[i].setLoaiHanhKhach(tokens[6]);
                 i++;
             }
-            soluong = i;
+            soLuong = i;
             f.close();
         } catch (FileNotFoundException e) {
             System.out.println("Khong tim thay file!");
@@ -116,57 +116,57 @@ public class DanhSachHanhKhach {
         System.out.print("Nhap ma hanh khach: ");
         ma = sc.nextLine();
         if (tim(ma) == null) {
-            dshanhkhach = Arrays.copyOf(dshanhkhach, soluong + 1);
-            dshanhkhach[soluong] = new HanhKhach();
-            dshanhkhach[soluong].setMaHanhKhach(ma);
-            dshanhkhach[soluong].nhapHanhKhach();
-            ghiFile(dshanhkhach[soluong]);
-            soluong++;
+            dsHanhKhach = Arrays.copyOf(dsHanhKhach, soLuong + 1);
+            dsHanhKhach[soLuong] = new HanhKhach();
+            dsHanhKhach[soLuong].setMaHanhKhach(ma);
+            dsHanhKhach[soLuong].nhapHanhKhach();
+            ghiFile(dsHanhKhach[soLuong]);
+            soLuong++;
         } else {
             System.out.println("LOI, trung ma hanh khach!!!");
         }
     }
 
     public void them(HanhKhach hanhkhach) {
-        dshanhkhach = Arrays.copyOf(dshanhkhach, soluong + 1);
-        dshanhkhach[soluong] = new HanhKhach();
-        dshanhkhach[soluong] = hanhkhach;
-        ghiFile(dshanhkhach[soluong]);
-        soluong++;
+        dsHanhKhach = Arrays.copyOf(dsHanhKhach, soLuong + 1);
+        dsHanhKhach[soLuong] = new HanhKhach();
+        dsHanhKhach[soLuong] = hanhkhach;
+        ghiFile(dsHanhKhach[soLuong]);
+        soLuong++;
     }
 
-    public void xoa(String mahanhkhach) {
-        int vitrixoa = timViTri(mahanhkhach);
+    public void xoa(String maHanhKhach) {
+        int vitrixoa = timViTri(maHanhKhach);
         if (vitrixoa != -1) {
-            for (int i = vitrixoa; i < dshanhkhach.length - 1; i++) {
-                dshanhkhach[i] = dshanhkhach[i + 1];
+            for (int i = vitrixoa; i < dsHanhKhach.length - 1; i++) {
+                dsHanhKhach[i] = dsHanhKhach[i + 1];
             }
-            dshanhkhach = Arrays.copyOf(dshanhkhach, soluong - 1);
-            soluong--;
+            dsHanhKhach = Arrays.copyOf(dsHanhKhach, soLuong - 1);
+            soLuong--;
         } else {
             System.out.print("khong tim thay hanh khach can xoa!!!");
         }
     }
 
     public void xoa() {
-        String mahanhkhach;
-        mahanhkhach = sc.nextLine();
-        int vitrixoa = timViTri(mahanhkhach);
+        String maHanhKhach;
+        maHanhKhach = sc.nextLine();
+        int vitrixoa = timViTri(maHanhKhach);
         if (vitrixoa != -1) {
-            for (int i = vitrixoa; i < dshanhkhach.length - 1; i++) {
-                dshanhkhach[i] = dshanhkhach[i + 1];
+            for (int i = vitrixoa; i < dsHanhKhach.length - 1; i++) {
+                dsHanhKhach[i] = dsHanhKhach[i + 1];
             }
-            dshanhkhach = Arrays.copyOf(dshanhkhach, soluong - 1);
-            soluong--;
+            dsHanhKhach = Arrays.copyOf(dsHanhKhach, soLuong - 1);
+            soLuong--;
         } else {
             System.out.print("khong tim thay hanh khach can xoa!!!");
         }
     }
 
     public void sua() {
-        String mahanhkhach;
-        mahanhkhach = sc.nextLine();
-        int vitri = timViTri(mahanhkhach);
+        String maHanhKhach;
+        maHanhKhach = sc.nextLine();
+        int vitri = timViTri(maHanhKhach);
         if (vitri != -1) {
             String choice;
             System.out.println("+-------------------SUA THONG TIN HANH KHACH------------------+");
@@ -181,19 +181,19 @@ public class DanhSachHanhKhach {
             switch (choice) {
                 case "1":
                     System.out.print("Moi nhap ho muon sua: ");
-                    dshanhkhach[vitri].setHo(sc.nextLine());
+                    dsHanhKhach[vitri].setHo(sc.nextLine());
                     break;
                 case "2":
                     System.out.print("Moi nhap ten muon sua: ");
-                    dshanhkhach[vitri].setTen(sc.nextLine());
+                    dsHanhKhach[vitri].setTen(sc.nextLine());
                     break;
                 case "3":
                     System.out.print("Moi nhap so dien thoai muon sua: ");
-                    dshanhkhach[vitri].setSdt(sc.nextLine());
+                    dsHanhKhach[vitri].setSdt(sc.nextLine());
                     break;
                 case "4":
                     System.out.print("Moi nhap loai hanh khach muon sua: ");
-                    dshanhkhach[vitri].setLoaiHanhKhach(sc.nextLine());
+                    dsHanhKhach[vitri].setLoaiHanhKhach(sc.nextLine());
                     break;
             }
         } else {
@@ -201,8 +201,8 @@ public class DanhSachHanhKhach {
         }
     }
 
-    public void sua(String mahanhkhach) {
-        int vitri = timViTri(mahanhkhach);
+    public void sua(String maHanhKhach) {
+        int vitri = timViTri(maHanhKhach);
         if (vitri != -1) {
             String choice;
             System.out.println("+-------------------SUA THONG TIN HANH KHACH------------------+");
@@ -216,19 +216,19 @@ public class DanhSachHanhKhach {
             switch (choice) {
                 case "1":
                     System.out.print("Moi nhap ho muon sua: ");
-                    dshanhkhach[vitri].setHo(sc.nextLine());
+                    dsHanhKhach[vitri].setHo(sc.nextLine());
                     break;
                 case "2":
                     System.out.print("Moi nhap ten muon sua: ");
-                    dshanhkhach[vitri].setTen(sc.nextLine());
+                    dsHanhKhach[vitri].setTen(sc.nextLine());
                     break;
                 case "3":
                     System.out.print("Moi nhap so dien thoai muon sua: ");
-                    dshanhkhach[vitri].setSdt(sc.nextLine());
+                    dsHanhKhach[vitri].setSdt(sc.nextLine());
                     break;
                 case "4":
                     System.out.print("Moi nhap loai hanh khach muon sua: ");
-                    dshanhkhach[vitri].setLoaiHanhKhach(sc.nextLine());
+                    dsHanhKhach[vitri].setLoaiHanhKhach(sc.nextLine());
                     break;
             }
         } else {
@@ -237,9 +237,9 @@ public class DanhSachHanhKhach {
     }
 
     public HanhKhach tim(String ma) {
-        for (int i = 0; i < dshanhkhach.length; i++) {
-            if (dshanhkhach[i].getMaHanhKhach().equals(ma)) {
-                return dshanhkhach[i];
+        for (int i = 0; i < dsHanhKhach.length; i++) {
+            if (dsHanhKhach[i].getMaHanhKhach().equals(ma)) {
+                return dsHanhKhach[i];
             }
         }
         return null;
@@ -249,17 +249,17 @@ public class DanhSachHanhKhach {
         String ma;
         System.out.print("Nhap ma hanh khach can tim: ");
         ma = sc.nextLine();
-        for (int i = 0; i < dshanhkhach.length; i++) {
-            if (dshanhkhach[i].getMaHanhKhach().equals(ma)) {
-                return dshanhkhach[i];
+        for (int i = 0; i < dsHanhKhach.length; i++) {
+            if (dsHanhKhach[i].getMaHanhKhach().equals(ma)) {
+                return dsHanhKhach[i];
             }
         }
         return null;
     }
 
     public int timViTri(String ma) {
-        for (int i = 0; i < dshanhkhach.length; i++) {
-            if (dshanhkhach[i].getMaHanhKhach().equals(ma)) {
+        for (int i = 0; i < dsHanhKhach.length; i++) {
+            if (dsHanhKhach[i].getMaHanhKhach().equals(ma)) {
                 return i;
             }
         }
@@ -272,10 +272,10 @@ public class DanhSachHanhKhach {
         String ten;
         System.out.print("Nhap ten can tim: ");
         ten = sc.nextLine();
-        for (int i = 0; i < dshanhkhach.length; i++) {
-            if (dshanhkhach[i].getTen().equalsIgnoreCase(ten)) {
+        for (int i = 0; i < dsHanhKhach.length; i++) {
+            if (dsHanhKhach[i].getTen().equalsIgnoreCase(ten)) {
                 dsTen = Arrays.copyOf(dsTen, dsTen.length + 1);
-                dsTen[j] = dshanhkhach[i];
+                dsTen[j] = dsHanhKhach[i];
                 j++;
             }
         }
@@ -286,10 +286,10 @@ public class DanhSachHanhKhach {
     public HanhKhach[] timTen(String ten) {
         HanhKhach[] dsTen = new HanhKhach[0];
         int j = 0;
-        for (int i = 0; i < dshanhkhach.length; i++) {
-            if (dshanhkhach[i].getTen().equalsIgnoreCase(ten)) {
+        for (int i = 0; i < dsHanhKhach.length; i++) {
+            if (dsHanhKhach[i].getTen().equalsIgnoreCase(ten)) {
                 dsTen = Arrays.copyOf(dsTen, dsTen.length + 1);
-                dsTen[j] = dshanhkhach[i];
+                dsTen[j] = dsHanhKhach[i];
                 j++;
             }
         }
@@ -300,10 +300,10 @@ public class DanhSachHanhKhach {
     public HanhKhach[] dsVip() {
         HanhKhach[] dsvip = new HanhKhach[0];
         int j = 0;
-        for (int i = 0; i < dshanhkhach.length; i++) {
-            if (dshanhkhach[i].getLoaiHanhKhach().toLowerCase().equals("vip")) {
+        for (int i = 0; i < dsHanhKhach.length; i++) {
+            if (dsHanhKhach[i].getLoaiHanhKhach().toLowerCase().equals("vip")) {
                 dsvip = Arrays.copyOf(dsvip, dsvip.length + 1);
-                dsvip[j] = dshanhkhach[i];
+                dsvip[j] = dsHanhKhach[i];
                 j++;
             }
         }
@@ -314,10 +314,10 @@ public class DanhSachHanhKhach {
     public HanhKhach[] dsThuong() {
         HanhKhach[] dsthuong = new HanhKhach[0];
         int j = 0;
-        for (int i = 0; i < dshanhkhach.length; i++) {
-            if (dshanhkhach[i].getLoaiHanhKhach().toLowerCase().equals("thuong")) {
+        for (int i = 0; i < dsHanhKhach.length; i++) {
+            if (dsHanhKhach[i].getLoaiHanhKhach().toLowerCase().equals("thuong")) {
                 dsthuong = Arrays.copyOf(dsthuong, dsthuong.length + 1);
-                dsthuong[j] = dshanhkhach[i];
+                dsthuong[j] = dsHanhKhach[i];
                 j++;
             }
         }
@@ -343,10 +343,10 @@ public class DanhSachHanhKhach {
     public HanhKhach[] dsTuoi(int tuoi) {
         HanhKhach[] ds = new HanhKhach[0];
         int j = 0;
-        for (int i = 0; i < dshanhkhach.length; i++) {
-            if (dshanhkhach[i].tuoi() == tuoi) {
+        for (int i = 0; i < dsHanhKhach.length; i++) {
+            if (dsHanhKhach[i].tuoi() == tuoi) {
                 ds = Arrays.copyOf(ds, ds.length + 1);
-                ds[j] = dshanhkhach[i];
+                ds[j] = dsHanhKhach[i];
                 j++;
             }
         }
@@ -355,8 +355,8 @@ public class DanhSachHanhKhach {
 
     public int[] thongKeTuoi() {
         int slTuoi[] = new int[100];
-        for (int i = 0; i < dshanhkhach.length; i++) {
-            slTuoi[dshanhkhach[i].tuoi()]++;
+        for (int i = 0; i < dsHanhKhach.length; i++) {
+            slTuoi[dsHanhKhach[i].tuoi()]++;
         }
         return slTuoi;
     }

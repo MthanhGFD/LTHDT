@@ -3,60 +3,60 @@ package src;
 import java.util.Scanner;
 
 public class Ghe{
-    private String maghe, vitrighe, mamaybay;
+    private String maGhe, viTriGhe, maMayBay;
     public Ghe(){
-        maghe = "";
-        mamaybay = "";
-        vitrighe = "";
+        maGhe = "";
+        maMayBay = "";
+        viTriGhe = "";
     }
     
-    public Ghe(String maghe, String mamaybay, String vitrighe){
-        this.maghe = maghe;
-        this.mamaybay = mamaybay;
-        this.vitrighe = vitrighe;
+    public Ghe(String maGhe, String maMayBay, String viTriGhe){
+        this.maGhe = maGhe;
+        this.maMayBay = maMayBay;
+        this.viTriGhe = viTriGhe;
     }
     
     public Ghe(Ghe ghe1){
-        maghe = ghe1.maghe;
-        mamaybay = ghe1.mamaybay;
-        vitrighe = ghe1.vitrighe;
+        maGhe = ghe1.maGhe;
+        maMayBay = ghe1.maMayBay;
+        viTriGhe = ghe1.viTriGhe;
     }
     
     public void nhapGhe() {
         Scanner sc = new Scanner(System.in);
         System.out.print("nhap vi tri ghe: ");
-        this.vitrighe = sc.nextLine();
+        this.viTriGhe = sc.nextLine();
         System.out.print("Nhap ma so may bay: ");
-        mamaybay = sc.nextLine();
+        maMayBay = sc.nextLine();
     }
 
     public void xuatGhe() {
         String fmt = "| %-15s | %-20s | %-15s |\n";
-        System.out.printf(fmt, maghe, vitrighe, mamaybay );
+        System.out.printf(fmt, maGhe, viTriGhe, maMayBay );
     }
     
     public String getMaGhe() {
-        return maghe;
+        return maGhe;
     }
 
-    public void setMaGhe(String maghe) {
-        this.maghe = maghe;
+    public void setMaGhe(String maGhe) {
+        this.maGhe = maGhe;
     }
 
     public String getMaMayBay() {
-        return mamaybay;
+        return maMayBay;
     }
 
-    public void setMaMayBay(String mamaybay) {
-        this.mamaybay = mamaybay;
+    public void setMaMayBay(String maMayBay) {
+        this.maMayBay = maMayBay;
     }
 
     public String getViTriGhe() {
-        return vitrighe;
+        return viTriGhe;
     }
 
-    public void setViTriGhe(String vitrighe) {
-        this.vitrighe = vitrighe;
+    public void setViTriGhe(String viTriGhe) {
+        this.viTriGhe = viTriGhe;
     }
     
     

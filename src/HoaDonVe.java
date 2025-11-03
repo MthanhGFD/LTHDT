@@ -60,27 +60,27 @@ public class HoaDonVe {
 //        // ham tinh tong tien
 //    }
 
-    public String getMahoadon() {
+    public String getMaHoaDon() {
         return mahoadon;
     }
 
-    public void setMahoadon(String mahoadon) {
+    public void setMaHoaDon(String mahoadon) {
         this.mahoadon = mahoadon;
     }
 
-    public String getNgaynhap() {
+    public String getNgayNhap() {
         return ngaynhap;
     }
 
-    public void setNgaynhap(String ngaynhap) {
+    public void setNgayNhap(String ngaynhap) {
         this.ngaynhap = ngaynhap;
     }
 
-    public int getSoluongve() {
+    public int getSoLuongVe() {
         return soluongve;
     }
 
-    public void setSoluongve(int soluongve) {
+    public void setSoLuongVe(int soluongve) {
         this.soluongve = soluongve;
     }
 

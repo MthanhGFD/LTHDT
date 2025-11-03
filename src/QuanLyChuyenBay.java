@@ -3,14 +3,14 @@ package src;
 import static src.DanhSachChuyenBay.sc;
 
 public class QuanLyChuyenBay extends QuanLyVeMayBay {
-    private DanhSachChuyenBay dschuyenbay;
+    private DanhSachChuyenBay dsChuyenBay;
 
     public QuanLyChuyenBay() {
-        dschuyenbay = new DanhSachChuyenBay();
+        dsChuyenBay = new DanhSachChuyenBay();
     }
 
-    public QuanLyChuyenBay(DanhSachChuyenBay dschuyenbay) {
-        this.dschuyenbay = dschuyenbay;
+    public QuanLyChuyenBay(DanhSachChuyenBay dsChuyenBay) {
+        this.dsChuyenBay = dsChuyenBay;
     }
 
     // ====================== MENU CHINH ======================
@@ -36,17 +36,17 @@ public class QuanLyChuyenBay extends QuanLyVeMayBay {
     @Override
     public void choice() {
         String c;
-        boolean chonsai = false;
+        boolean chonSai = false;
         do {
             menu();
             c = sc.nextLine();
 
             switch (c) {
                 case "1":
-                    dschuyenbay.docFile();
+                    dsChuyenBay.docFile();
                     break;
                 case "2":
-                    dschuyenbay.nhapDS();
+                    dsChuyenBay.nhapDS();
                     break;
 
                 case "3": {
@@ -59,11 +59,11 @@ public class QuanLyChuyenBay extends QuanLyVeMayBay {
                     System.out.print("Chon kieu them: ");
                     String t = sc.nextLine();
                     if (t.equals("1")) {
-                        dschuyenbay.them();
+                        dsChuyenBay.them();
                     } else if (t.equals("2")) {
                         System.out.print("Nhap ma chuyen bay: ");
                         String ma = sc.nextLine();
-                        dschuyenbay.them(ma);
+                        dsChuyenBay.them(ma);
                     } else {
                         System.out.println("Lua chon khong hop le.");
                     }
@@ -80,11 +80,11 @@ public class QuanLyChuyenBay extends QuanLyVeMayBay {
                     System.out.print("Chon kieu xoa: ");
                     String x = sc.nextLine();
                     if (x.equals("1")) {
-                        dschuyenbay.xoa();
+                        dsChuyenBay.xoa();
                     } else if (x.equals("2")) {
                         System.out.print("Nhap ma chuyen bay can xoa: ");
                         String ma = sc.nextLine();
-                        dschuyenbay.xoa(ma);
+                        dsChuyenBay.xoa(ma);
                     } else {
                         System.out.println("Lua chon khong hop le.");
                     }
@@ -101,11 +101,11 @@ public class QuanLyChuyenBay extends QuanLyVeMayBay {
                     System.out.print("Chon kieu sua: ");
                     String s = sc.nextLine();
                     if (s.equals("1")) {
-                        dschuyenbay.sua();
+                        dsChuyenBay.sua();
                     } else if (s.equals("2")) {
                         System.out.print("Nhap ma chuyen bay can sua: ");
                         String ma = sc.nextLine();
-                        dschuyenbay.sua(ma);
+                        dsChuyenBay.sua(ma);
                     } else {
                         System.out.println("Lua chon khong hop le.");
                     }
@@ -123,7 +123,7 @@ public class QuanLyChuyenBay extends QuanLyVeMayBay {
                     System.out.print("Chon kieu tim: ");
                     String tm = sc.nextLine();
                     if (tm.equals("1")) {
-                        ChuyenBay cb = dschuyenbay.tim();
+                        ChuyenBay cb = dsChuyenBay.tim();
                         if (cb != null) {
                             cb.xuatChuyenBay();
                         } else {
@@ -132,7 +132,7 @@ public class QuanLyChuyenBay extends QuanLyVeMayBay {
                     } else if (tm.equals("2")) {
                         System.out.print("Nhap ma chuyen bay can tim: ");
                         String ma = sc.nextLine();
-                        ChuyenBay cb = dschuyenbay.tim(ma);
+                        ChuyenBay cb = dsChuyenBay.tim(ma);
                         if (cb != null) {
                             cb.xuatChuyenBay();
                         } else {
@@ -141,7 +141,7 @@ public class QuanLyChuyenBay extends QuanLyVeMayBay {
                     } else if (tm.equals("3")) {
                         System.out.print("Nhap ma chuyen bay can tim vi tri: ");
                         String ma = sc.nextLine();
-                        int vt = dschuyenbay.timViTri(ma);
+                        int vt = dsChuyenBay.timViTri(ma);
                         if (vt != -1) {
                             System.out.println("Chuyen bay o vi tri: " + vt);
                         } else {
@@ -163,7 +163,7 @@ public class QuanLyChuyenBay extends QuanLyVeMayBay {
                     System.out.print("Chon kieu thong ke: ");
                     String tk = sc.nextLine();
                     if (tk.equals("1")) {
-                        int[] ds = dschuyenbay.thongKeNgayChuyenBay();
+                        int[] ds = dsChuyenBay.thongKeNgayChuyenBay();
                         for (int i = 1; i < ds.length; i++) {
                             if (ds[i] > 0) {
                                 System.out.println("Ngay " + i + " co " + ds[i] + " chuyen bay.");
@@ -172,7 +172,7 @@ public class QuanLyChuyenBay extends QuanLyVeMayBay {
                     } else if (tk.equals("2")) {
                         System.out.println("+------------------ THONG KE THEO TINH TRANG ------------------+");
                         String[] tinhtrang = {"Hoat dong", "Tam hoan", "Huy"};
-                        ChuyenBay[][] tkTT = dschuyenbay.thongKeTinhTrang();
+                        ChuyenBay[][] tkTT = dsChuyenBay.thongKeTinhTrang();
 
                         for (int i = 0; i < tinhtrang.length; i++) {
                             System.out.println("\nTinh trang: " + tinhtrang[i]);
@@ -190,7 +190,7 @@ public class QuanLyChuyenBay extends QuanLyVeMayBay {
                     break;
                 }
                 case "9":
-                    dschuyenbay.xuatDS();
+                    dsChuyenBay.xuatDS();
                     break;
 
                 case "0":
@@ -198,11 +198,11 @@ public class QuanLyChuyenBay extends QuanLyVeMayBay {
                     break;
 
                 default:
-                    chonsai = true;
+                    chonSai = true;
                     System.out.println("Lua chon khong hop le, vui long nhap lai.");
             }
 
-            if (!c.equals("0") && !chonsai) {
+            if (!c.equals("0") && !chonSai) {
                 System.out.println();
                 System.out.println("Nhan Enter de tiep tuc...");
                 sc.nextLine();
