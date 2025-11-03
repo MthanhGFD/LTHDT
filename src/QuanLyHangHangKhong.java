@@ -1,18 +1,18 @@
-package CodeClass;
+package src;
 
-import static CodeClass.DanhSachHangHangKhong.sc;
+import static src.DanhSachHangHangKhong.sc;
 import java.util.Arrays;
 
 public class QuanLyHangHangKhong extends QuanLyVeMayBay {
 
-    private DanhSachHangHangKhong dshanghangkhong;
+    private DanhSachHangHangKhong dsHangHangKhong;
 
     public QuanLyHangHangKhong() {
-        dshanghangkhong = new DanhSachHangHangKhong();
+        dsHangHangKhong = new DanhSachHangHangKhong();
     }
 
-    public QuanLyHangHangKhong(DanhSachHangHangKhong dshanghangkhong) {
-        this.dshanghangkhong = dshanghangkhong;
+    public QuanLyHangHangKhong(DanhSachHangHangKhong dsHangHangKhong) {
+        this.dsHangHangKhong = dsHangHangKhong;
     }
 
     @Override
@@ -46,7 +46,7 @@ public class QuanLyHangHangKhong extends QuanLyVeMayBay {
                     break;
 
                 case "1":
-                    dshanghangkhong.nhapDS();
+                    dsHangHangKhong.nhapDS();
                     break;
 
                 case "2":
@@ -61,11 +61,11 @@ public class QuanLyHangHangKhong extends QuanLyVeMayBay {
                     sc.nextLine();
 
                     if (t.equals("1")) {
-                        dshanghangkhong.them();
+                        dsHangHangKhong.them();
                     } else if (t.equals("2")) {
                         System.out.print("Nhap ma hang muon them: ");
                         String ma = sc.nextLine();
-                        dshanghangkhong.them(ma);
+                        dsHangHangKhong.them(ma);
                     } else {
                         System.out.println("Lua chon khong hop le!");
                     }
@@ -83,9 +83,9 @@ public class QuanLyHangHangKhong extends QuanLyVeMayBay {
                     sc.nextLine();
 
                     if (x.equals("1")) {
-                        dshanghangkhong.xoa();
+                        dsHangHangKhong.xoa();
                     } else if (x.equals("2")) {
-                        dshanghangkhong.xoa(sc.nextLine());
+                        dsHangHangKhong.xoa(sc.nextLine());
                     }
                     break;
 
@@ -101,11 +101,11 @@ public class QuanLyHangHangKhong extends QuanLyVeMayBay {
                     sc.nextLine();
 
                     if (s.equals("1")) {
-                        dshanghangkhong.sua();
+                        dsHangHangKhong.sua();
                     } else if (s.equals("2")) {
                         System.out.print("Nhap ma hang can sua: ");
                         String ma = sc.nextLine();
-                        dshanghangkhong.sua(ma);
+                        dsHangHangKhong.sua(ma);
                     } else {
                         System.out.println("Lua chon khong hop le!");
                     }
@@ -125,7 +125,7 @@ public class QuanLyHangHangKhong extends QuanLyVeMayBay {
 
                     switch (tm) {
                         case "1":
-                            HangHangKhong h1 = dshanghangkhong.tim();
+                            HangHangKhong h1 = dsHangHangKhong.tim();
                             if (h1 != null) {
                                 h1.nhapHangHangKhong();
                             } else {
@@ -136,7 +136,7 @@ public class QuanLyHangHangKhong extends QuanLyVeMayBay {
                         case "2":
                             System.out.print("Nhap ma hang can tim: ");
                             String ma = sc.nextLine();
-                            HangHangKhong h2 = dshanghangkhong.tim(ma);
+                            HangHangKhong h2 = dsHangHangKhong.tim(ma);
                             if (h2 != null) {
                                 h2.xuatHangHangKhong();
                             } else {
@@ -147,7 +147,7 @@ public class QuanLyHangHangKhong extends QuanLyVeMayBay {
                         case "3":
                             System.out.print("Nhap ma hang can tim vi tri: ");
                             String maVT = sc.nextLine();
-                            int vt = dshanghangkhong.timViTri(maVT);
+                            int vt = dsHangHangKhong.timViTri(maVT);
                             if (vt != -1) {
                                 System.out.println("Hang hang khong o vi tri: " + vt);
                             } else {
@@ -162,7 +162,7 @@ public class QuanLyHangHangKhong extends QuanLyVeMayBay {
 
                 case "6":
                     System.out.println("+------------ Danh Sach Hang Hang Khong -----------+");
-                    dshanghangkhong.xuatDS();
+                    dsHangHangKhong.xuatDS();
                     System.out.println("+--------------------------------------------------+");
                     break;
 
