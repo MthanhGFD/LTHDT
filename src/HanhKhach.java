@@ -60,10 +60,10 @@ public class HanhKhach {
         System.out.println("===================================");
     }
 
-        public void xuatHanhKhach() {
-            String fmt = "| %-15s | %-30s | %-10s | %-10s | %-10s | %-15s | %-15s | %-15s |\n";
-            System.out.printf(fmt, maHanhKhach, ho, ten, ngaysinh, danhxung, cccd, sdt, loaiHanhKhach);
-        }
+    public void xuatHanhKhach() {
+        String fmt = "| %-15s | %-30s | %-10s | %-10s | %-10s | %-15s | %-15s | %-15s |\n";
+        System.out.printf(fmt, maHanhKhach, ho, ten, ngaysinh, danhxung, cccd, sdt, loaiHanhKhach);
+    }
 
     public int tuoi() {
         return LocalDate.now().getYear() - Integer.parseInt(ngaysinh);

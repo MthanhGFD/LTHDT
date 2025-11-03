@@ -3,19 +3,19 @@ package CodeClass;
 import java.util.Scanner;
 
 public class HangHangKhong {
-    private String maHang;          // Mã hãng (PK)
-    private String tenHang;         // Tên hãng hàng không
-    private String quocGia;         // Quốc gia
+    private String maHang;          // Ma hang (PK)
+    private String tenHang;         // Ten hang hang khong
+    private String quocGia;         // Quoc gia
 
 
-    // Constructor không tham số
+    // Constructor khong tham so
     public HangHangKhong() {
         this.maHang = "";
         this.tenHang = "";
         this.quocGia = "";
     }
 
-    // Constructor có tham số
+    // Constructor co tham so
     public HangHangKhong(String maHang, String tenHang, String quocGia) {
         this.maHang = maHang;
         this.tenHang = tenHang;

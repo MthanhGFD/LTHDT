@@ -6,7 +6,7 @@ public abstract class Ve {
     private String mave;
     private ChuyenBay machuyenbay;
     private Ghe maghe;
-    private int giave;
+    private double giave;
     private boolean phanloai; // true = 1 chiều, false = khứ hồi
 
     //Constructor
@@ -18,7 +18,7 @@ public abstract class Ve {
         phanloai = true;
     }
 
-    public Ve(String mave, ChuyenBay machuyenbay, Ghe maghe, int giave, boolean phanloai) {
+    public Ve(String mave, ChuyenBay machuyenbay, Ghe maghe, double giave, boolean phanloai) {
         this.mave = mave;
         this.machuyenbay = machuyenbay;
         this.maghe = maghe;
@@ -36,13 +36,11 @@ public abstract class Ve {
     public Ghe getGhe() { return maghe; }
     public void setGhe(Ghe maghe) { this.maghe = maghe; }
 
-    public int getGiaVe() { return giave; }
-    public void setGiaVe(int giave) { this.giave = giave; }
+    public double getGiaVe() { return giave; }
+    public void setGiaVe(double giave) { this.giave = giave; }
 
     public boolean isPhanLoai() { return phanloai; }
     public void setPhanLoai(boolean phanloai) { this.phanloai = phanloai; }
-
-    public abstract double tinhGiaVe();
 
     //Ham nhap
     public void nhapThongTin(Scanner sc) {
@@ -54,4 +52,12 @@ public abstract class Ve {
         this.phanloai = sc.nextInt() == 1;
         sc.nextLine(); // clear buffer
     }
+
+    public void xuatThongTin() {
+        System.out.println("Ma ve: " + mave);
+        System.out.println("Gia ve: " + giave);
+        System.out.println("Loai ve: " + (phanloai ? "1 chieu" : "Khu hoi"));
+    }
+
+    public abstract double tinhTien();  // Moi loai ve co cach tinh khac nhau
 }

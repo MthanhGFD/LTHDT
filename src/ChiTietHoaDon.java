@@ -48,11 +48,11 @@ public class ChiTietHoaDon {
         System.out.println("+-----------------+-----------------+-----------------+-----------------+-----------------+");
     }
 
-    public String getMahoadon() {
+    public String getMaHoaDon() {
         return mahoadon;
     }
 
-    public void setMahoadon(String mahoadon) {
+    public void setMaHoaDon(String mahoadon) {
         this.mahoadon = mahoadon;
     }
 
@@ -80,11 +80,11 @@ public class ChiTietHoaDon {
         this.mahanhkhach = mahanhkhach;
     }
 
-    public float getTienve() {
+    public double getTienVe() {
         return tienve;
     }
 
-    public void setTienve(float tienve) {
+    public void setTienVe(float tienve) {
         this.tienve = tienve;
     }
 }
