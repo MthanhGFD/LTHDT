@@ -1,4 +1,4 @@
-package CodeClass;
+package src;
 
 public abstract class QuanLyVeMayBay {
     public abstract void menu();

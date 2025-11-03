@@ -1,6 +1,6 @@
-package CodeClass;
+package src;
 
-import CodeClass.ChuyenBay;
+import src.ChuyenBay;
 import java.io.*;
 import java.util.Arrays;
 import java.util.Scanner;

@@ -1,6 +1,6 @@
-package CodeClass;
+package src;
 
-import static CodeClass.DanhSachHangHangKhong.sc;
+import static src.DanhSachHangHangKhong.sc;
 import java.util.Arrays;
 
 public class QuanLyHangHangKhong extends QuanLyVeMayBay {

@@ -1,6 +1,6 @@
-package CodeClass;
+package src;
 
-import static CodeClass.DanhSachSanBay.sc;
+import static src.DanhSachSanBay.sc;
 
 
 public class QuanLySanBay extends QuanLyVeMayBay {

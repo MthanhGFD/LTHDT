@@ -1,4 +1,4 @@
-package CodeClass;
+package src;
 
 
 public class VeVIP{
