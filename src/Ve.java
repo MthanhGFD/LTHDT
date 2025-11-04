@@ -2,7 +2,7 @@ package src;
 
 import java.util.Scanner;
 
-public abstract class Ve {
+public abstract class Ve implements IVe {
     private String maVe, maChuyenBay, maGhe, loaiVe;
     private double giaVe;
 
@@ -44,8 +44,8 @@ public abstract class Ve {
     public double getGiaVe() { return giaVe; }
     public void setGiaVe(double giaVe) { this.giaVe = giaVe; }
 
-    public String getPhanLoai() { return loaiVe; }
-    public void setPhanLoai(String loaiVe) { this.loaiVe = loaiVe; }
+    public String getLoaiVe() { return loaiVe; }
+    public void setLoaiVe(String loaiVe) { this.loaiVe = loaiVe; }
 
     //Ham nhap
     public void nhapVe() {
@@ -71,9 +71,12 @@ public abstract class Ve {
         sc.nextLine(); // clear buffer
     }
 
+    //Ham xuat
     public void xuatVe() {
-        String fmt = "| %-15s | %-15s | %-15s | %-10f | %-3s |\n";
+        String fmt = "| %-15s | %-15s | %-15s | %-10f | %-3s |%n";
+        System.out.println("+-----------------+-----------------+-----------------+------------+-----+");
         System.out.printf(fmt, maVe, maChuyenBay, maGhe, giaVe, loaiVe);
+        System.out.println("+-----------------+-----------------+-----------------+------------+-----+");
     }
 
     public abstract double tinhTienVe();  // Moi loai ve co cach tinh khac nhau
