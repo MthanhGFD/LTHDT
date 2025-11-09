@@ -1,5 +1,6 @@
 package src;
 
+import java.io.*;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -24,26 +25,46 @@ public class DanhSachHangHangKhong {
         soLuong = ds.soLuong;
     }
 
-    public void nhapDS() {
-        int sl;
-        System.out.print("Nhap so luong hang hang khong: ");
-        sl = sc.nextInt();
-        soLuong = sl;
-        for (int i = 0; i < dsHangHangKhong.length; i++) {
-            String ma;
-            System.out.print("Nhap ma hang hang khong: ");
-            ma = sc.nextLine();
-            if (tim(ma) == null) {
-                dsHangHangKhong = Arrays.copyOf(dsHangHangKhong, i + 1);
-                dsHangHangKhong[i] = new HangHangKhong();
-                dsHangHangKhong[i].nhapHangHangKhong();
-            } else {
-                i--;
+    public void docFile() {
+        int i = 0;
+        try {
+            FileReader f = new FileReader("dsHangHangKhong.txt");
+            Scanner fr = new Scanner(f);
+            while (fr.hasNextLine()) {
+                String line = fr.nextLine();
+                String tokens[] = line.split(",");
+                dsHangHangKhong[i].setMaHang(tokens[0]);
+                dsHangHangKhong[i].setTenHang(tokens[1]);
+                dsHangHangKhong[i].setQuocGia(tokens[2]);
+                i++;
             }
+            soLuong = i;
+            f.close();
+            fr.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("Khong tim thay file");
+        } catch (IOException e) {
+            System.out.println("Loi doc file");
+        }
+    }
+
+    public void ghiFile() {
+        try {
+            File f = new File("dsHangHangKhong.txt");
+            FileWriter fw = new FileWriter("dsHangHangKhong.txt");
+            for (int i = 0; i < dsHangHangKhong.length; i++) {
+                fw.write(dsHangHangKhong[i].toString() + "\n");
+            }
+            fw.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("khong tim thay file");
+        } catch (IOException e) {
+            System.out.println("Loi doc file");
         }
     }
 
     public void xuatDS() {
+        System.out.println("          ================== Danh Sach Hang Hang Khong ==================");
         System.out.println("+-----------------+-------------------------------------+---------------------------+");
         System.out.println("|     Ma Hang     |              Ten hang               |         Quoc gia          |");
         System.out.println("+-----------------+-------------------------------------+---------------------------+");
@@ -71,16 +92,11 @@ public class DanhSachHangHangKhong {
     }
 
     // co tham so
-    public void them(String ma) {
-        if (tim(ma) == null) {
-            dsHangHangKhong = Arrays.copyOf(dsHangHangKhong, soLuong + 1);
-            dsHangHangKhong[soLuong] = new HangHangKhong();
-            dsHangHangKhong[soLuong].xuatHangHangKhong();
-            soLuong++;
-            System.out.println("Them thanh cong");
-        } else {
-            System.out.println("Hang hang khong da ton tai!!");
-        }
+    public void them(HangHangKhong hhk) {
+        dsHangHangKhong = Arrays.copyOf(dsHangHangKhong, soLuong + 1);
+        dsHangHangKhong[soLuong] = new HangHangKhong();
+        dsHangHangKhong[soLuong] = hhk;
+        soLuong++;
     }
 
     // xoa hang hang khong
@@ -97,12 +113,13 @@ public class DanhSachHangHangKhong {
             dsHangHangKhong = Arrays.copyOf(dsHangHangKhong, soLuong - 1);
             soLuong--;
             System.out.println("Xoa thanh cong");
-        } else
+        } else {
             System.out.println("Khong tim thay vi tri cua hang hang khong");
+        }
     }
-    
+
     // xóa có tham số
-    public void xoa(String ma){
+    public void xoa(String ma) {
         int vitri = timViTri(ma);
         if (vitri != -1) {
             for (int i = vitri; i < dsHangHangKhong.length; i++) {
@@ -111,8 +128,9 @@ public class DanhSachHangHangKhong {
             dsHangHangKhong = Arrays.copyOf(dsHangHangKhong, soLuong - 1);
             soLuong--;
             System.out.println("Xoa thanh cong");
-        } else
+        } else {
             System.out.println("Khon tim thay vi tri cua hang hang khong");
+        }
     }
 
     // sua
@@ -145,18 +163,6 @@ public class DanhSachHangHangKhong {
     }
 
     // tim ma hang hang khong
-    // khong tham so
-    public HangHangKhong tim() {
-        String ma;
-        System.out.print("Nhap ma may bay: ");
-        ma = sc.nextLine();
-        for (int i = 0; i < dsHangHangKhong.length; i++) {
-            if (dsHangHangKhong[i].getMaHang().equals(ma)) {
-                return dsHangHangKhong[i];
-            }
-        }
-        return null;
-    }
 
     // co tham so
     public HangHangKhong tim(String ma) {
@@ -166,6 +172,31 @@ public class DanhSachHangHangKhong {
             }
         }
         return null;
+    }
+    
+    // tìm theo tên hãng
+    public HangHangKhong timTheoTen(String tenHang){
+        for (int i = 0; i < dsHangHangKhong.length; i++) {
+            if (dsHangHangKhong[i].getMaHang().equals(tenHang)) {
+                return dsHangHangKhong[i];
+            }
+        }
+        return null;
+    }
+    
+    // tìm theo quốc gia
+    public HangHangKhong[] timTheoQuocGia(String quocGia){
+        HangHangKhong[] dsHang = new HangHangKhong[0];
+        int j = 0;
+        for (int i = 0; i < dsHang.length; i++) {
+            if(dsHangHangKhong[i].getQuocGia().equals(quocGia)){
+                dsHang = Arrays.copyOf(dsHang, j + 1);
+                dsHang[j] = new HangHangKhong();
+                dsHang[j] = dsHangHangKhong[i];
+                j++;
+            }
+        }
+        return dsHang;
     }
 
     // tra ve vi tri
@@ -191,4 +222,21 @@ public class DanhSachHangHangKhong {
         }
         return ds;
     }
+
+    public HangHangKhong[] getDsHangHangKhong() {
+        return dsHangHangKhong;
+    }
+
+    public void setDsHangHangKhong(HangHangKhong[] dsHangHangKhong) {
+        this.dsHangHangKhong = dsHangHangKhong;
+    }
+
+    public int getSoLuong() {
+        return soLuong;
+    }
+
+    public void setSoLuong(int soLuong) {
+        this.soLuong = soLuong;
+    }
+
 }

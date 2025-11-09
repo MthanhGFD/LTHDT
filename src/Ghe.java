@@ -3,37 +3,47 @@ package src;
 import java.util.Scanner;
 
 public class Ghe{
-    private String maGhe, viTriGhe, maMayBay;
+    private String maGhe, viTriGhe, trangThai, maMayBay;
     public Ghe(){
         maGhe = "";
-        maMayBay = "";
         viTriGhe = "";
+        trangThai = "";
+        maMayBay = "";
+        
     }
     
-    public Ghe(String maGhe, String maMayBay, String viTriGhe){
+    public Ghe(String maGhe, String viTriGhe, String trangThai, String maMayBay){
         this.maGhe = maGhe;
-        this.maMayBay = maMayBay;
+        this.trangThai = trangThai;
         this.viTriGhe = viTriGhe;
+        this.maMayBay = maMayBay;
     }
     
     public Ghe(Ghe ghe1){
         maGhe = ghe1.maGhe;
-        maMayBay = ghe1.maMayBay;
+        this.trangThai = ghe1.trangThai;
         viTriGhe = ghe1.viTriGhe;
+        maMayBay = ghe1.maMayBay;
     }
     
     public void nhapGhe() {
         Scanner sc = new Scanner(System.in);
-        System.out.print("nhap vi tri ghe: ");
+        System.out.print("Nhap vi tri ghe: ");
         this.viTriGhe = sc.nextLine();
-        System.out.print("Nhap ma so may bay: ");
-        maMayBay = sc.nextLine();
+        this.trangThai = "Trong";
     }
 
     public void xuatGhe() {
-        String fmt = "| %-15s | %-20s | %-15s |\n";
-        System.out.printf(fmt, maGhe, viTriGhe, maMayBay );
+        String fmt = "| %-15s | %-20s | %-10s | %-15s |\n";
+        System.out.printf(fmt, maGhe, viTriGhe,trangThai, maMayBay );
     }
+
+    @Override
+    public String toString() {
+        return  maGhe + "," + viTriGhe + "," + trangThai + "," + maMayBay;
+    }
+    
+    
     
     public String getMaGhe() {
         return maGhe;
@@ -58,6 +68,15 @@ public class Ghe{
     public void setViTriGhe(String viTriGhe) {
         this.viTriGhe = viTriGhe;
     }
+
+    public String getTrangThai() {
+        return trangThai;
+    }
+
+    public void setTrangThai(String trangThai) {
+        this.trangThai = trangThai;
+    }
+    
     
     
 }

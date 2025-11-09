@@ -20,12 +20,15 @@ public class QuanLyHangHangKhong extends QuanLyVeMayBay {
         System.out.println("+=====================================================+");
         System.out.println("|              DANH SACH HANG HANG KHONG              |");
         System.out.println("+=====================================================+");
-        System.out.println("|  1. Nhap danh sach hang hang khong                  |");
-        System.out.println("|  2. Them 1 hang hang khong                          |");
-        System.out.println("|  3. Xoa 1 hang hang khong                           |");
-        System.out.println("|  4. Sua thong tin hang hang khong                   |");
-        System.out.println("|  5. Tim hang hang khong                             |");
-        System.out.println("|  6. Xuat danh sach hang hang khong                  |");
+        System.out.println("|  1. Doc danh sach tu file                           |");
+        System.out.println("|  2. Ghi danh sach len file                          |");
+        System.out.println("|  3. Nhap danh sach hang hang khong                  |");
+        System.out.println("|  4. Them 1 hang hang khong                          |");
+        System.out.println("|  5. Xoa 1 hang hang khong                           |");
+        System.out.println("|  6. Sua thong tin hang hang khong                   |");
+        System.out.println("|  7. Tim hang hang khong                             |");
+        System.out.println("|  8. Xuat danh sach hang hang khong                  |");
+        System.out.println("|  0. Thoat                                           |");
         System.out.println("+-----------------------------------------------------+");
     }
 
@@ -46,10 +49,28 @@ public class QuanLyHangHangKhong extends QuanLyVeMayBay {
                     break;
 
                 case "1":
-                    dsHangHangKhong.nhapDS();
+                    dsHangHangKhong.docFile();
+                    break;
+                case "2":
+                    dsHangHangKhong.ghiFile();
+                    break;
+                case "3":
+                    int sl;
+                    System.out.print("Nhap so luong hang hang khong: ");
+                    sl = sc.nextInt();
+                    for (int i = 0; i < sl; i++) {
+                        HangHangKhong hhk = new HangHangKhong();
+                        hhk.nhapHangHangKhong();
+                        if (dsHangHangKhong.tim(c) == null) {
+                            dsHangHangKhong.them(hhk);
+                        } else {
+                            System.out.println("Ma hang hang khong da ton tai, nhap lai");
+                            i--;
+                        }
+                    }
                     break;
 
-                case "2":
+                case "4":
                     System.out.println("+======================================================+");
                     System.out.println("|                 THEM HANG HANG KHONG                 |");
                     System.out.println("+======================================================+");
@@ -61,17 +82,29 @@ public class QuanLyHangHangKhong extends QuanLyVeMayBay {
                     sc.nextLine();
 
                     if (t.equals("1")) {
-                        dsHangHangKhong.them();
+                        HangHangKhong hhk = new HangHangKhong();
+                        hhk.nhapHangHangKhong();
+                        if (dsHangHangKhong.tim(c) == null) {
+                            dsHangHangKhong.them(hhk);
+                        } else {
+                            System.out.println("Ma hang hang khong da ton tai, nhap lai");
+                        }
+                        dsHangHangKhong.them(hhk);
                     } else if (t.equals("2")) {
-                        System.out.print("Nhap ma hang muon them: ");
-                        String ma = sc.nextLine();
-                        dsHangHangKhong.them(ma);
+                        HangHangKhong hhk = new HangHangKhong();
+                        hhk.nhapHangHangKhong();
+                        if (dsHangHangKhong.tim(c) == null) {
+                            dsHangHangKhong.them(hhk);
+                        } else {
+                            System.out.println("Ma hang hang khong da ton tai, nhap lai");
+                        }
+                        dsHangHangKhong.them(hhk);
                     } else {
                         System.out.println("Lua chon khong hop le!");
                     }
                     break;
 
-                case "3":
+                case "5":
                     System.out.println("+=================================================+");
                     System.out.println("|               XOA HANG HANG KHONG               |");
                     System.out.println("+=================================================+");
@@ -85,11 +118,14 @@ public class QuanLyHangHangKhong extends QuanLyVeMayBay {
                     if (x.equals("1")) {
                         dsHangHangKhong.xoa();
                     } else if (x.equals("2")) {
-                        dsHangHangKhong.xoa(sc.nextLine());
+                        String ma;
+                        System.out.println("Moi nhap ma can xoa: ");
+                        ma = DanhSachHangHangKhong.sc.nextLine();
+                        dsHangHangKhong.xoa(ma);
                     }
                     break;
 
-                case "4":
+                case "6":
                     System.out.println("+=================================================+");
                     System.out.println("|               SUA HANG HANG KHONG               |");
                     System.out.println("+=================================================+");
@@ -111,13 +147,13 @@ public class QuanLyHangHangKhong extends QuanLyVeMayBay {
                     }
                     break;
 
-                case "5":
+                case "7":
                     System.out.println("+=================================================+");
                     System.out.println("|               TIM HANG HANG KHONG               |");
                     System.out.println("+=================================================+");
-                    System.out.println("|  1. Tim hang khong co tham so                   |");
-                    System.out.println("|  2. Tim hang co tham so                         |");
-                    System.out.println("|  3. Tim vi tri hang                             |");
+                    System.out.println("|  1. Tim hang theo ma                            |");
+                    System.out.println("|  2. Tim hang theo ten                           |");
+                    System.out.println("|  3. Tim hang theo quoc gia                      |");
                     System.out.println("+-------------------------------------------------+");
                     System.out.print("Chon kieu tim: ");
                     String tm = sc.next();
@@ -125,31 +161,47 @@ public class QuanLyHangHangKhong extends QuanLyVeMayBay {
 
                     switch (tm) {
                         case "1":
-                            HangHangKhong h1 = dsHangHangKhong.tim();
+                            String ma;
+                            System.out.print("Nhap ma hang hang khong can tim: ");
+                            ma = DanhSachHangHangKhong.sc.nextLine();
+                            HangHangKhong h1 = dsHangHangKhong.tim(ma);
                             if (h1 != null) {
-                                h1.nhapHangHangKhong();
+                                System.out.println("+-----------------+-------------------------------------+---------------------------+");
+                                h1.xuatHangHangKhong();
+                                System.out.println("+-----------------+-------------------------------------+---------------------------+");
                             } else {
                                 System.out.println("Khong tim thay hang hang khong!");
                             }
                             break;
 
                         case "2":
-                            System.out.print("Nhap ma hang can tim: ");
-                            String ma = sc.nextLine();
-                            HangHangKhong h2 = dsHangHangKhong.tim(ma);
+                            String tenHang;
+                            System.out.print("Nhap ten hang can tim: ");
+                            tenHang = DanhSachHangHangKhong.sc.nextLine();
+                            HangHangKhong h2 = dsHangHangKhong.timTheoTen(tenHang);
                             if (h2 != null) {
+                                System.out.println("+-----------------+-------------------------------------+---------------------------+");
                                 h2.xuatHangHangKhong();
+                                System.out.println("+-----------------+-------------------------------------+---------------------------+");
                             } else {
                                 System.out.println("Khong tim thay hang hang khong!");
                             }
                             break;
 
                         case "3":
-                            System.out.print("Nhap ma hang can tim vi tri: ");
-                            String maVT = sc.nextLine();
-                            int vt = dsHangHangKhong.timViTri(maVT);
-                            if (vt != -1) {
-                                System.out.println("Hang hang khong o vi tri: " + vt);
+                            String quocGia;
+                            System.out.print("Nhap quoc gia cua hang can tim: ");
+                            quocGia = DanhSachHangHangKhong.sc.nextLine();
+                            HangHangKhong[] dsHang = dsHangHangKhong.timTheoQuocGia(quocGia);
+                            if (dsHang != null) {
+                                System.out.printf("            ================== %25s ==================", quocGia);
+                                System.out.println("+-----------------+-------------------------------------+---------------------------+");
+                                System.out.println("|     Ma Hang     |              Ten hang               |         Quoc gia          |");
+                                System.out.println("+-----------------+-------------------------------------+---------------------------+");
+                                for (int i = 0; i < 10; i++) {
+                                    dsHang[i].xuatHangHangKhong();
+                                }
+                                System.out.println("+-----------------+-------------------------------------+---------------------------+");
                             } else {
                                 System.out.println("Khong tim thay hang hang khong!");
                             }
@@ -160,10 +212,8 @@ public class QuanLyHangHangKhong extends QuanLyVeMayBay {
                     }
                     break;
 
-                case "6":
-                    System.out.println("+------------ Danh Sach Hang Hang Khong -----------+");
+                case "8":
                     dsHangHangKhong.xuatDS();
-                    System.out.println("+--------------------------------------------------+");
                     break;
 
                 default:

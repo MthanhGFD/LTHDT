@@ -39,10 +39,16 @@ public class HangHangKhong {
     }
 
     public void xuatHangHangKhong() {
-        String fmt = "| %-15s | %-35s | %-25s |%n";
+        String fmt = "| %-15s | %-35s | %-25s |\n";
         System.out.printf(fmt, maHang, tenHang, quocGia);
     }
 
+    @Override
+    public String toString() {
+        return maHang + "," + tenHang + "," + quocGia;
+    }
+
+    
 
     public String getMaHang() {
         return maHang;

@@ -44,12 +44,11 @@ public class DanhSachHanhKhach {
             String ma;
             System.out.print("Nhap ma hanh khach: ");
             ma = sc.nextLine();
-            if (tim(ma) != null) {
+            if (tim(ma) == null) {
                 dsHanhKhach = Arrays.copyOf(dsHanhKhach, i + 1);
                 dsHanhKhach[i] = new HanhKhach();
                 dsHanhKhach[i].setMaHanhKhach(ma);
                 dsHanhKhach[i].nhapHanhKhach();
-                ghiFile(dsHanhKhach[i]);
             } else {
                 i--;
             }
@@ -57,6 +56,7 @@ public class DanhSachHanhKhach {
     }
 
     public void xuatDS() {
+        System.out.println("                                ==================== Danh Sach Hanh Khach ==================== ");
         System.out.println("+-----------------+--------------------------------+------------+------------+------------+-----------------+-----------------+-----------------+");
         System.out.println("|  Ma Hanh Khach  |                Ho              |    Ten     |  Ngay Sinh | Danh Xung  |   So Can Cuoc   |  So Dien Thoai  | Loai Hanh Khach |");
         System.out.println("+-----------------+--------------------------------+------------+------------+------------+-----------------+-----------------+-----------------+");
@@ -98,16 +98,18 @@ public class DanhSachHanhKhach {
         }
     }
 
-    public void ghiFile(HanhKhach hanhkhach) {
+    public void ghiFile() {
         try {
             File f = new File("dsHanhKhach.txt");
-            FileWriter writef = new FileWriter(f, true);
-            if (f.length() != 0) {
-                writef.write("\n");
+            FileWriter writef = new FileWriter(f);
+            for (int i = 0; i < dsHanhKhach.length; i++) {
+                writef.write(dsHanhKhach[i].toString() + "\n");
             }
-            writef.write(hanhkhach.toString());
             writef.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("Khong tim thay file");
         } catch (IOException e) {
+            System.out.println("Loi Doc File");
         }
     }
 
@@ -120,7 +122,6 @@ public class DanhSachHanhKhach {
             dsHanhKhach[soLuong] = new HanhKhach();
             dsHanhKhach[soLuong].setMaHanhKhach(ma);
             dsHanhKhach[soLuong].nhapHanhKhach();
-            ghiFile(dsHanhKhach[soLuong]);
             soLuong++;
         } else {
             System.out.println("LOI, trung ma hanh khach!!!");
@@ -131,7 +132,6 @@ public class DanhSachHanhKhach {
         dsHanhKhach = Arrays.copyOf(dsHanhKhach, soLuong + 1);
         dsHanhKhach[soLuong] = new HanhKhach();
         dsHanhKhach[soLuong] = hanhkhach;
-        ghiFile(dsHanhKhach[soLuong]);
         soLuong++;
     }
 
@@ -266,23 +266,6 @@ public class DanhSachHanhKhach {
         return -1;
     }
 
-    public HanhKhach[] timTen() {
-        HanhKhach[] dsTen = new HanhKhach[0];
-        int j = 0;
-        String ten;
-        System.out.print("Nhap ten can tim: ");
-        ten = sc.nextLine();
-        for (int i = 0; i < dsHanhKhach.length; i++) {
-            if (dsHanhKhach[i].getTen().equalsIgnoreCase(ten)) {
-                dsTen = Arrays.copyOf(dsTen, dsTen.length + 1);
-                dsTen[j] = dsHanhKhach[i];
-                j++;
-            }
-        }
-        sortTen(dsTen);
-        return dsTen;
-    }
-
     public HanhKhach[] timTen(String ten) {
         HanhKhach[] dsTen = new HanhKhach[0];
         int j = 0;
@@ -325,19 +308,40 @@ public class DanhSachHanhKhach {
         return dsthuong;
     }
 
-    public void thongKeLoaiHanhKhach() {
-        HanhKhach[] dsvip = dsVip();
-        HanhKhach[] dsthuong = dsThuong();
-        if (dsvip != null) {
-            for (int i = 0; i < dsvip.length; i++) {
-                dsvip[i].xuatHanhKhach();
+    public HanhKhach[] timNgaySinh(String ngaySinh){
+        HanhKhach[] ds = new HanhKhach[0];
+        int j = 0;
+        for (int i = 0; i < 10; i++) {
+            if(dsHanhKhach[i].getNgaysinh().equals(ngaySinh)){
+                ds = Arrays.copyOf(ds, j + 1);
+                ds[j] = new HanhKhach();
+                ds[j] = dsHanhKhach[i];
+                j++;
             }
         }
-        if (dsthuong != null) {
-            for (int i = 0; i < dsthuong.length; i++) {
-                dsthuong[i].xuatHanhKhach();
+        return ds;
+    }
+    
+    public HanhKhach timCCCD(String cccd){
+        HanhKhach hk = new HanhKhach();
+        int j = 0;
+        for (int i = 0; i < 10; i++) {
+            if(dsHanhKhach[i].getNgaysinh().equals(cccd)){
+                return dsHanhKhach[i];
             }
         }
+        return null;
+    }
+    
+    public HanhKhach timSDT(String sdt){
+        HanhKhach hk = new HanhKhach();
+        int j = 0;
+        for (int i = 0; i < 10; i++) {
+            if(dsHanhKhach[i].getNgaysinh().equals(sdt)){
+                return dsHanhKhach[i];
+            }
+        }
+        return null;
     }
 
     public HanhKhach[] dsTuoi(int tuoi) {
@@ -372,195 +376,6 @@ public class DanhSachHanhKhach {
                 }
             }
         }
-    }
-
-    public void menu() {
-        System.out.println("+------------QUAN LY DANH SACH HANH KHACH------------+");
-        System.out.println("|  1. Doc danh sach tu file                          |");
-        System.out.println("|  2. Nhap danh sach moi                             |");
-        System.out.println("|  3. Them hanh khach                                |");
-        System.out.println("|  4. Xoa hanh khach                                 |");
-        System.out.println("|  5. Sua thong tin hanh khach                       |");
-        System.out.println("|  6. Tim hanh khach theo ma                         |");
-        System.out.println("|  7. Tim hanh khach theo ten                        |");
-        System.out.println("|  8. Thong ke loai hanh khach                       |");
-        System.out.println("|  9. Thong ke tuoi tung hanh khach                  |");
-        System.out.println("|  10. Xuat danh sach ra man hinh                    |");
-        System.out.println("|  0. Thoat                                          |");
-        System.out.println("+----------------------------------------------------+");
-    }
-
-    public void choice() {
-        String c;
-        boolean nhapSai = false;
-        do {
-            menu();
-            System.out.print("Moi chon chuc nang: ");
-            c = sc.next();
-            sc.nextLine(); // đọc bỏ dấu xuống dòng
-            switch (c) {
-                case "0":
-                    System.out.println("Cam on da su dung chuong trinh!!!");
-                    break;
-                case "1":
-                    docFile();
-                    break;
-                case "2":
-                    nhapDS();
-                    break;
-                case "3":
-                    String t;
-                    System.out.println("+-------------- Them Hanh Khach --------------+");
-                    System.out.println("|  1. Them hanh khach khong co tham so        |");
-                    System.out.println("|  2. Them hanh khach co tham so              |");
-                    System.out.println("+---------------------------------------------+");
-                    System.out.print("Chon kieu them hanh khach: ");
-                    t = sc.next();
-                    sc.nextLine();
-                    if (t.equals("1")) {
-                        them();
-                    }
-                    if (t.equals("2")) {
-                        HanhKhach hk1 = new HanhKhach("A01", "Nguyen Van", "Teo", "01-01-2005", "Ong", "0892001", "0357522", "Vip");
-                        them(hk1);
-                    }
-                    break;
-                case "4":
-                    String x;
-                    System.out.println("+--------------- Xoa Hanh Khach ---------------+");
-                    System.out.println("|  1. Xoa hanh khach khong co tham so          |");
-                    System.out.println("|  2. Xoa hanh khach co tham so                |");
-                    System.out.println("+----------------------------------------------+");
-                    System.out.print("Chon kieu xoa hanh khach: ");
-                    x = sc.next();
-                    sc.nextLine();
-                    if (x.equals("1")) {
-                        xoa();
-                    }
-                    if (x.equals("2")) {
-                        System.out.print("Nhap ma hanh khach can xoa: ");
-                        xoa(sc.nextLine());
-                    }
-                    break;
-                case "5":
-                    String s;
-                    System.out.println("+--------------- Sua Hanh Khach ---------------+");
-                    System.out.println("|  1. Sua hanh khach khong co tham so          |");
-                    System.out.println("|  2. Sua hanh khach co tham so                |");
-                    System.out.println("+----------------------------------------------+");
-                    System.out.print("Chon kieu sua hanh khach: ");
-                    s = sc.next();
-                    sc.nextLine();
-                    if (s.equals("1")) {
-                        sua();
-                    }
-                    if (s.equals("2")) {
-                        System.out.print("Nhap ma hanh khach can sua: ");
-                        sua(sc.nextLine());
-                    }
-                    break;
-                case "6":
-                    String tm;
-                    System.out.println("+--------------- Tim Hanh Khach ---------------+");
-                    System.out.println("|  1. Tim hanh khach khong co tham so          |");
-                    System.out.println("|  2. Tim hanh khach co tham so                |");
-                    System.out.println("|  3. Tim vi tri cua hanh khach                |");
-                    System.out.println("+----------------------------------------------+");
-                    System.out.print("Chon kieu tim hanh khach: ");
-                    tm = sc.next();
-                    sc.nextLine();
-                    switch (tm) {
-                        case "1":
-                            if (tim() != null) {
-                                tim().xuatHanhKhach();
-                            } else {
-                                System.out.println("Khong co hanh khach can tim");
-                            }
-                            break;
-                        case "2":
-                            String ma;
-                            System.out.print("Nhap ma hanh khach can tim: ");
-                            ma = sc.nextLine();
-                            if (tim(ma) != null) {
-                                tim(ma).xuatHanhKhach();
-                            } else {
-                                System.out.println("Khong tim thay ma can tim");
-                            }
-                            break;
-                        case "3":
-                            String mahk;
-                            System.out.print("Nhap ma hanh khach can tim: ");
-                            mahk = sc.nextLine();
-                            if (timViTri(mahk) != -1) {
-                                System.out.println("Hanh khach o vi tri " + timViTri(mahk) + " trong danh sach");
-                            } else {
-                                System.out.println("Khong tim thay vi tri hanh khach");
-                            }
-                            break;
-                    }
-                    break;
-                case "7":
-                    String tt;
-                    System.out.println("+--------------- Danh sach ten ---------------+");
-                    System.out.println("|  1. Tim theo ten khong tham so              |");
-                    System.out.println("|  2. Tim theo ten co tham so                 |");
-                    System.out.println("+---------------------------------------------+");
-                    System.out.print("Chon kieu tim ten: ");
-                    tt = sc.nextLine();
-                    HanhKhach[] ds;
-                    switch (tt) {
-                        case "1":
-                            ds = timTen();
-                            if (ds != null && ds.length > 0) {
-                                System.out.println("So luong hanh khach co ten can tim la: ");
-                                for (int i = 0; i < ds.length; i++) {
-                                    ds[i].xuatHanhKhach();
-                                }
-                            } else {
-                                System.out.println("Khong co hanh khach nao ten can tim");
-                            }
-                            break;
-                        case "2":
-                            String ten;
-                            System.out.print("Nhap ten can tim: ");
-                            ten = sc.nextLine();
-                            ds = timTen(ten);
-                            if (ds != null && ds.length > 0) {
-                                System.out.println("So luong hanh khach co ten can tim la: ");
-                                for (int i = 0; i < ds.length; i++) {
-                                    ds[i].xuatHanhKhach();
-                                }
-                            } else {
-                                System.out.println("Khong co hanh khach nao ten can tim");
-                            }
-                            break;
-                    }
-                    break;
-                case "8":
-                    thongKeLoaiHanhKhach();
-                    break;
-                case "9":
-                    int[] tk = thongKeTuoi();
-                    for (int i = 0; i < tk.length; i++) {
-                        if (tk[i] > 0) {
-                            System.out.println("So luong hanh khach co tuoi " + i + " la " + tk[i]);
-                        }
-                    }
-                    break;
-                case "10":
-                    System.out.println("+---------------------------- Danh sach Hanh Khach ----------------------------+");
-                    xuatDS();
-                    System.out.println("+---------------------------- Danh sach Hanh Khach ----------------------------+");
-                    break;
-                default:
-                    System.out.println("Chon khong dung, hay chon lai cho dung chuc nang (0-10)");
-                    nhapSai = true;
-            }
-            if (!nhapSai && !c.equals("0")) {
-                System.out.println("Ban co muon thoat chuong trinh??");
-                System.out.println("Neu co -> (0) | thao tac tiep -> (1-10)");
-            }
-        } while (!c.equals("0"));
     }
 
 }

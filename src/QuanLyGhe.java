@@ -1,7 +1,6 @@
 package src;
 
-import static src.DanhSachGhe.sc;
-import static src.DanhSachMayBay.sc;
+import java.util.Arrays;
 
 public class QuanLyGhe extends QuanLyVeMayBay {
 
@@ -10,7 +9,7 @@ public class QuanLyGhe extends QuanLyVeMayBay {
 
     public QuanLyGhe() {
         dsGhe = new DanhSachGhe();
-        dsMayBay = new DanhSachMayBay();
+        dsMayBay = new DanhSachMayBay();  // dùng để ràng buộc mã máy bay khi nhập ghế
     }
 
     public QuanLyGhe(DanhSachGhe dsGhe, DanhSachMayBay dsMayBay) {
@@ -18,335 +17,253 @@ public class QuanLyGhe extends QuanLyVeMayBay {
         this.dsMayBay = dsMayBay;
     }
 
-    // Menu
+    // ===================== MENU CHỈ CÓ GHẾ =====================
     @Override
     public void menu() {
         System.out.println("+===========================================+");
         System.out.println("|                QUAN LY GHE                |");
         System.out.println("+===========================================+");
         System.out.println("|  0. Thoat                                 |");
-        System.out.println("|  1. Danh sach ghe                         |");
-        System.out.println("|  2. Danh sach may bay                     |");
+        System.out.println("|  1. Doc danh sach ghe tu file             |");
+        System.out.println("|  2. Ghi danh sach len file                |");
+        System.out.println("|  3. Nhap danh sach ghe                    |");
+        System.out.println("|  4. Them ghe                              |");
+        System.out.println("|  5. Xoa ghe                               |");
+        System.out.println("|  6. Sua vi tri ghe                        |");
+        System.out.println("|  7. Tim ghe                               |");
+        System.out.println("|  8. Thong ke ghe theo tung may bay        |");
+        System.out.println("|  9. Xuat danh sach ghe                    |");
         System.out.println("+-------------------------------------------+");
     }
 
-    // choice
+    // ===================== CHOICE – CHỈ GHẾ =====================
     @Override
     public void choice() {
         String chon;
-        boolean nhapsai = false;
+        boolean chonsai = false;
+
         do {
             menu();
             System.out.print("Chon thao tac: ");
             chon = DanhSachGhe.sc.next();
-            if (chon.equals("1")) {
-                String chondsghe;
-                boolean nhapsaighe = false;
-                do {
-                    System.out.println("+===========================================+");
-                    System.out.println("|             DANH SACH MAY GHE             |");
-                    System.out.println("+===========================================+");
-                    System.out.println("| 1. Doc danh sach ghe tu file              |");
-                    System.out.println("| 2. Nhap danh sach ghe                     |");
-                    System.out.println("| 3. Them ghe                               |");
-                    System.out.println("| 4. Xoa ghe                                |");
-                    System.out.println("| 5. Sua vi tri ghe                         |");
-                    System.out.println("| 6. Tim ghe theo ma                        |");
-                    System.out.println("| 7. Xuat danh sach ghe                     |");
-                    System.out.println("| 0. Thoat chuong trinh                     |");
-                    System.out.println("+-------------------------------------------+");
-                    System.out.print("Chon thao tac cua danh ghe: ");
-                    chondsghe = DanhSachGhe.sc.next();
-                    chon = DanhSachGhe.sc.next();
-                    switch (chondsghe) {
-                        case "1":
-                            dsGhe.docFile();
+
+            switch (chon) {
+
+                case "1":
+                    dsGhe.docFile();
+                    break;
+
+                case "2":
+                    dsGhe.ghiFile();
+                    break;
+
+                case "3":
+                    int sl;
+                    System.out.print("Nhap so luong ghe: ");
+                    sl = DanhSachGhe.sc.nextInt();
+                    DanhSachGhe.sc.nextLine();
+
+                    for (int i = 0; i < sl; i++) {
+
+                        Ghe g = new Ghe();
+                        g.nhapGhe();
+
+                        // kiểm tra trùng mã ghế
+                        if (dsGhe.tim(g.getMaGhe()) != null) {
+                            System.out.println("Ghe da ton tai. Moi nhap lai!");
+                            i--;
+                            continue;
+                        }
+
+                        // kiểm tra mã máy bay hợp lệ
+                        if (dsMayBay.tim(g.getMaMayBay()) == null) {
+                            System.out.println("Ma may bay khong ton tai. Nhap lai!");
+                            i--;
+                            continue;
+                        }
+
+                        dsGhe.them(g);
+                        System.out.println("==================================");
+                    }
+
+                    dsGhe.ghiFile();
+                    break;
+
+                case "4":
+                    System.out.println("+==========================================+");
+                    System.out.println("|                 THEM GHE                 |");
+                    System.out.println("+==========================================+");
+                    System.out.println("|  1. Them ghe khong tham so               |");
+                    System.out.println("|  2. Them ghe co tham so                  |");
+                    System.out.println("+------------------------------------------+");
+                    System.out.print("Chon kieu them ghe: ");
+
+                    String t = DanhSachGhe.sc.next();
+
+                    if (t.equals("1") || t.equals("2")) {
+                        Ghe g = new Ghe();
+                        g.nhapGhe();
+
+                        if (dsGhe.tim(g.getMaGhe()) != null) {
+                            System.out.println("Ghe da ton tai. Moi nhap lai!");
                             break;
+                        }
+
+                        if (dsMayBay.tim(g.getMaMayBay()) == null) {
+                            System.out.println("Ma may bay khong ton tai. Moi nhap lai!");
+                            break;
+                        }
+
+                        dsGhe.them(g);
+                    } else {
+                        System.out.println("Chon sai thao tac them ghe!");
+                    }
+
+                    break;
+
+                case "5":
+                    System.out.println("+==========================================+");
+                    System.out.println("|                  XOA GHE                 |");
+                    System.out.println("+==========================================+");
+                    System.out.println("|  1. Xoa ghe khong tham so                |");
+                    System.out.println("|  2. Xoa ghe co tham so                   |");
+                    System.out.println("+------------------------------------------+");
+                    System.out.print("Chon kieu xoa ghe: ");
+                    String x = DanhSachGhe.sc.next();
+
+                    if (x.equals("1")) {
+                        dsGhe.xoa();
+                    } else if (x.equals("2")) {
+                        DanhSachGhe.sc.nextLine();
+                        System.out.print("Nhap ma ghe can xoa: ");
+                        dsGhe.xoa(DanhSachGhe.sc.nextLine());
+                    } else {
+                        System.out.println("Chon sai thao tac xoa!");
+                    }
+                    break;
+
+                case "6":
+                    System.out.println("+==========================================+");
+                    System.out.println("|                 SUA GHE                  |");
+                    System.out.println("+==========================================+");
+                    System.out.println("|  1. Sua ghe khong tham so                |");
+                    System.out.println("|  2. Sua ghe co tham so                   |");
+                    System.out.println("+------------------------------------------+");
+                    System.out.print("Chon kieu sua ghe: ");
+                    String chonsua = DanhSachGhe.sc.next();
+
+                    if (chonsua.equals("1")) {
+                        dsGhe.sua();
+                    } else if (chonsua.equals("2")) {
+                        DanhSachGhe.sc.nextLine();
+                        System.out.print("Nhap ma ghe can sua: ");
+                        dsGhe.sua(DanhSachGhe.sc.nextLine());
+                    } else {
+                        System.out.println("chon sai thao tac sua ghe!!");
+                    }
+                    break;
+
+                case "7":
+                    System.out.println("+==========================================+");
+                    System.out.println("|                 TIM GHE                  |");
+                    System.out.println("+==========================================+");
+                    System.out.println("|  1. Tim theo ma                          |");
+                    System.out.println("|  2. Tim theo vi tri                      |");
+                    System.out.println("|  3  Tim theo trang thai                  |");
+                    System.out.println("+------------------------------------------+");
+                    System.out.print("Chon kieu tim ghe: ");
+
+                    DanhSachGhe.sc.nextLine();
+                    String chonTim = DanhSachGhe.sc.nextLine();
+
+                    switch (chonTim) {
+                        case "1":
+                            String maGhe;
+                            System.out.print("Nhap ma ghe can tim: ");
+                            maGhe = DanhSachGhe.sc.nextLine();
+                            Ghe g = dsGhe.tim(maGhe);
+                            if (g != null) {
+                                System.out.println("+-----------------+----------------------+--------------+-----------------+");
+                                g.xuatGhe();
+                                System.out.println("+-----------------+----------------------+--------------+-----------------+");
+                            } else {
+                                System.out.println("Khong tim thay ghe!");
+                            }
                         case "2":
-                            dsGhe.nhapDS();
+                            String viTriGhe;
+                            System.out.println("Nhap vi tri ghe can tim: ");
+                            viTriGhe = DanhSachGhe.sc.nextLine();
+                            Ghe g1 = dsGhe.tim(viTriGhe);
+                            if (g1 != null) {
+                                System.out.println("+-----------------+----------------------+--------------+-----------------+");
+                                g1.xuatGhe();
+                                System.out.println("+-----------------+----------------------+--------------+-----------------+");
+                            } else {
+                                System.out.println("Khong tim thay ghe!");
+                            }
                             break;
                         case "3":
-                            String t;
-                            System.out.println("+==========================================+");
-                            System.out.println("|                 THEM GHE                 |");
-                            System.out.println("+==========================================+");
-                            System.out.println("|  1. Them ghe khong tham so               |");
-                            System.out.println("|  2. Them ghe co tham so                  |");
-                            System.out.println("+------------------------------------------+");
-                            System.out.print("Chon kieu them ghe: ");
-                            t = DanhSachGhe.sc.next();
-                            if (t.equals("1")) {
-                                dsGhe.them();
-                            } else if (t.equals("2")) {
-                                Ghe g1 = new Ghe("GH01", "MB01", "A00");
-                                dsGhe.them(g1);
-                            }
-                            break;
-                        case "4":
-                            String x;
-                            System.out.println("+==========================================+");
-                            System.out.println("|                  XOA GHE                 |");
-                            System.out.println("+==========================================+");
-                            System.out.println("|  1. Xoa ghe khong tham so                |");
-                            System.out.println("|  2. Xoa ghe co tham so                   |");
-                            System.out.println("+------------------------------------------+");
-                            System.out.print("Chon kieu xoa ghe: ");
-                            x = DanhSachGhe.sc.next();
-                            if (x.equals("1")) {
-                                dsGhe.xoa();
-                            } else if (x.equals("2")) {
-                                DanhSachGhe.sc.nextLine();
-                                System.out.print("Nhap ma ghe can xoa: ");
-                                dsGhe.xoa(DanhSachGhe.sc.nextLine());
-                            }
-                            break;
-                        case "5":
-                            System.out.println("+==========================================+");
-                            System.out.println("|                 SUA GHE                  |");
-                            System.out.println("+==========================================+");
-                            System.out.println("|  1. Sua ghe khong tham so                |");
-                            System.out.println("|  2. Sua ghe co tham so                   |");
-                            System.out.println("|  0. Quay lai                             |");
-                            System.out.println("+------------------------------------------+");
-                            System.out.print("Chon kieu sua ghe: ");
-                            String chonsua = DanhSachGhe.sc.next();
-
-                            switch (chonsua) {
-                                case "1":
-                                    dsGhe.sua(); // gọi hàm không tham số
-                                    break;
-
-                                case "2":
-                                    System.out.print("Nhap ma ghe can sua: ");
-                                    String maGhe = DanhSachGhe.sc.nextLine();
-                                    dsGhe.sua(maGhe); // gọi hàm có tham số
-                                    break;
-                                default:
-                                    System.out.println("chon sai thao tac sua ghe!!");
-                            }
-                            break;
-
-                        case "6":
-                            System.out.println("+==========================================+");
-                            System.out.println("|                 TIM GHE                  |");
-                            System.out.println("+==========================================+");
-                            System.out.println("|  1. Tim ghe khong tham so                |");
-                            System.out.println("|  2. Tim ghe co tham so                   |");
-                            System.out.println("|  3. Tim ghe tra ve vi tri                |");
-                            System.out.println("+------------------------------------------+");
-                            System.out.print("Chon kieu tim ghe: ");
-                            String chonTim = DanhSachGhe.sc.nextLine();
-
-                            switch (chonTim) {
-                                case "1":
-                                    dsGhe.tim(); // không tham số
-                                    break;
-
-                                case "2":
-                                    System.out.print("Nhap ma ghe can tim: ");
-                                    String maTim = DanhSachGhe.sc.nextLine();
-                                    Ghe g = dsGhe.tim(maTim); // có tham số
-                                    if (g != null) {
-                                        g.xuatGhe();
-                                    } else {
-                                        System.out.println("Khong tim thay ghe!");
-                                    }
-                                    break;
-
-                                case "3":
-                                    System.out.print("Nhap ma ghe can tim: ");
-                                    String maViTri = DanhSachGhe.sc.nextLine();
-                                    int vt = dsGhe.timViTri(maViTri); // trả về vị trí
-                                    if (vt != -1) {
-                                        System.out.println("Tim thay ghe o vi tri thu " + vt);
-                                    } else {
-                                        System.out.println("Khong tim thay ghe trong danh sach!");
-                                    }
-                                    break;
-
-                                default:
-                                    System.out.println("Chon sai thao tac tim ghe!");
-                                    nhapsaighe = true;
-                            }
-                            break;
-
-                        case "7":
-                            dsGhe.xuatDS();
-                            break;
-                        case "0":
-                            System.out.println("Cam on da su dung chuong trinh!");
-                            break;
-                        default:
-                            System.out.println("Chon khong hop le!");
-                    }
-                    if (!chondsghe.equals("0") && !nhapsaighe) {
-                        System.out.println("Ban co muon thoat danh sach ghe??");
-                        System.out.println("Neu co --> (0) | khong --> (1-7)");
-                    }
-                } while (chondsghe.equals("0"));
-            } else if (chon.equals("2")) {
-                String chondsmaybay;
-                boolean nhapsaimaybay = false;
-                do {
-                    System.out.println("+===========================================================+");
-                    System.out.println("|                     DANH SACH MAY BAY                     |");
-                    System.out.println("+===========================================================+");
-                    System.out.println("|  1. Nhap danh sach may bay                                |");
-                    System.out.println("|  2. Doc danh sach may bay tu file                         |");
-                    System.out.println("|  3. Them 1 may bay vao danh sach                          |");
-                    System.out.println("|  4. Xoa 1 may bay khoi danh sach                          |");
-                    System.out.println("|  5. Sua thong tin may bay                                 |");
-                    System.out.println("|  6. Tim may bay                                           |");
-                    System.out.println("|  7. Thong ke may bay theo loai                            |");
-                    System.out.println("|  8. Xuat danh sach may bay                                |");
-                    System.out.println("+-----------------------------------------------------------+");
-                    chondsmaybay = DanhSachMayBay.sc.next();
-                    switch (chondsmaybay) {
-                        case "0":
-                            System.out.println("Cam on ban da su dung chuong trinh!");
-                            break;
-                        case "1":
-                            dsMayBay.nhapDS();
-                            break;
-                        case "2":
-                            dsMayBay.docFile();
-                            break;
-                        case "3":
-                            System.out.println("+==============================================+");
-                            System.out.println("|                 THEM MAY BAY                 |");
-                            System.out.println("+==============================================+");
-                            System.out.println("|  1. Them may bay khong tham so               |");
-                            System.out.println("|  2. Them may bay co tham so                  |");
-                            System.out.println("+----------------------------------------------+");
-                            System.out.print("Chon kieu them: ");
-                            String t = DanhSachMayBay.sc.nextLine();
-                            if (t.equals("1")) {
-                                dsMayBay.them();
-                            } else if (t.equals("2")) {
-                                System.out.print("Nhap ma may bay muon them: ");
-                                String ma = DanhSachMayBay.sc.nextLine();
-                                dsMayBay.them(ma);
-                            } else {
-                                System.out.println("Lua chon khong hop le!");
-                            }
-                            break;
-                        case "4":
-                            System.out.println("+=============================================+");
-                            System.out.println("|                 xOA MAY BAY                 |");
-                            System.out.println("+=============================================+");
-                            System.out.println("|  1. Xoa may bay khong tham so               |");
-                            System.out.println("|  2. Xoa may bay co tham so                  |");
-                            System.out.println("+---------------------------------------------+");
-                            System.out.print("Chon kieu xoa: ");
-                            String x = DanhSachMayBay.sc.nextLine();
-                            if (x.equals("1")) {
-                                dsMayBay.xoa();
-                            } else if (x.equals("2")) {
-                                System.out.print("Nhap ma may bay can xoa: ");
-                                String ma = DanhSachMayBay.sc.nextLine();
-                                dsMayBay.xoa(ma);
-                            } else {
-                                System.out.println("Lua chon khong hop le!");
-                            }
-                            break;
-                        case "5":
-                            System.out.println("+=============================================+");
-                            System.out.println("|                 SUA MAY BAY                 |");
-                            System.out.println("+=============================================+");
-                            System.out.println("|  1. Sua may bay khong tham so               |");
-                            System.out.println("|  2. Sua may bay co tham so                  |");
-                            System.out.println("+---------------------------------------------+");
-                            System.out.print("Chon kieu sua: ");
-                            String s = DanhSachMayBay.sc.nextLine();
-                            if (s.equals("1")) {
-                                dsMayBay.sua();
-                            } else if (s.equals("2")) {
-                                System.out.print("Nhap ma may bay can sua: ");
-                                String ma = DanhSachMayBay.sc.nextLine();
-                                dsMayBay.sua(ma);
-                            } else {
-                                System.out.println("Lua chon khong hop le!");
-                            }
-                            break;
-                        case "6":
-                            System.out.println("+=============================================+");
-                            System.out.println("|                 TIM MAY BAY                 |");
-                            System.out.println("+=============================================+");
-                            System.out.println("|  1. Tim may bay khong tham so               |");
-                            System.out.println("|  2. Tim may bay co tham so                  |");
-                            System.out.println("|  3. Tim vi tri may bay                      |");
-                            System.out.println("+---------------------------------------------+");
-                            System.out.print("Chon kieu tim: ");
-                            String tm = DanhSachMayBay.sc.nextLine();
-                            switch (tm) {
-                                case "1":
-                                    MayBay mb1 = dsMayBay.tim();
-                                    if (mb1 != null) {
-                                        mb1.xuatMayBay();
-                                    } else {
-                                        System.out.println("Khong tim thay may bay!");
-                                    }
-                                    break;
-                                case "2":
-                                    System.out.print("Nhap ma may bay can tim: ");
-                                    String ma = DanhSachMayBay.sc.nextLine();
-                                    MayBay mb2 = dsMayBay.tim(ma);
-                                    if (mb2 != null) {
-                                        mb2.xuatMayBay();
-                                    } else {
-                                        System.out.println("Khong tim thay may bay!");
-                                    }
-                                    break;
-                                case "3":
-                                    System.out.print("Nhap ma may bay can tim vi tri: ");
-                                    String maVT = DanhSachMayBay.sc.nextLine();
-                                    int vt = dsMayBay.timViTri(maVT);
-                                    if (vt != -1) {
-                                        System.out.println("May bay o vi tri: " + vt);
-                                    } else {
-                                        System.out.println("Khong tim thay may bay!");
-                                    }
-                                    break;
-                                default:
-                                    System.out.println("Lua chon khong hop le!");
-                            }
-                            break;
-                        case "7":
-                            System.out.println("+---------- THONG KE THEO LOAI MAY BAY ----------+");
-                            MayBay[][] tk = dsMayBay.thongKeLoaiMayBay();
-                            String[] loai = {"Airbus A321", "Airbus A350-900", "Boeing 787-10", "Airbus A320"};
-                            for (int i = 0; i < tk.length; i++) {
-                                System.out.println("Loai: " + loai[i]);
-                                if (tk[i] != null && tk[i].length > 0) {
-                                    for (MayBay mb : tk[i]) {
-                                        mb.xuatMayBay();
-                                    }
-                                } else {
-                                    System.out.println("Khong co may bay loai nay.");
+                            Ghe[] dsgheTrong = dsGhe.gheTrong();
+                            Ghe[] dsgheDaDat = dsGhe.gheDaDat();
+                            if (dsgheTrong != null) {
+                                System.out.println("            ================== Danh Sach ghe trong ==================");
+                                System.out.println("+-----------------+----------------------+--------------+-----------------+");
+                                System.out.println("|     Ma ghe      |      Vi tri ghe      |  Trang thai  |   May may bay   |");
+                                System.out.println("+-----------------+----------------------+--------------+-----------------+");
+                                for (int i = 0; i < dsgheTrong.length; i++) {
+                                    dsgheTrong[i].xuatGhe();
                                 }
-                                System.out.println("------------------------------------------------");
+                                System.out.println("+-----------------+----------------------+--------------+-----------------+");
+                            } else {
+                                System.out.println("Khong co ghe trong");
+                            }
+                            if (dsgheDaDat != null) {
+                                System.out.println("            ================== Danh Sach ghe da dat ==================");
+                                System.out.println("+-----------------+----------------------+--------------+-----------------+");
+                                System.out.println("|     Ma ghe      |      Vi tri ghe      |  Trang thai  |   May may bay   |");
+                                System.out.println("+-----------------+----------------------+--------------+-----------------+");
+                                for (int i = 0; i < dsgheDaDat.length; i++) {
+                                    dsgheDaDat[i].xuatGhe();
+                                }
+                                System.out.println("+-----------------+----------------------+--------------+-----------------+");
+                            } else {
+                                System.out.println("Khong co ghe nao duoc dat");
                             }
                             break;
-                        case "8":
-                            System.out.println("+------------ DANH SACH MAY BAY ----------------+");
-                            dsMayBay.xuatDS();
-                            System.out.println("+-----------------------------------------------+");
-                            break;
                         default:
-                            System.out.println("Lua chon khong dung, vui long chon lai (0-8)");
-                            nhapsaimaybay = true;
+                            System.out.println("Chon sai thao tac tim!");
                     }
-                    if (!nhapsaimaybay && !chondsmaybay.equals("0")) {
-                        System.out.println("Ban co muon thoat danh sach may bay?");
-                        System.out.println("Neu co -> (0) | Thao tac tiep -> (1-8)");
-                    }
-                } while (chondsmaybay.equals("0"));
-            }
-        } while (chon.equals("0"));
-        if (!nhapsai && !chon.equals("0")) {
-            System.out.println("Ban co muon thoat quan ly ghe??");
-            System.out.println("Neu co -> (0) | Thao tac tiep -> (1-8)");
-        }
-    }
+                    break;
 
+                case "8":
+                    for (int i = 0; i < dsMayBay.getSoLuong(); i++) {
+                        System.out.printf("        ================== May Bay: %15s ==================\n", dsMayBay.getDsMayBay()[i].getMaMayBay());
+                        System.out.println("+-----------------+----------------------+--------------+-----------------+");
+                        System.out.println("|     Ma ghe      |      Vi tri ghe      |  Trang thai  |   May may bay   |");
+                        System.out.println("+-----------------+----------------------+--------------+-----------------+");
+                        for (int j = 0; j < dsGhe.getSoLuong(); j++) {
+                            if (dsGhe.getDsGhe()[j].getMaMayBay().equals(dsMayBay.getDsMayBay()[i].getMaMayBay())) {
+                                dsGhe.getDsGhe()[i].xuatGhe();
+                            }
+                        }
+                    }
+                case "9":
+                    dsGhe.xuatDS();
+                    break;
+
+                case "0":
+                    System.out.println("Thoat quan ly ghe.");
+                    break;
+
+                default:
+                    System.out.println("Chon sai thao tac!");
+                    chonsai = true;
+            }
+
+            if (!chonsai && !chon.equals("0")) {
+                System.out.println("Ban co muon thoat chuong trinh??");
+                System.out.println("Neu co --> (0) , Khong --> (1-7)");
+            }
+        } while (!chon.equals("0"));
+    }
 }

@@ -26,40 +26,10 @@ public class DanhSachChuyenBay {
         soLuong = ds.soLuong;
     }
 
-    public void nhapDS() {
-        int sl;
-        System.out.print("Nhap so luong chuyen bay: ");
-        sl = sc.nextInt();
-        soLuong = sl;
-        for (int i = 0; i < sl; i++) {
-            String machuyenbay;
-            System.out.print("Nhap ma chuyen bay: ");
-            machuyenbay = sc.nextLine();
-            if (tim(machuyenbay) == null) {
-                dsChuyenBay = Arrays.copyOf(dsChuyenBay, i + 1);
-                dsChuyenBay[dsChuyenBay.length] = new ChuyenBay();
-                dsChuyenBay[i].nhapChuyenBay();
-                String maMayBay, maHang, maSanBay;
-                System.out.print("Nhap ma may bay: ");
-                maMayBay = sc.nextLine();
-                System.out.print("Nhap ma hang hang khong: ");
-                maHang = sc.nextLine();
-                System.out.print("Nhap ma san bay: ");
-                maSanBay = sc.nextLine();
-            } else {
-                i--;
-            }
-        }
-    }
-
     public void xuatDS() {
-        System.out.println("+-----------------+-----------------+--------------+--------------+--------------+-----------------+-----------------+-----------------+");
-        System.out.println("|  Ma chuyen bay  | Diem khoi hanh  |Ngay khoi hanh|Gio khoi hanh |  Tinh trang  |   May may bay   |     Ma hang     |   Ma san bay    |");
-        System.out.println("+-----------------+-----------------+--------------+--------------+--------------+-----------------+-----------------+-----------------+");
         for (int i = 0; i < soLuong; i++) {
             dsChuyenBay[i].xuatChuyenBay();
         }
-        System.out.println("+-----------------+-----------------+--------------+--------------+--------------+-----------------+-----------------+-----------------+");
     }
 
     public void docFile() {
@@ -87,13 +57,19 @@ public class DanhSachChuyenBay {
         }
     }
 
-    public void ghiFile(ChuyenBay chuyenbay) {
+    // ghi lại danh sách chuyến bay mới
+    public void ghiFile() {
         try {
-            FileWriter f = new FileWriter("dsChuyenBay.txt", true);
-            f.write(chuyenbay.toString());
-            f.close();
+            File f = new File("dsGhe.txt");
+            FileWriter fw = new FileWriter(f);
+            for (int i = 0; i < dsChuyenBay.length; i++) {
+                fw.write(dsChuyenBay[i].toString());
+                fw.write("\n");
+            }
+            fw.close();
         } catch (FileNotFoundException e) {
-            System.out.println("Khong mo duoc file!");
+            System.out.println("file khong ton tai");
+
         } catch (IOException e) {
             System.out.println("Loi ghi file");
         }
@@ -114,13 +90,11 @@ public class DanhSachChuyenBay {
     }
 
     // có tham số
-    public void them(String ma) {
-        if (tim(ma) != null) {
-            dsChuyenBay = Arrays.copyOf(dsChuyenBay, soLuong + 1);
-            dsChuyenBay[soLuong] = new ChuyenBay();
-            dsChuyenBay[soLuong].nhapChuyenBay();
-            soLuong++;
-        }
+    public void them(ChuyenBay cb) {
+        dsChuyenBay = Arrays.copyOf(dsChuyenBay, soLuong + 1);
+        dsChuyenBay[soLuong] = new ChuyenBay();
+        dsChuyenBay[soLuong] = cb;
+        soLuong++;
     }
 
     // không tham số
@@ -167,7 +141,7 @@ public class DanhSachChuyenBay {
         if (cb != null) {
             String luaChon;
             do {
-                System.out.println("\n+=====================================+");
+                System.out.println("+=====================================+");
                 System.out.println("|        MENU SUA CHUYEN BAY          |");
                 System.out.println("+=====================================+");
                 System.out.println("| 1. Sua diem khoi hanh               |");
@@ -228,7 +202,7 @@ public class DanhSachChuyenBay {
         if (cb != null) {
             String luaChon;
             do {
-                System.out.println("\n+=====================================+");
+                System.out.println("+=====================================+");
                 System.out.println("|        MENU SUA CHUYEN BAY          |");
                 System.out.println("+=====================================+");
                 System.out.println("| 1. Sua diem khoi hanh               |");
@@ -282,20 +256,8 @@ public class DanhSachChuyenBay {
     }
 
     // tìm Chuyến bay
-    // không tham số
-    public ChuyenBay tim() {
-        String ma;
-        System.out.print("Nhap ma chuyen bay can tim:");
-        ma = sc.nextLine();
-        for (int i = 0; i < dsChuyenBay.length; i++) {
-            if (dsChuyenBay[i].getMaChuyenBay().equals(ma)) {
-                return dsChuyenBay[i];
-            }
-        }
-        return null;
-    }
 
-    // có tham số
+    // tìm theo mã
     public ChuyenBay tim(String ma) {
         for (int i = 0; i < dsChuyenBay.length; i++) {
             if (dsChuyenBay[i].getMaChuyenBay().equals(ma)) {
@@ -305,22 +267,27 @@ public class DanhSachChuyenBay {
         return null;
     }
 
-    // tìm vị trí
-    public int timViTri(String ma) {
-        for (int i = 0; i < dsChuyenBay.length; i++) {
-            if (dsChuyenBay[i].getMaChuyenBay().equals(ma)) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    // thống kê các chuyến bay cùng ngày
-    public ChuyenBay[] dsNgay(int ngay) {
+    // tìm theo điểm đến
+    public ChuyenBay[] timDiemDen(String diemDen){
         ChuyenBay[] ds = new ChuyenBay[0];
         int j = 0;
         for (int i = 0; i < dsChuyenBay.length; i++) {
-            if (dsChuyenBay[i].ngay() == ngay) {
+            if(dsChuyenBay[i].getDiemDen().equals(diemDen)){
+                ds = Arrays.copyOf(ds, j + 1);
+                ds[j] = new ChuyenBay();
+                ds[j] = dsChuyenBay[i];
+                j++;
+            }
+        }
+            return ds;
+    }
+
+    // tim chuyen bay theo chuyến bay cùng ngày
+    public ChuyenBay[] dsNgay(String ngayKhoiHanh) {
+        ChuyenBay[] ds = new ChuyenBay[0];
+        int j = 0;
+        for (int i = 0; i < dsChuyenBay.length; i++) {
+            if (dsChuyenBay[i].getNgayKhoiHanh().equals(ngayKhoiHanh)) {
                 ds = Arrays.copyOf(ds, j + 1);
                 ds[j] = new ChuyenBay();
                 ds[j] = dsChuyenBay[i];
@@ -330,15 +297,7 @@ public class DanhSachChuyenBay {
         return ds;
     }
 
-    public int[] thongKeNgayChuyenBay() {
-        int dsngay[] = new int[32];
-        for (int i = 1; i < dsngay.length; i++) {
-            dsngay[i] = dsNgay(i).length;
-        }
-        return dsngay;
-    }
-
-    // thống kê theo tình trạng chuyến bay
+    // tìm theo  tình trạng chuyến bay
     public ChuyenBay[] dsTinhTrang(String tinhtrang) {
         ChuyenBay[] ds = new ChuyenBay[0];
         int j = 0;
@@ -352,18 +311,16 @@ public class DanhSachChuyenBay {
         }
         return ds;
     }
-
-    public ChuyenBay[][] thongKeTinhTrang() {
-        ChuyenBay[][] tk = new ChuyenBay[0][0];
-        String[] tinhtrang = {"Hoat dong", "Tam hoan", "Huy"};
-        for (int i = 0; i < 3; i++) {
-            ChuyenBay[] t = dsTinhTrang(tinhtrang[i]);
-            if (t != null) {
-                tk[i] = Arrays.copyOf(tk[i], tk.length + t.length);
-                tk[i] = t;
+    
+     // tìm vị trí
+    public int timViTri(String ma) {
+        for (int i = 0; i < dsChuyenBay.length; i++) {
+            if (dsChuyenBay[i].getMaChuyenBay().equals(ma)) {
+                return i;
             }
         }
-        return tk;
+        return -1;
     }
+
 
 }

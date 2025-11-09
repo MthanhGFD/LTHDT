@@ -3,211 +3,323 @@ package src;
 import static src.DanhSachChuyenBay.sc;
 
 public class QuanLyChuyenBay extends QuanLyVeMayBay {
+
     private DanhSachChuyenBay dsChuyenBay;
+    private DanhSachMayBay dsMayBay;
+    private DanhSachHangHangKhong dsHangHangKhong;
+    private DanhSachSanBay dsSanBay;
 
     public QuanLyChuyenBay() {
         dsChuyenBay = new DanhSachChuyenBay();
+        dsMayBay = new DanhSachMayBay();
+        dsHangHangKhong = new DanhSachHangHangKhong();
+        dsSanBay = new DanhSachSanBay();
     }
 
-    public QuanLyChuyenBay(DanhSachChuyenBay dsChuyenBay) {
+    public QuanLyChuyenBay(DanhSachChuyenBay dsChuyenBay, DanhSachMayBay dsMayBay, DanhSachHangHangKhong dsHangHangKhong, DanhSachSanBay dsSanBay) {
         this.dsChuyenBay = dsChuyenBay;
+        this.dsMayBay = dsMayBay;
+        this.dsHangHangKhong = dsHangHangKhong;
+        this.dsSanBay = dsSanBay;
     }
 
-    // ====================== MENU CHINH ======================
+    // ===================== MENU CHUYẾN BAY =====================
     @Override
     public void menu() {
-        System.out.println("+========================================================+");
-        System.out.println("|                   QUAN LY cHUYEN BAY                   |");
-        System.out.println("+========================================================+");
-        System.out.println("|  1. Doc danh sach tu file                              |");
-        System.out.println("|  2. Ghi danh sach xuong file                           |");
-        System.out.println("|  3. Nhap danh sach chuyen bay                          |");
-        System.out.println("|  4. Them chuyen bay                                    |");
-        System.out.println("|  5. Xoa chuyen bay                                     |");
-        System.out.println("|  6. Sua thong tin chuyen bay                           |");
-        System.out.println("|  7. Tim kiem chuyen bay                                |");
-        System.out.println("|  8. Thong ke chuyen bay                                |");
-        System.out.println("|  9. Xuat danh sach chuyen bay                          |");
-        System.out.println("|  0. Thoat chuong trinh                                 |");
-        System.out.println("+--------------------------------------------------------+");
-        System.out.print("Nhap lua chon: ");
+        System.out.println("+==========================================+");
+        System.out.println("|            QUAN LY CHUYEN BAY            |");
+        System.out.println("+==========================================+");
+        System.out.println("|  0. Thoat                                |");
+        System.out.println("|  1. Doc danh sach chuyen bay tu file     |");
+        System.out.println("|  2. Ghi danh sach len file               |");
+        System.out.println("|  3  Nhap danh sach chuyen bay            |");
+        System.out.println("|  4. Them chuyen bay                      |");
+        System.out.println("|  5. Xoa chuyen bay                       |");
+        System.out.println("|  6. Sua chuyen bay                       |");
+        System.out.println("|  7. Tim chuyen bay                       |");
+        System.out.println("|  8. Xuat danh sach chuyen bay            |");
+        System.out.println("+------------------------------------------+");
     }
 
+// ===================== CHOICE - CHUYẾN BAY =====================
     @Override
     public void choice() {
-        String c;
-        boolean chonSai = false;
+        String chon;
+        boolean chonsai = false;
+
         do {
             menu();
-            c = sc.nextLine();
+            System.out.print("Chon thao tac: ");
+            chon = sc.next();
 
-            switch (c) {
+            switch (chon) {
                 case "1":
                     dsChuyenBay.docFile();
                     break;
-                case "2":
-                    dsChuyenBay.nhapDS();
-                    break;
 
-                case "3": {
-                    System.out.println("+=====================================================+");
-                    System.out.println("|                   THEM CHUYEN BAY                   |");
-                    System.out.println("+=====================================================+");
-                    System.out.println("|  1. Them khong tham so                              |");
-                    System.out.println("|  2. Them co tham so                                 |");
-                    System.out.println("+-----------------------------------------------------+");
-                    System.out.print("Chon kieu them: ");
-                    String t = sc.nextLine();
-                    if (t.equals("1")) {
-                        dsChuyenBay.them();
-                    } else if (t.equals("2")) {
-                        System.out.print("Nhap ma chuyen bay: ");
-                        String ma = sc.nextLine();
-                        dsChuyenBay.them(ma);
-                    } else {
-                        System.out.println("Lua chon khong hop le.");
+                case "2":
+                    dsChuyenBay.ghiFile();
+                    break;
+                case "3":
+                    int sl;
+                    System.out.print("Nhap so luong chuyen bay: ");
+                    sl = DanhSachChuyenBay.sc.nextInt();
+                    sc.nextLine(); // đọc bỏ dòng
+
+                    for (int i = 0; i < sl; i++) {
+                        ChuyenBay cb = new ChuyenBay();
+                        cb.nhapChuyenBay();
+
+                        // kiểm tra trùng mã chuyến bay
+                        if (dsChuyenBay.tim(cb.getMaChuyenBay()) != null) {
+                            System.out.println("Chuyen bay da ton tai. Moi nhap lai!");
+                            i--;
+                            continue;
+                        }
+
+                        if (dsMayBay.tim(cb.getMaMayBay()) == null) {
+                            System.out.println("May bay khong ton tai, moi nhap lai!");
+                            i--;
+                            continue;
+                        }
+
+                        if (dsHangHangKhong.tim(cb.getMaHangHangKhong()) == null) {
+                            System.out.println("Hang Hang khong khong ton tai, moi nhap lai!");
+                            i--;
+                            continue;
+                        }
+
+                        if (dsSanBay.tim(cb.getMaSanBay()) == null) {
+                            System.out.println("San bay khong ton tai, moi nhap lai!");
+                            i--;
+                            continue;
+                        }
+
+                        dsChuyenBay.them(cb);
+                        System.out.println("==================================");
                     }
                     break;
-                }
 
-                case "4": {
-                    System.out.println("+====================================================+");
-                    System.out.println("|                   XOA CHUYEN BAY                   |");
-                    System.out.println("+====================================================+");
-                    System.out.println("|  1. Xoa khong tham so                              |");
-                    System.out.println("|  2. Xoa co tham so                                 |");
-                    System.out.println("+----------------------------------------------------+");
-                    System.out.print("Chon kieu xoa: ");
-                    String x = sc.nextLine();
+                case "4":
+                    System.out.println("+===========================================+");
+                    System.out.println("|              THEM CHUYEN BAY              |");
+                    System.out.println("+===========================================+");
+                    System.out.println("|  1. Them chuyen bay khong tham so         |");
+                    System.out.println("|  2. Them chuyen bay co tham so            |");
+                    System.out.println("+-------------------------------------------+");
+                    System.out.print("Chon kieu them chuyen bay: ");
+
+                    String t = sc.next();
+
+                    if (t.equals("1")) {
+                        ChuyenBay cb = new ChuyenBay();
+                        cb.nhapChuyenBay();
+
+                        if (dsChuyenBay.tim(cb.getMaChuyenBay()) != null) {
+                            System.out.println("Chuyen bay da ton tai. Moi nhap lai!");
+                            break;
+                        }
+
+                        if (dsMayBay.tim(cb.getMaMayBay()) == null) {
+                            System.out.println("May bay khong ton tai, moi nhap lai!");
+                            break;
+                        }
+
+                        if (dsHangHangKhong.tim(cb.getMaHangHangKhong()) == null) {
+                            System.out.println("Hang Hang khong khong ton tai, moi nhap lai!");
+                            break;
+                        }
+
+                        if (dsSanBay.tim(cb.getMaSanBay()) == null) {
+                            System.out.println("San bay khong ton tai, moi nhap lai!");
+                            break;
+                        }
+                        dsChuyenBay.them(cb);
+                    } else if (t.equals("2")) {
+                        ChuyenBay cb = new ChuyenBay();
+                        cb.nhapChuyenBay();
+
+                        if (dsChuyenBay.tim(cb.getMaChuyenBay()) != null) {
+                            System.out.println("Chuyen bay da ton tai. Moi nhap lai!");
+                            break;
+                        }
+
+                        if (dsMayBay.tim(cb.getMaMayBay()) == null) {
+                            System.out.println("May bay khong ton tai, moi nhap lai!");
+                            break;
+                        }
+
+                        if (dsHangHangKhong.tim(cb.getMaHangHangKhong()) == null) {
+                            System.out.println("Hang Hang khong khong ton tai, moi nhap lai!");
+                            break;
+                        }
+
+                        if (dsSanBay.tim(cb.getMaSanBay()) == null) {
+                            System.out.println("San bay khong ton tai, moi nhap lai!");
+                            break;
+                        }
+
+                        dsChuyenBay.them(cb);
+                    } else {
+                        System.out.println("Chon sai thao tac them chuyen bay!");
+                    }
+                    break;
+
+                case "5":
+                    System.out.println("+==========================================+");
+                    System.out.println("|              XOA CHUYEN BAY             |");
+                    System.out.println("+==========================================+");
+                    System.out.println("|  1. Xoa chuyen bay khong tham so         |");
+                    System.out.println("|  2. Xoa chuyen bay co tham so           |");
+                    System.out.println("+------------------------------------------+");
+                    System.out.print("Chon kieu xoa chuyen bay: ");
+                    String x = DanhSachChuyenBay.sc.next();
+
                     if (x.equals("1")) {
                         dsChuyenBay.xoa();
                     } else if (x.equals("2")) {
+                        DanhSachChuyenBay.sc.nextLine();
                         System.out.print("Nhap ma chuyen bay can xoa: ");
-                        String ma = sc.nextLine();
-                        dsChuyenBay.xoa(ma);
+                        dsChuyenBay.xoa(sc.nextLine());
                     } else {
-                        System.out.println("Lua chon khong hop le.");
+                        System.out.println("Chon sai thao tac xoa!");
                     }
                     break;
-                }
 
-                case "5": {
-                    System.out.println("+====================================================+");
-                    System.out.println("|                   SUA CHUYEN BAY                   |");
-                    System.out.println("+====================================================+");
-                    System.out.println("|  1. Sua khong tham so                              |");
-                    System.out.println("|  2. Sua co tham so                                 |");
-                    System.out.println("+----------------------------------------------------+");
-                    System.out.print("Chon kieu sua: ");
-                    String s = sc.nextLine();
-                    if (s.equals("1")) {
+                case "6":
+                    System.out.println("+==========================================+");
+                    System.out.println("|              SUA CHUYEN BAY              |");
+                    System.out.println("+==========================================+");
+                    System.out.println("|  1. Sua chuyen bay khong tham so         |");
+                    System.out.println("|  2. Sua chuyen bay co tham so            |");
+                    System.out.println("+------------------------------------------+");
+                    System.out.print("Chon kieu sua chuyen bay: ");
+                    String chonsua = sc.next();
+
+                    if (chonsua.equals("1")) {
                         dsChuyenBay.sua();
-                    } else if (s.equals("2")) {
+                    } else if (chonsua.equals("2")) {
+                        sc.nextLine();
                         System.out.print("Nhap ma chuyen bay can sua: ");
-                        String ma = sc.nextLine();
-                        dsChuyenBay.sua(ma);
+                        dsChuyenBay.sua(sc.nextLine());
                     } else {
-                        System.out.println("Lua chon khong hop le.");
+                        System.out.println("chon sai thao tac sua chuyen bay!!");
                     }
                     break;
-                }
 
-                case "6": {
-                    System.out.println("+====================================================+");
-                    System.out.println("|                   TIM CHUYEN BAY                   |");
-                    System.out.println("+====================================================+");
-                    System.out.println("|  1. Tim khong tham so                              |");
-                    System.out.println("|  2. Tim co tham so                                 |");
-                    System.out.println("|  3. Tim vi tri chuyen bay                          |");
-                    System.out.println("+----------------------------------------------------+");
-                    System.out.print("Chon kieu tim: ");
-                    String tm = sc.nextLine();
-                    if (tm.equals("1")) {
-                        ChuyenBay cb = dsChuyenBay.tim();
-                        if (cb != null) {
-                            cb.xuatChuyenBay();
-                        } else {
-                            System.out.println("Khong tim thay chuyen bay.");
-                        }
-                    } else if (tm.equals("2")) {
-                        System.out.print("Nhap ma chuyen bay can tim: ");
-                        String ma = sc.nextLine();
-                        ChuyenBay cb = dsChuyenBay.tim(ma);
-                        if (cb != null) {
-                            cb.xuatChuyenBay();
-                        } else {
-                            System.out.println("Khong tim thay chuyen bay.");
-                        }
-                    } else if (tm.equals("3")) {
-                        System.out.print("Nhap ma chuyen bay can tim vi tri: ");
-                        String ma = sc.nextLine();
-                        int vt = dsChuyenBay.timViTri(ma);
-                        if (vt != -1) {
-                            System.out.println("Chuyen bay o vi tri: " + vt);
-                        } else {
-                            System.out.println("Khong tim thay chuyen bay.");
-                        }
-                    } else {
-                        System.out.println("Lua chon khong hop le.");
-                    }
-                    break;
-                }
+                case "7":
+                    System.out.println("+==========================================+");
+                    System.out.println("|              TIM CHUYEN BAY              |");
+                    System.out.println("+==========================================+");
+                    System.out.println("|  1. Tim theo ma                          |");
+                    System.out.println("|  2. Tim theo diem den                    |");
+                    System.out.println("|  3. Tim theo ngay khoi hanh              |");
+                    System.out.println("|  4. Tim theo tinh trang                  |");
+                    System.out.println("+------------------------------------------+");
+                    System.out.print("Chon kieu tim chuyen bay: ");
 
-                case "7": {
-                    System.out.println("+====================================================+");
-                    System.out.println("|                      THONG KE                      |");
-                    System.out.println("+====================================================+");
-                    System.out.println("|  1. Thong ke so chuyen bay theo ngay               |");
-                    System.out.println("|  2. Thong ke theo tinh trang                       |");
-                    System.out.println("+----------------------------------------------------+");
-                    System.out.print("Chon kieu thong ke: ");
-                    String tk = sc.nextLine();
-                    if (tk.equals("1")) {
-                        int[] ds = dsChuyenBay.thongKeNgayChuyenBay();
-                        for (int i = 1; i < ds.length; i++) {
-                            if (ds[i] > 0) {
-                                System.out.println("Ngay " + i + " co " + ds[i] + " chuyen bay.");
-                            }
-                        }
-                    } else if (tk.equals("2")) {
-                        System.out.println("+------------------ THONG KE THEO TINH TRANG ------------------+");
-                        String[] tinhtrang = {"Hoat dong", "Tam hoan", "Huy"};
-                        ChuyenBay[][] tkTT = dsChuyenBay.thongKeTinhTrang();
+                    sc.nextLine();
+                    String chonTim = DanhSachChuyenBay.sc.nextLine();
 
-                        for (int i = 0; i < tinhtrang.length; i++) {
-                            System.out.println("\nTinh trang: " + tinhtrang[i]);
-                            if (tkTT[i].length == 0) {
-                                System.out.println("   Khong co chuyen bay nao o tinh trang nay.");
+                    switch (chonTim) {
+                        case "1":
+                            String ma;
+                            System.out.print("Nhap ma can tim: ");
+                            ma = DanhSachChuyenBay.sc.nextLine();
+                            ChuyenBay cb1 = dsChuyenBay.tim(ma);
+                            if (cb1 != null) {
+                                System.out.println("+-----------------+----------------------+----------------------+--------------+--------------+--------------+-----------------+-----------------+-----------------+");
+                                cb1.xuatChuyenBay();
+                                System.out.println("+-----------------+----------------------+----------------------+--------------+--------------+--------------+-----------------+-----------------+-----------------+");
                             } else {
-                                for (ChuyenBay cb : tkTT[i]) {
-                                    cb.xuatChuyenBay();
-                                }
+                                System.out.println("Khong tim thay chuyen bay!");
                             }
-                        }
-                    } else {
-                        System.out.println("Lua chon khong hop le.");
+                            break;
+                        case "2":
+                            String diemDen;
+                            System.out.print("Nhap diem den: ");
+                            diemDen = DanhSachChuyenBay.sc.nextLine();
+                            ChuyenBay[] ds1 = dsChuyenBay.timDiemDen(diemDen);
+                            if (ds1 != null) {
+                                System.out.println("                                                  +===============================================================+");
+                                System.out.printf("                                                  |               Chuyen bay cung ngay %20s       |", diemDen);
+                                System.out.println("                                                  +===============================================================+");
+                                System.out.println("+-----------------+----------------------+----------------------+--------------+--------------+--------------+-----------------+-----------------+-----------------+");
+                                System.out.println("|  Ma chuyen bay  |    Diem khoi hanh    |       Diem den       |Ngay khoi hanh|Gio khoi hanh |  Tinh trang  |   Ma may bay    |     ma hang     |   Ma san bay    |");
+                                System.out.println("+-----------------+----------------------+----------------------+--------------+--------------+--------------+-----------------+-----------------+-----------------+");
+                                for (int i = 0; i < ds1.length; i++) {
+                                    ds1[i].xuatChuyenBay();
+                                }
+                                System.out.println("+-----------------+----------------------+----------------------+--------------+--------------+--------------+-----------------+-----------------+-----------------+");
+                            } else {
+                                System.out.println("Khong tim thay chuyen bay!");
+                            }
+                            break;
+                        case "3":
+                            String ngayKhoiHanh;
+                            System.out.print("Nhap ngay khoi hanh: ");
+                            ngayKhoiHanh = DanhSachChuyenBay.sc.nextLine();
+                            ChuyenBay[] ds2 = dsChuyenBay.dsNgay(ngayKhoiHanh);
+                            if (ds2 != null) {
+                                System.out.println("                                                  +======================================================+");
+                                System.out.printf("                                                  |               Chuyen bay cung ngay %8s       |", ngayKhoiHanh);
+                                System.out.println("                                                  +======================================================+");
+                                System.out.println("+-----------------+----------------------+----------------------+--------------+--------------+--------------+-----------------+-----------------+-----------------+");
+                                System.out.println("|  Ma chuyen bay  |    Diem khoi hanh    |       Diem den       |Ngay khoi hanh|Gio khoi hanh |  Tinh trang  |   Ma may bay    |     ma hang     |   Ma san bay    |");
+                                System.out.println("+-----------------+----------------------+----------------------+--------------+--------------+--------------+-----------------+-----------------+-----------------+");
+                                for (int i = 0; i < ds2.length; i++) {
+                                    ds2[i].xuatChuyenBay();
+                                }
+                                System.out.println("+-----------------+----------------------+----------------------+--------------+--------------+--------------+-----------------+-----------------+-----------------+");
+                            } else {
+                                System.out.println("Khong tim thay chuyen bay");
+                            }
+
+                            break;
+                        case "4":
+                            String tinhTrang;
+                            System.out.print("Nhap tinh trang (Khoi hanh/Hoan/Huy): ");
+                            tinhTrang = DanhSachChuyenBay.sc.nextLine();
+                            ChuyenBay[] ds3 = dsChuyenBay.dsTinhTrang(tinhTrang);
+                            if (ds3 != null) {
+                                System.out.println("                                                  +=======================================================+");
+                                System.out.printf("                                                  |               Chuyen bay cung ngay %12s       |", tinhTrang);
+                                System.out.println("                                                  +=======================================================+");
+                                System.out.println("+-----------------+----------------------+----------------------+--------------+--------------+--------------+-----------------+-----------------+-----------------+");
+                                System.out.println("|  Ma chuyen bay  |    Diem khoi hanh    |       Diem den       |Ngay khoi hanh|Gio khoi hanh |  Tinh trang  |   Ma may bay    |     ma hang     |   Ma san bay    |");
+                                System.out.println("+-----------------+----------------------+----------------------+--------------+--------------+--------------+-----------------+-----------------+-----------------+");
+                                for (int i = 0; i < ds3.length; i++) {
+                                    ds3[i].xuatChuyenBay();
+                                }
+                                System.out.println("+-----------------+----------------------+----------------------+--------------+--------------+--------------+-----------------+-----------------+-----------------+");
+                            } else {
+                                System.out.println("Khong tim thay chuyen bay");
+                            }
+                        default:
+                            System.out.println("Chon sai thao tac tim!");
                     }
                     break;
-                }
-                case "9":
+
+                case "8":
+                    System.out.println("                                           ================== Danh sach chuyen bay ==================");
+                    System.out.println("+-----------------+----------------------+----------------------+--------------+--------------+--------------+-----------------+-----------------+-----------------+");
+                    System.out.println("|  Ma chuyen bay  |    Diem khoi hanh    |       Diem den       |Ngay khoi hanh|Gio khoi hanh |  Tinh trang  |   Ma may bay    |     ma hang     |   Ma san bay    |");
+                    System.out.println("+-----------------+----------------------+----------------------+--------------+--------------+--------------+-----------------+-----------------+-----------------+");
                     dsChuyenBay.xuatDS();
-                    break;
+                    System.out.println("+-----------------+----------------------+----------------------+--------------+--------------+--------------+-----------------+-----------------+-----------------+");
 
+                    break;
                 case "0":
-                    System.out.println("Ket thuc chuong trinh.");
-                    break;
-
+                    System.out.println("Cam on da su dung chuong trinh!");
                 default:
-                    chonSai = true;
-                    System.out.println("Lua chon khong hop le, vui long nhap lai.");
+                    System.out.println("Chon sai thao tac!");
+                    chonsai = true;
             }
 
-            if (!c.equals("0") && !chonSai) {
-                System.out.println();
-                System.out.println("Nhan Enter de tiep tuc...");
-                sc.nextLine();
+            if (!chonsai && !chon.equals("0")) {
+                System.out.println("Ban co muon thoat chuong trinh??");
+                System.out.println("Neu co --> (0) , Khong --> (1-9)");
             }
-
-        } while (!c.equals("0"));
+        } while (!chon.equals("0"));
     }
 }

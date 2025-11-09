@@ -2,56 +2,82 @@ package src;
 
 import java.util.Scanner;
 
-public abstract class Ve {
-    private String mave;
-    private ChuyenBay machuyenbay;
-    private Ghe maghe;
-    private int giave;
-    private boolean phanloai; // true = 1 chiều, false = khứ hồi
+public abstract class Ve implements IVe {
+    private String maVe, maChuyenBay, maGhe, loaiVe;
+    private double giaVe;
 
     //Constructor
     public Ve() {
-        mave = "";
-        machuyenbay = new ChuyenBay();
-        maghe = new Ghe();
-        giave = 0;
-        phanloai = true;
+        maVe = "";
+        maChuyenBay = "";
+        maGhe = "";
+        giaVe = 0;
+        loaiVe = "";
     }
 
-    public Ve(String mave, ChuyenBay machuyenbay, Ghe maghe, int giave, boolean phanloai) {
-        this.mave = mave;
-        this.machuyenbay = machuyenbay;
-        this.maghe = maghe;
-        this.giave = giave;
-        this.phanloai = phanloai;
+    public Ve(String maVe, String maChuyenBay, String maGhe, double giaVe, String loaiVe) {
+        this.maVe = maVe;
+        this.maChuyenBay = maChuyenBay;
+        this.maGhe = maGhe;
+        this.giaVe = giaVe;
+        this.loaiVe = loaiVe;
+    }
+
+    public Ve(Ve other){
+        this.maVe = other.maVe;
+        this.maChuyenBay = other.maChuyenBay;
+        this.maGhe = other.maGhe;
+        this.giaVe = other.giaVe;
+        this.loaiVe = other.loaiVe;
     }
 
     //Get Set
-    public String getMaVe() { return mave; }
-    public void setMaVe(String mave) { this.mave = mave; }
+    public String getMaVe() { return maVe; }
+    public void setMaVe(String maVe) { this.maVe = maVe; }
 
-    public ChuyenBay getChuyenBay() { return machuyenbay; }
-    public void setChuyenBay(ChuyenBay machuyenbay) { this.machuyenbay = machuyenbay; }
+    public String getChuyenBay() { return maChuyenBay; }
+    public void setChuyenBay(String maChuyenBay) { this.maChuyenBay = maChuyenBay;}
 
-    public Ghe getGhe() { return maghe; }
-    public void setGhe(Ghe maghe) { this.maghe = maghe; }
+    public String getGhe() { return maGhe; }
+    public void setGhe(String maGhe) { this.maGhe = maGhe; }
 
-    public int getGiaVe() { return giave; }
-    public void setGiaVe(int giave) { this.giave = giave; }
+    public double getGiaVe() { return giaVe; }
+    public void setGiaVe(double giaVe) { this.giaVe = giaVe; }
 
-    public boolean isPhanLoai() { return phanloai; }
-    public void setPhanLoai(boolean phanloai) { this.phanloai = phanloai; }
-
-    public abstract double tinhGiaVe();
+    public String getLoaiVe() { return loaiVe; }
+    public void setLoaiVe(String loaiVe) { this.loaiVe = loaiVe; }
 
     //Ham nhap
-    public void nhapThongTin(Scanner sc) {
-        System.out.print("Nhap ma ve: ");
-        this.mave = sc.nextLine();
-        System.out.print("Nhap gia ve: ");
-        this.giave = sc.nextInt();
-        System.out.print("Nhap loai ve (1: 1 chieu, 0: khu hoi): ");
-        this.phanloai = sc.nextInt() == 1;
+    public void nhapVe() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Nhap ma ve (MV001): "); this.maVe = sc.nextLine();
+        System.out.print("Nhap gia ve (VND): "); this.giaVe = sc.nextDouble();
+        try {
+            int choice;
+            System.out.println("+-------------------- Loai Ve --------------------+");
+            System.out.println("|  0. Khu hoi                                     |");
+            System.out.println("|  1. 1 chieu                                     |");
+            System.out.println("+-------------------------------------------------+");
+            System.out.print("Chon loai ve (0: Khu hoi, 1: 1 chieu): ");
+            choice = sc.nextInt();
+
+            switch (choice) {
+                case 0: this.loaiVe = "Khu hoi "; break;
+                case 1: this.loaiVe = "1 chieu"; break;
+            }
+        } catch (Exception e) {
+            this.loaiVe = "1 chieu";
+        }
         sc.nextLine(); // clear buffer
     }
+
+    //Ham xuat
+    public void xuatVe() {
+        String fmt = "| %-15s | %-15s | %-15s | %-10f | %-3s |%n";
+        System.out.println("+-----------------+-----------------+-----------------+------------+-----+");
+        System.out.printf(fmt, maVe, maChuyenBay, maGhe, giaVe, loaiVe);
+        System.out.println("+-----------------+-----------------+-----------------+------------+-----+");
+    }
+
+    public abstract double tinhTienVe();  // Moi loai ve co cach tinh khac nhau
 }
