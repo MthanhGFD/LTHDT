@@ -39,6 +39,7 @@ public class DanhSachSanBay {
             ma = sc.nextLine();
             if (tim(ma) == null) {
                 dsSanBay[i] = new SanBay();
+                dsSanBay[i].setMaSanBay(ma);
                 dsSanBay[i].nhapSanBay();
             } else {
                 i--;
@@ -49,6 +50,7 @@ public class DanhSachSanBay {
 
     // xuất danh sách sân bay
     public void xuatDS() {
+        System.out.println("             ================== Danh Sach San Bay ==================");
         System.out.println("+-----------------+--------------------------------+---------------------------+");
         System.out.println("|   Ma san bay    |          Ten san bay           |         Dia diem          |");
         System.out.println("+-----------------+--------------------------------+---------------------------+");
@@ -80,23 +82,23 @@ public class DanhSachSanBay {
             System.out.println("Lỗi đọc file");
         }
     }
-
-    // ghi file
-    public void ghiFile(SanBay sanbay) {
+    
+    // ghi danh sách mới lên file
+    public void ghiFile(){
         try {
-            FileWriter f = new FileWriter("dsSanBay.txt", true);
-            dsSanBay = Arrays.copyOf(dsSanBay, soLuong + 1);
-            dsSanBay[soLuong] = new SanBay();
-            dsSanBay[soLuong] = sanbay;
-            f.write(sanbay.toString());
-            f.close();
+            File f = new File("dsSanBay.txt");
+            FileWriter fw = new FileWriter("dsSanBay.txt");
+            for (int i = 0; i < dsSanBay.length; i++) {
+                fw.write(dsSanBay[i].toString() + "\n");
+            }
+            fw.close();
         } catch (FileNotFoundException e) {
             System.out.println("khong tim thay file");
         } catch (IOException e) {
             System.out.println("lỗi ghi file");
         }
-
     }
+    
 
     // thêm sân bay - không tham số
     public void them() {
@@ -107,7 +109,6 @@ public class DanhSachSanBay {
             dsSanBay = Arrays.copyOf(dsSanBay, soLuong + 1);
             dsSanBay[soLuong] = new SanBay();
             dsSanBay[soLuong].nhapSanBay();
-            ghiFile(dsSanBay[soLuong]);
             soLuong++;
         } else {
             System.out.println("San bay da ton tai!!");
@@ -115,12 +116,11 @@ public class DanhSachSanBay {
     }
 
     // thêm sân bay - có tham số
-    public void them(String ma) {
-        if (tim(ma) == null) {
+    public void them(SanBay sb) {
+        if (tim(sb.getMaSanBay()) == null) {
             dsSanBay = Arrays.copyOf(dsSanBay, soLuong + 1);
             dsSanBay[soLuong] = new SanBay();
             dsSanBay[soLuong].nhapSanBay();
-            ghiFile(dsSanBay[soLuong]);
             soLuong++;
         } else {
             System.out.println("San bay da ton tai!!");
@@ -185,18 +185,6 @@ public class DanhSachSanBay {
         }
     }
 
-    // tìm sân bay - không tham số
-    public SanBay tim() {
-        System.out.print("Nhap ma san bay: ");
-        String ma = sc.nextLine();
-        for (int i = 0; i < dsSanBay.length; i++) {
-            if (dsSanBay[i].getMaSanBay().equals(ma)) {
-                return dsSanBay[i];
-            }
-        }
-        return null;
-    }
-
     // tìm sân bay - có tham số
     public SanBay tim(String ma) {
         for (int i = 0; i < dsSanBay.length; i++) {
@@ -207,6 +195,26 @@ public class DanhSachSanBay {
         return null;
     }
 
+    // tìm sân bay theo tên
+    public SanBay timTen(String ten){
+        for (int i = 0; i < dsSanBay.length; i++) {
+            if (dsSanBay[i].getMaSanBay().equals(ten)) {
+                return dsSanBay[i];
+            }
+        }
+        return null;
+    }
+    
+    // tìm sân bay theo địa điểm (tỉnh/ thành phố)
+    public SanBay timTinh(String tinh){
+        for (int i = 0; i < dsSanBay.length; i++) {
+            if (dsSanBay[i].getMaSanBay().equals(tinh)) {
+                return dsSanBay[i];
+            }
+        }
+        return null;
+    }
+    
     // tìm vị trí
     public int timViTri(String ma) {
         for (int i = 0; i < dsSanBay.length; i++) {

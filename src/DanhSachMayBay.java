@@ -35,15 +35,24 @@ public class DanhSachMayBay {
         sc.nextLine();
         soLuong = sl;
         for (int i = 0; i < sl; i++) {
-            dsMayBay = Arrays.copyOf(dsMayBay, dsMayBay.length + 1);
-            dsMayBay[i] = new MayBay();
-            dsMayBay[i].nhapMayBay();
-            ghiFile(dsMayBay[i]);
+            String mamaybay;
+            System.out.print("Nhap ma may bay: ");
+            mamaybay = sc.nextLine();
+            if (tim(mamaybay) == null) {
+                dsMayBay = Arrays.copyOf(dsMayBay, dsMayBay.length + 1);
+                dsMayBay[i] = new MayBay();
+                dsMayBay[i].setMaMayBay(mamaybay);
+                dsMayBay[i].nhapMayBay();
+            } else {
+                System.out.println("Ma may bay da ton tai nhap lai");
+                i--;
+            }
             System.out.println("=========================================");
         }
     }
 
     public void xuatDS() {
+        System.out.println("  ================= Danh sach may bay =================");
         System.out.println("+-----------------+---------------------------+--------+");
         System.out.println("|   Ma may bay    |       Loai may bay        |Suc chua|");
         System.out.println("+-----------------+---------------------------+--------+");
@@ -79,12 +88,14 @@ public class DanhSachMayBay {
         }
     }
 
-    public void ghiFile(MayBay maybay) {
+    // ghi lại danh sách mới lên file
+    public void ghiFile() {
         try {
             File f = new File("dsMayBay.txt");
-            FileWriter ghif = new FileWriter(f, true);
-            ghif.write(maybay.toString() + "\n");
-            ghif.close();
+            FileWriter fw = new FileWriter(f);
+            for (int i = 0; i < dsMayBay.length; i++) {
+                fw.write(dsMayBay[i].toString() + "\n");
+            }
         } catch (FileNotFoundException e) {
             System.out.println("Khong tim thay file!");
         } catch (IOException e) {
@@ -101,7 +112,6 @@ public class DanhSachMayBay {
             dsMayBay[soLuong] = new MayBay();
             dsMayBay[soLuong].setMaMayBay(ma);
             dsMayBay[soLuong].nhapMayBay();
-            ghiFile(dsMayBay[soLuong]);
             soLuong++;
         } else {
             System.out.println("May bay da ton tai!");
@@ -115,7 +125,6 @@ public class DanhSachMayBay {
             dsMayBay[soLuong] = new MayBay();
             dsMayBay[soLuong].setMaMayBay(ma);
             dsMayBay[soLuong].nhapMayBay();
-            ghiFile(dsMayBay[soLuong]);
             soLuong++;
         } else {
             System.out.println("May bay da ton tai!");
@@ -127,6 +136,7 @@ public class DanhSachMayBay {
         System.out.print("Nhap ma may bay can xoa: ");
         String ma = sc.nextLine();
         xoa(ma);
+        ghiFile();
     }
 
     // xoa may bay co tham so
@@ -156,9 +166,9 @@ public class DanhSachMayBay {
         int vt = timViTri(ma);
         if (vt != -1) {
             System.out.println("+------------------- SUA THONG TIN MAY BAY -------------------+");
-            System.out.println("|  1. Sua loai may bay                                      |");
-            System.out.println("|  2. Sua suc chua                                          |");
-            System.out.println("+-----------------------------------------------------------+");
+            System.out.println("|  1. Sua loai may bay                                        |");
+            System.out.println("|  2. Sua suc chua                                            |");
+            System.out.println("+-------------------------------------------------------------+");
             System.out.print("Chon thong tin muon sua: ");
             String chon = sc.nextLine();
             switch (chon) {
@@ -223,11 +233,26 @@ public class DanhSachMayBay {
     // thong ke theo loai may bay
     public MayBay[][] thongKeLoaiMayBay() {
         String[] loai = {"Airbus A321", "Airbus A350-900", "Boeing 787-10", "Airbus A320"};
-        MayBay[][] cacds = new MayBay[loai.length][];
+        MayBay[][] tk = new MayBay[loai.length][];
         for (int i = 0; i < loai.length; i++) {
-            cacds[i] = dsLoaiMayBay(loai[i]);
+            tk[i] = dsLoaiMayBay(loai[i]);
         }
-        return cacds;
+        return tk;
     }
 
+    public MayBay[] getDsMayBay() {
+        return dsMayBay;
+    }
+
+    public void setDsMayBay(MayBay[] dsMayBay) {
+        this.dsMayBay = dsMayBay;
+    }
+
+    public int getSoLuong() {
+        return soLuong;
+    }
+
+    public void setSoLuong(int soLuong) {
+        this.soLuong = soLuong;
+    }
 }

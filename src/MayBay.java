@@ -1,8 +1,9 @@
-package CodeClass;
+package src;
 
 import java.util.Scanner;
 
 public class MayBay {
+
     private String maMayBay;
     private String loaiMayBay;
     private int sucChua;
@@ -29,30 +30,37 @@ public class MayBay {
     }
 
     // ======== Input / Output ========
-
     public void nhapMayBay() {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Nhap ma may bay: ");
-        this.maMayBay = sc.nextLine();
-       try {
-            int choice;
-            System.out.println("+-------------------- Loai may bay --------------------+");
-            System.out.println("|  1. Airbus A321                                      |");
-            System.out.println("|  2. Airbus A350-900                                  |");
-            System.out.println("|  3. Boeing 787-10                                    |");
-            System.out.println("|  4. Airbus A320                                      |");
-            System.out.println("+------------------------------------------------------+");
-            System.out.print("Chon loai may bay: ");
-            choice = sc.nextInt();
-            switch (choice) {
-                case 1: this.loaiMayBay = "Airbus A321"; break;
-                case 2: this.loaiMayBay = "Airbus A350-900"; break;
-                case 3: this.loaiMayBay = "Boeing 787-10"; break;
-                case 4: this.loaiMayBay = "Airbus A320"; break;
-            }
-        } catch (Exception e) {
-            this.loaiMayBay = "Airbus A321";
+        System.out.println("+-------------------- Loai may bay --------------------+");
+        System.out.println("|  1. Airbus A321                                      |");
+        System.out.println("|  2. Airbus A350-900                                  |");
+        System.out.println("|  3. Boeing 787-10                                    |");
+        System.out.println("|  4. Airbus A320                                      |");
+        System.out.println("+------------------------------------------------------+");
+        System.out.print("Chon loai may bay: ");
+
+        int choice = sc.nextInt();
+        sc.nextLine(); // clear buffer
+
+        switch (choice) {
+            case 1:
+                this.loaiMayBay = "Airbus A321";
+                break;
+            case 2:
+                this.loaiMayBay = "Airbus A350-900";
+                break;
+            case 3:
+                this.loaiMayBay = "Boeing 787-10";
+                break;
+            case 4:
+                this.loaiMayBay = "Airbus A320";
+                break;
+            default:
+                this.loaiMayBay = "Airbus A321";
+                break;
         }
+
         System.out.print("Nhap suc chua: ");
         this.sucChua = Integer.parseInt(sc.nextLine());
     }
@@ -64,7 +72,7 @@ public class MayBay {
 
     @Override
     public String toString() {
-        return  maMayBay + "," + loaiMayBay +"," + sucChua;
+        return maMayBay + "," + loaiMayBay + "," + sucChua;
     }
 
     public String getMaMayBay() {
@@ -90,4 +98,5 @@ public class MayBay {
     public void setSucChua(int sucChua) {
         this.sucChua = sucChua;
     }
+
 }

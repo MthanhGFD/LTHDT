@@ -19,14 +19,15 @@ public class QuanLyMayBay extends QuanLyVeMayBay {
         System.out.println("+===================================================+");
         System.out.println("|                 DANH SACH MAY BAY                 |");
         System.out.println("+===================================================+");
-        System.out.println("|  1. Nhap danh sach may bay                        |");
-        System.out.println("|  2. Doc danh sach may bay tu file                 |");
-        System.out.println("|  3. Them 1 may bay vao danh sach                  |");
-        System.out.println("|  4. Xoa 1 may bay khoi danh sach                  |");
-        System.out.println("|  5. Sua thong tin may bay                         |");
-        System.out.println("|  6. Tim may bay                                   |");
-        System.out.println("|  7. Thong ke may bay theo loai                    |");
-        System.out.println("|  8. Xuat danh sach may bay                        |");
+        System.out.println("|  1. Doc danh sach may bay tu file                 |");
+        System.out.println("|  2. Ghi danh sach len file                        |");
+        System.out.println("|  3. Nhap danh sach may bay                        |");
+        System.out.println("|  4. Them 1 may bay vao danh sach                  |");
+        System.out.println("|  5. Xoa 1 may bay khoi danh sach                  |");
+        System.out.println("|  6. Sua thong tin may bay                         |");
+        System.out.println("|  7. Tim may bay                                   |");
+        System.out.println("|  8. Thong ke may bay theo loai                    |");
+        System.out.println("|  9. Xuat danh sach may bay                        |");
         System.out.println("+---------------------------------------------------+");
     }
 
@@ -44,12 +45,15 @@ public class QuanLyMayBay extends QuanLyVeMayBay {
                     System.out.println("Cam on ban da su dung chuong trinh!");
                     break;
                 case "1":
-                    dsMayBay.nhapDS();
-                    break;
-                case "2":
                     dsMayBay.docFile();
                     break;
+                case "2":
+                    dsMayBay.ghiFile();
+                    break;
                 case "3":
+                    dsMayBay.nhapDS();
+                    break;
+                case "4":
                     System.out.println("+==============================================+");
                     System.out.println("|                 THEM MAY BAY                 |");
                     System.out.println("+==============================================+");
@@ -68,7 +72,7 @@ public class QuanLyMayBay extends QuanLyVeMayBay {
                         System.out.println("Lua chon khong hop le!");
                     }
                     break;
-                case "4":
+                case "5":
                     System.out.println("+=============================================+");
                     System.out.println("|                 XOA MAY BAY                 |");
                     System.out.println("+=============================================+");
@@ -87,7 +91,7 @@ public class QuanLyMayBay extends QuanLyVeMayBay {
                         System.out.println("Lua chon khong hop le!");
                     }
                     break;
-                case "5":
+                case "6":
                     System.out.println("+=============================================+");
                     System.out.println("|                 SUA MAY BAY                 |");
                     System.out.println("+=============================================+");
@@ -106,7 +110,7 @@ public class QuanLyMayBay extends QuanLyVeMayBay {
                         System.out.println("Lua chon khong hop le!");
                     }
                     break;
-                case "6":
+                case "7":
                     System.out.println("+=============================================+");
                     System.out.println("|                 TIM MAY BAY                 |");
                     System.out.println("+=============================================+");
@@ -149,7 +153,7 @@ public class QuanLyMayBay extends QuanLyVeMayBay {
                             System.out.println("Lua chon khong hop le!");
                     }
                     break;
-                case "7":
+                case "8":
                     System.out.println("+---------- THONG KE THEO LOAI MAY BAY ----------+");
                     MayBay[][] tk = dsMayBay.thongKeLoaiMayBay();
                     String[] loai = {"Airbus A321", "Airbus A350-900", "Boeing 787-10", "Airbus A320"};
@@ -165,10 +169,8 @@ public class QuanLyMayBay extends QuanLyVeMayBay {
                         System.out.println("------------------------------------------------");
                     }
                     break;
-                case "8":
-                    System.out.println("+------------ DANH SACH MAY BAY ----------------+");
+                case "9":
                     dsMayBay.xuatDS();
-                    System.out.println("+-----------------------------------------------+");
                     break;
                 default:
                     System.out.println("Lua chon khong dung, vui long chon lai (0-8)");

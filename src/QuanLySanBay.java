@@ -1,15 +1,15 @@
-package CodeClass;
+package src;
 
-import static CodeClass.DanhSachSanBay.sc;
-
+import static src.DanhSachSanBay.sc;
 
 public class QuanLySanBay extends QuanLyVeMayBay {
+
     private DanhSachSanBay dssanbay;
-    
-    public QuanLySanBay(){
+
+    public QuanLySanBay() {
         dssanbay = new DanhSachSanBay();
     }
-    
+
     // ==================== MENU ====================
     @Override
     public void menu() {
@@ -17,12 +17,13 @@ public class QuanLySanBay extends QuanLyVeMayBay {
         System.out.println("|                   QUAN LY SAN BAY                   |");
         System.out.println("+=====================================================+");
         System.out.println("|  1. Doc danh sach tu file                           |");
-        System.out.println("|  2. Nhap danh sach moi                              |");
-        System.out.println("|  3. Them san bay                                    |");
-        System.out.println("|  4. Xoa san bay                                     |");
-        System.out.println("|  5. Sua ten san bay                                 |");
-        System.out.println("|  6. Tim san bay                                     |");
-        System.out.println("|  7. Xuat danh sach ra man hinh                      |");
+        System.out.println("|  2. Ghi danh sach len file                          |");
+        System.out.println("|  3. Nhap danh sach moi                              |");
+        System.out.println("|  4. Them san bay                                    |");
+        System.out.println("|  5. Xoa san bay                                     |");
+        System.out.println("|  6. Sua ten san bay                                 |");
+        System.out.println("|  7. Tim san bay                                     |");
+        System.out.println("|  8. Xuat danh sach ra man hinh                      |");
         System.out.println("|  0. Thoat                                           |");
         System.out.println("+-----------------------------------------------------+");
     }
@@ -48,10 +49,13 @@ public class QuanLySanBay extends QuanLyVeMayBay {
                     break;
 
                 case "2":
+                    dssanbay.ghiFile();
+                    break;
+                case "3":
                     dssanbay.nhapDS();
                     break;
 
-                case "3": {
+                case "4": {
                     String t;
                     System.out.println("+==============================================+");
                     System.out.println("|                 THEM SAN BAY                 |");
@@ -63,17 +67,33 @@ public class QuanLySanBay extends QuanLyVeMayBay {
                     t = sc.next();
                     sc.nextLine();
                     if (t.equals("1")) {
-                        dssanbay.them();
+                        String ma;
+                        System.out.print("Nhap ma san bay: ");
+                        ma = DanhSachSanBay.sc.nextLine();
+                        if (dssanbay.tim(ma) == null) {
+                            SanBay sb = new SanBay();
+                            sb.nhapSanBay();
+                            dssanbay.them(sb);
+                        } else
+                            System.out.println("San bay da ton tai, nhap lai");
                     } else if (t.equals("2")) {
-                        SanBay sb = new SanBay("VDO", "San bay Van Don", "Quang Ninh");
-                        dssanbay.them(sb.getMaSanBay());
+                        String ma;
+                        System.out.print("Nhap ma san bay: ");
+                        ma = DanhSachSanBay.sc.nextLine();
+                        if (dssanbay.tim(ma) == null) {
+                            SanBay sb = new SanBay();
+                            sb.nhapSanBay();
+                            dssanbay.them(sb);
+                        } else
+                            System.out.println("San bay da ton tai, nhap lai");
+
                     } else {
                         System.out.println("Lua chon khong hop le!");
                     }
                     break;
                 }
 
-                case "4": {
+                case "5": {
                     String x;
                     System.out.println("+=============================================+");
                     System.out.println("|                 XOA SAN BAY                 |");
@@ -88,7 +108,7 @@ public class QuanLySanBay extends QuanLyVeMayBay {
                         dssanbay.xoa();
                     } else if (x.equals("2")) {
                         System.out.print("Nhap ma san bay can xoa: ");
-                        String ma = sc.nextLine();
+                        String ma = DanhSachSanBay.sc.nextLine();
                         dssanbay.xoa(ma);
                     } else {
                         System.out.println("Lua chon khong hop le!");
@@ -96,7 +116,7 @@ public class QuanLySanBay extends QuanLyVeMayBay {
                     break;
                 }
 
-                case "5": {
+                case "6": {
                     String s;
                     System.out.println("+=============================================+");
                     System.out.println("|                 SUA SAN BAY                 |");
@@ -111,7 +131,7 @@ public class QuanLySanBay extends QuanLyVeMayBay {
                         dssanbay.sua();
                     } else if (s.equals("2")) {
                         System.out.print("Nhap ma san bay can sua: ");
-                        String ma = sc.nextLine();
+                        String ma = DanhSachSanBay.sc.nextLine();
                         dssanbay.sua(ma);
                     } else {
                         System.out.println("Lua chon khong hop le!");
@@ -119,43 +139,53 @@ public class QuanLySanBay extends QuanLyVeMayBay {
                     break;
                 }
 
-                case "6": {
+                case "7": {
                     String tm;
                     System.out.println("+=============================================+");
                     System.out.println("|                 TIM SAN BAY                 |");
                     System.out.println("+=============================================+");
-                    System.out.println("|  1. Tim san bay khong co tham so            |");
-                    System.out.println("|  2. Tim san bay co tham so                  |");
-                    System.out.println("|  3. Tim vi tri san bay                      |");
+                    System.out.println("|  1. Tim san bay theo ma                     |");
+                    System.out.println("|  2. Tim san bay theo ten san bay            |");
+                    System.out.println("|  3. Tim san bay theo dia diem (tp/tinh)     |");
                     System.out.println("+---------------------------------------------+");
                     System.out.print("Chon kieu tim: ");
                     tm = sc.next();
                     sc.nextLine();
                     switch (tm) {
                         case "1":
-                            SanBay sb1 = dssanbay.tim();
+                            System.out.print("Nhap ma san bay can tim: ");
+                            String ma = DanhSachSanBay.sc.nextLine();
+                            SanBay sb1 = dssanbay.tim(ma);
                             if (sb1 != null) {
+                                System.out.println("+-----------------+--------------------------------+---------------------------+");
                                 sb1.xuatSanBay();
+                                System.out.println("+-----------------+--------------------------------+---------------------------+");
                             } else {
                                 System.out.println("Khong tim thay san bay!");
                             }
                             break;
                         case "2":
-                            System.out.print("Nhap ma san bay can tim: ");
-                            String ma = sc.nextLine();
-                            SanBay sb2 = dssanbay.tim(ma);
+                            String tenSanBay;
+                            System.out.print("Nhap ten san bay can tim: ");
+                            tenSanBay = DanhSachSanBay.sc.nextLine();
+                            SanBay sb2 = dssanbay.timTen(tenSanBay);
                             if (sb2 != null) {
+                                System.out.println("+-----------------+--------------------------------+---------------------------+");
                                 sb2.xuatSanBay();
+                                System.out.println("+-----------------+--------------------------------+---------------------------+");
                             } else {
                                 System.out.println("Khong tim thay san bay!");
                             }
                             break;
                         case "3":
-                            System.out.print("Nhap ma san bay can tim vi tri: ");
-                            String maVT = sc.nextLine();
-                            int vt = dssanbay.timViTri(maVT);
-                            if (vt != -1) {
-                                System.out.println("San bay o vi tri thu " + vt);
+                            String diaDiem;
+                            System.out.print("Nhap dia diem (thanh pho/tinh): ");
+                            diaDiem = DanhSachSanBay.sc.nextLine();
+                            SanBay sb3  = dssanbay.timTinh(diaDiem);
+                            if (sb3 != null) {
+                                System.out.println("+-----------------+--------------------------------+---------------------------+");
+                                sb3.xuatSanBay();
+                                System.out.println("+-----------------+--------------------------------+---------------------------+");
                             } else {
                                 System.out.println("Khong tim thay vi tri!");
                             }
@@ -167,10 +197,8 @@ public class QuanLySanBay extends QuanLyVeMayBay {
                     break;
                 }
 
-                case "7":
-                    System.out.println("+----------------- Danh Sach San Bay -----------------+");
+                case "8":
                     dssanbay.xuatDS();
-                    System.out.println("+-----------------------------------------------------+");
                     break;
 
                 default:

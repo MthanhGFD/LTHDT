@@ -1,4 +1,4 @@
-package CodeClass;
+package src;
 
 import java.util.Scanner;
 
@@ -45,6 +45,12 @@ public class SanBay {
         System.out.println("|-----------------|--------------------------------|---------------------------|");
     }
 
+    @Override
+    public String toString() {
+        return maSanBay + "," + tenSanBay + "," + diaDiem;
+    }
+
+    
 
     public String getMaSanBay() {
         return maSanBay;

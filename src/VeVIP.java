@@ -1,5 +1,10 @@
 package src;
 
+<<<<<<< HEAD
+
+public class VeVIP{
+    
+=======
 import java.util.Scanner;
 
 public class VeVIP extends Ve {
@@ -57,4 +62,5 @@ public class VeVIP extends Ve {
         // Neu la ve 1 chieu
         return getGiaVe();
     }
+>>>>>>> ef4fd73c2d36400c29cc8fa497e0ab271390919c
 }

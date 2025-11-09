@@ -27,16 +27,17 @@ public class DanhSachGhe {
 
     // Doc file
     public void docFile() {
+        int i = 0;
         try {
             FileReader f = new FileReader("dsGhe.txt");
             Scanner doc = new Scanner(f);
             while (doc.hasNextLine()) {
                 String dong = doc.nextLine();
                 String[] tach = dong.split(",");
-                dsGhe = Arrays.copyOf(dsGhe, dsGhe.length + 1);
-                dsGhe[dsGhe.length - 1] = new Ghe(tach[0], tach[1], tach[2]);
+                dsGhe = Arrays.copyOf(dsGhe, i + 1);
+                dsGhe[i] = new Ghe(tach[0], tach[1], tach[2], tach[3]);
             }
-            soLuong = dsGhe.length;
+            soLuong = i;
             f.close();
         } catch (FileNotFoundException e) {
             System.out.println("Khong tim thay file!");
@@ -45,45 +46,34 @@ public class DanhSachGhe {
         }
     }
 
-    // Ghi file
-    public void ghiFile(Ghe ghe) {
+    // ghi lại toàn bộ ds mới
+    public void ghiFile() {
         try {
             File f = new File("dsGhe.txt");
-            FileWriter fw = new FileWriter(f, true);
-            if (f.length() != 0) {
+            FileWriter fw = new FileWriter(f);
+            for (int i = 0; i < dsGhe.length; i++) {
+                fw.write(dsGhe[i].toString());
                 fw.write("\n");
             }
-            fw.write(ghe.getMaGhe() + "," + ghe.getMaMayBay() + "," + ghe.getViTriGhe());
             fw.close();
-        } catch (IOException e) {
-            System.out.println("Loi ghi file!");
-        }
-    }
+        } catch (FileNotFoundException e) {
+            System.out.println("file khong ton tai");
 
-    // Nhap danh sach ghe
-    public void nhapDS() {
-        int sl;
-        System.out.print("Nhap so luong ghe: ");
-        sl = sc.nextInt();
-        soLuong = sl;
-        for (int i = 0; i < soLuong; i++) {
-            dsGhe = Arrays.copyOf(dsGhe, i + 1);
-            dsGhe[i] = new Ghe();
-            dsGhe[i].nhapGhe();
-            ghiFile(dsGhe[i]);
-            System.out.println("==================================");
+        } catch (IOException e) {
+            System.out.println("Loi ghi file");
         }
     }
 
     // Xuat danh sach ghe
     public void xuatDS() {
-        System.out.println("+-----------------+----------------------+-----------------+");
-        System.out.println("|     Ma ghe      |      Vi tri ghe      |   May may bay   |" );
-        System.out.println("+-----------------+----------------------+-----------------+");
+        System.out.println("            ================== Danh Sach ghe ==================");
+        System.out.println("+-----------------+----------------------+--------------+-----------------+");
+        System.out.println("|     Ma ghe      |      Vi tri ghe      |  Trang thai  |   May may bay   |");
+        System.out.println("+-----------------+----------------------+--------------+-----------------+");
         for (int i = 0; i < soLuong; i++) {
             dsGhe[i].xuatGhe();
         }
-        System.out.println("+-----------------+----------------------+----------------------+");
+        System.out.println("+-----------------+----------------------+--------------+-----------------+");
     }
 
     // Them ghe (khong tham so)
@@ -95,7 +85,6 @@ public class DanhSachGhe {
             dsGhe = Arrays.copyOf(dsGhe, soLuong + 1);
             dsGhe[soLuong] = new Ghe();
             dsGhe[soLuong].nhapGhe();
-            ghiFile(dsGhe[soLuong]);
             soLuong++;
             System.out.println("Da them ghe thanh cong!");
         } else {
@@ -105,15 +94,10 @@ public class DanhSachGhe {
 
     // Them ghe (co tham so)
     public void them(Ghe ghe) {
-        if (tim(ghe.getMaGhe()) == null) {
-            dsGhe = Arrays.copyOf(dsGhe, soLuong + 1);
-            dsGhe[soLuong] = ghe;
-            ghiFile(ghe);
-            soLuong++;
-            System.out.println("Da them ghe thanh cong!");
-        } else {
-            System.out.println("Ghe da ton tai!");
-        }
+        dsGhe = Arrays.copyOf(dsGhe, soLuong + 1);
+        dsGhe[soLuong] = ghe;
+        soLuong++;
+        System.out.println("Da them ghe thanh cong!");
     }
 
     // Xoa ghe (co tham so)
@@ -167,19 +151,6 @@ public class DanhSachGhe {
         }
     }
 
-    // Tim ghe khong tham so
-    public Ghe tim() {
-        String maGhe;
-        System.out.print("Nhap ma ghe can tim: ");
-        maGhe = sc.nextLine();
-        for (int i = 0; i < dsGhe.length; i++) {
-            if (dsGhe[i].equals(maGhe)) {
-                return dsGhe[i];
-            }
-        }
-        return null;
-    }
-
     // Tim ghe theo ma
     public Ghe tim(String maghe) {
         for (int i = 0; i < dsGhe.length; i++) {
@@ -198,6 +169,65 @@ public class DanhSachGhe {
             }
         }
         return -1;
+    }
+
+    public Ghe timViTriGhe(String viTri){
+        for (int i = 0; i < dsGhe.length; i++) {
+            if(dsGhe[i].getViTriGhe().equals(viTri))
+                return dsGhe[i];
+        }
+        return null;
+    }
+    
+    public Ghe[] gheTrong() {
+        Ghe[] ds = new Ghe[0];
+        int j = 0;
+        for (int i = 0; i < dsGhe.length; i++) {
+            if (dsGhe[i].getTrangThai().equals("Trong")) {
+                ds = Arrays.copyOf(dsGhe, j + 1);
+                ds[j] = new Ghe();
+                ds[j] = dsGhe[i];
+                j++;
+            }
+        }
+        return ds;
+    }
+
+    public Ghe[] gheDaDat() {
+        Ghe[] ds = new Ghe[0];
+        int j = 0;
+        for (int i = 0; i < dsGhe.length; i++) {
+            if (dsGhe[i].getTrangThai().equals("Da dat")) {
+                ds = Arrays.copyOf(dsGhe, j + 1);
+                ds[j] = new Ghe();
+                ds[j] = dsGhe[i];
+                j++;
+            }
+        }
+        return ds;
+    }
+
+    public int[] thongKeTrangThaiGhe() {
+        int tk[] = new int[2];
+        tk[0] = gheTrong().length;
+        tk[1] = gheDaDat().length;
+        return tk;
+    }
+
+    public Ghe[] getDsGhe() {
+        return dsGhe;
+    }
+    
+    public void setDsGhe(Ghe[] dsGhe) {
+        this.dsGhe = dsGhe;
+    }
+
+    public int getSoLuong() {
+        return soLuong;
+    }
+
+    public void setSoLuong(int soLuong) {
+        this.soLuong = soLuong;
     }
 
 }
