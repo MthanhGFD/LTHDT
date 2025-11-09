@@ -119,7 +119,6 @@ public class QuanLyHanhKhach extends QuanLyVeMayBay {
                     System.out.println("|  5. Tim theo so dien thoai                         |");
                     System.out.println("|  6. Tim theo loai hanh khach                       |");
                     System.out.println("+----------------------------------------------------+");
-                    String chontim;
                     System.out.print("Moi chon thao tac tim:");
                     c = sc.next();
                     switch (c) {
