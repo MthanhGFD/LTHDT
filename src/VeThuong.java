@@ -18,6 +18,7 @@ public class VeThuong extends Ve {
     }
 
     public VeThuong(VeThuong other){
+        super(other);
         this.phiHanhLy = other.phiHanhLy;
         this.phiDichVu = other.phiDichVu;
     }
@@ -30,30 +31,33 @@ public class VeThuong extends Ve {
 
     @Override
     public void nhapVe(){
+        super.nhapVe();
         Scanner sc = new Scanner(System.in);
         System.out.print("Nhap phi hanh ly: "); this.phiHanhLy = sc.nextDouble();
         System.out.print("Nhap phi dich vu: "); this.phiDichVu = sc.nextDouble();
-        sc.nextLine(); // clear buffer        
+        sc.nextLine(); // clear buffer       
     }
 
     @Override
     public void xuatVe() {
-        System.out.println("\n\t\t\t=== VE THUONG ===");
         double tongTienVe = tinhTienVe();
+
         super.xuatVe();
-        String fmt = "| %-10f | %-10f | %-10f |%n";
-        System.out.println("+------------+------------+------------+");
+        String fmt = "| %-10.0f | %-10.0f | %-10.0f |%n";
         System.out.printf(fmt, phiHanhLy, phiDichVu, tongTienVe);
-        System.out.println("+------------+------------+------------+");
     }
 
-    @Override
     public double tinhTienVe() {
         // Neu la ve khu hoi => giam 10%
         if (getLoaiVe().equalsIgnoreCase("Khu hoi")) {
             return getGiaVe() * 2 * 0.9; 
         }
         // Neu la ve 1 chieu
-        return getGiaVe();
+        return getGiaVe() + phiHanhLy + phiDichVu;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + "," + phiHanhLy + "," + phiDichVu;
     }
 }

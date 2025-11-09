@@ -92,9 +92,9 @@ public class DanhSachHanhKhach {
             soLuong = i;
             f.close();
         } catch (FileNotFoundException e) {
-            System.out.println("Khong tim thay file!");
+            System.out.println("Khong tim thay file.");
         } catch (IOException e) {
-            System.out.println("Loi khi doc file!");
+            System.out.println("Loi khi doc file.");
         }
     }
 
@@ -109,7 +109,7 @@ public class DanhSachHanhKhach {
         } catch (FileNotFoundException e) {
             System.out.println("Khong tim thay file");
         } catch (IOException e) {
-            System.out.println("Loi Doc File");
+            System.out.println("Loi doc File");
         }
     }
 
@@ -124,7 +124,7 @@ public class DanhSachHanhKhach {
             dsHanhKhach[soLuong].nhapHanhKhach();
             soLuong++;
         } else {
-            System.out.println("LOI, trung ma hanh khach!!!");
+            System.out.println("Loi, trung ma hanh khach.");
         }
     }
 
@@ -144,7 +144,7 @@ public class DanhSachHanhKhach {
             dsHanhKhach = Arrays.copyOf(dsHanhKhach, soLuong - 1);
             soLuong--;
         } else {
-            System.out.print("khong tim thay hanh khach can xoa!!!");
+            System.out.print("khong tim thay hanh khach can xoa.");
         }
     }
 
@@ -323,8 +323,6 @@ public class DanhSachHanhKhach {
     }
     
     public HanhKhach timCCCD(String cccd){
-        HanhKhach hk = new HanhKhach();
-        int j = 0;
         for (int i = 0; i < 10; i++) {
             if(dsHanhKhach[i].getNgaysinh().equals(cccd)){
                 return dsHanhKhach[i];
@@ -334,8 +332,6 @@ public class DanhSachHanhKhach {
     }
     
     public HanhKhach timSDT(String sdt){
-        HanhKhach hk = new HanhKhach();
-        int j = 0;
         for (int i = 0; i < 10; i++) {
             if(dsHanhKhach[i].getNgaysinh().equals(sdt)){
                 return dsHanhKhach[i];

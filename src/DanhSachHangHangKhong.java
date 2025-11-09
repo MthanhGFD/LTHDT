@@ -50,7 +50,6 @@ public class DanhSachHangHangKhong {
 
     public void ghiFile() {
         try {
-            File f = new File("dsHangHangKhong.txt");
             FileWriter fw = new FileWriter("dsHangHangKhong.txt");
             for (int i = 0; i < dsHangHangKhong.length; i++) {
                 fw.write(dsHangHangKhong[i].toString() + "\n");

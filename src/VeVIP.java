@@ -1,13 +1,8 @@
 package src;
 
-<<<<<<< HEAD
-
-public class VeVIP{
-    
-=======
 import java.util.Scanner;
 
-public class VeVIP extends Ve {
+public class VeVIP extends Ve{
     private String phongCho, quaTang;
 
     public VeVIP() {
@@ -23,6 +18,7 @@ public class VeVIP extends Ve {
     }
 
     public VeVIP(VeVIP other){
+        super(other);
         this.phongCho = other.phongCho;
         this.quaTang = other.quaTang;
     }
@@ -36,24 +32,21 @@ public class VeVIP extends Ve {
 
     @Override
     public void nhapVe(){
+        super.nhapVe();
         Scanner sc = new Scanner(System.in);
         System.out.print("Nhap phong cho: "); this.phongCho = sc.nextLine();
         System.out.print("Nhap qua tang: "); this.quaTang = sc.nextLine();
-        sc.nextLine(); // clear buffer
     }
 
     @Override
     public void xuatVe() {
-        System.out.println("\n\t\t\t=== VE VIP ===");
         double tongTienVe = tinhTienVe();
+
         super.xuatVe();
-        String fmt = "| %-15s | %-15s | %-10f |%n";
-        System.out.println("+-----------------+-----------------+------------+");
+        String fmt = "| %-15s | %-15s | %-10.0f |%n";
         System.out.printf(fmt, phongCho, quaTang, tongTienVe);
-        System.out.println("+-----------------+-----------------+------------+");
     }
 
-    @Override
     public double tinhTienVe() {
         // Neu la ve khu hoi => giam 10%
         if (getLoaiVe().equalsIgnoreCase("Khu hoi")) {
@@ -62,5 +55,9 @@ public class VeVIP extends Ve {
         // Neu la ve 1 chieu
         return getGiaVe();
     }
->>>>>>> ef4fd73c2d36400c29cc8fa497e0ab271390919c
+
+    @Override
+    public String toString() {
+        return super.toString() + "," + phongCho + "," + quaTang;
+    }
 }

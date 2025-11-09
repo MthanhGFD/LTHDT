@@ -154,7 +154,7 @@ public class DanhSachGhe {
     // Tim ghe theo ma
     public Ghe tim(String maghe) {
         for (int i = 0; i < dsGhe.length; i++) {
-            if (dsGhe[i].equals(maghe)) {
+            if (dsGhe[i].getMaGhe().equals(maghe)) {
                 return dsGhe[i];
             }
         }
