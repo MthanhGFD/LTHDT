@@ -15,8 +15,8 @@ public class DanhSachSanBay {
         soLuong = 0;
     }
 
-    public DanhSachSanBay(String dsSanBay, int soLuong) {
-        this.dsSanBay = this.dsSanBay;
+    public DanhSachSanBay(SanBay[] dsSanBay, int soLuong) {
+        this.dsSanBay = dsSanBay;
         this.soLuong = soLuong;
     }
 
@@ -86,7 +86,6 @@ public class DanhSachSanBay {
     // ghi danh sách mới lên file
     public void ghiFile(){
         try {
-            File f = new File("dsSanBay.txt");
             FileWriter fw = new FileWriter("dsSanBay.txt");
             for (int i = 0; i < dsSanBay.length; i++) {
                 fw.write(dsSanBay[i].toString() + "\n");
