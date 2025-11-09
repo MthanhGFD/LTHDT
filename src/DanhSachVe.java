@@ -3,28 +3,16 @@ package src;
 import java.io.*;
 import java.util.*;
 
-// import java.io.File;
-// import java.io.FileNotFoundException;
-// import java.io.FileReader;
-// import java.io.FileWriter;
-// import java.util.Scanner;
-// import java.io.IOException;
-// import java.util.Arrays;
-
 public class DanhSachVe {
     private Ve[] dsVe;
     private int soLuong;
     static Scanner sc = new Scanner(System.in);
 
-
-
-
-
     public DanhSachVe(){
         this.soLuong = 0;
         this.dsVe = new Ve[soLuong];
     }
-    public DanhSachVe(int soLuong){
+    public DanhSachVe(Ve[] dsVe, int soLuong){
         this.soLuong = soLuong;
         this.dsVe = new Ve[soLuong];
     }
@@ -33,16 +21,8 @@ public class DanhSachVe {
         this.dsVe = Arrays.copyOf(other.dsVe, this.soLuong);
     }
 
-
-
-
-
     public int getSoLuong(){return soLuong;}
     public Ve[] getDSVe(){return Arrays.copyOf(dsVe, soLuong);}
-
-
-
-
 
     public void docFileVe() {
         try {
@@ -102,6 +82,11 @@ public class DanhSachVe {
 
 
 
+
+
+
+
+
     // PHƯƠNG THỨC GHI FILE TOÀN BỘ DANH SÁCH
     public void ghiFileVe() {
         try {
@@ -134,6 +119,11 @@ public class DanhSachVe {
             System.out.println("Loi khi doc file!");
         }
     }
+
+
+
+
+
     
 
 
@@ -156,6 +146,11 @@ public class DanhSachVe {
 
 
 
+
+
+
+
+
     public int timViTriVe() {
         String maVe;
         System.out.print("Nhap ma ve can tim: ");
@@ -168,6 +163,11 @@ public class DanhSachVe {
 
         return -1;
     }
+
+
+
+
+
 
 
 
@@ -230,6 +230,11 @@ public class DanhSachVe {
 
 
 
+
+
+
+
+
     public void xuatDSVe() {
         System.out.println("So Luong: " + soLuong);
 
@@ -262,6 +267,11 @@ public class DanhSachVe {
                 System.out.println("+-----------------+-----------------+-----------------+------------+-----------------+-----------------+-----------------+------------+");
             }
     }
+
+
+
+
+
 
 
 
@@ -329,6 +339,11 @@ public class DanhSachVe {
 
 
 
+
+
+
+
+
     public void xoaVe() {
         String maVe;
         System.out.print("Nhap ma ve can xoa: ");
@@ -368,223 +383,233 @@ public class DanhSachVe {
 
 
 
-public void suaVe() {
-    String maVe;
-    System.out.print("Nhap ma ve can sua: ");
-    maVe = sc.nextLine();
 
-    Ve veCanSua = timVe(maVe);
-    
-    if (veCanSua != null) {
-        if (veCanSua.getMaVe().toUpperCase().startsWith("VVIP")) {
-            // Menu sửa vé VIP
-            veVIPCanSua((VeVIP) veCanSua); // KHAI BÁO HÀM LOẠI PRIVATE VÌ CHỈ GỌI KHI ĐÃ KIỂM TRA
-        } else if (veCanSua.getMaVe().toUpperCase().startsWith("VTH")) {
-            // Menu sửa vé Thường
-            veThuongCanSua((VeThuong) veCanSua); // KHAI BÁO HÀM LOẠI PRIVATE VÌ CHỈ GỌI KHI ĐÃ KIỂM TRA
+
+
+
+
+    public void suaVe() {
+        String maVe;
+        System.out.print("Nhap ma ve can sua: ");
+        maVe = sc.nextLine();
+
+        Ve veCanSua = timVe(maVe);
+        
+        if (veCanSua != null) {
+            if (veCanSua.getMaVe().toUpperCase().startsWith("VVIP")) {
+                // Menu sửa vé VIP
+                veVIPCanSua((VeVIP) veCanSua); // KHAI BÁO HÀM LOẠI PRIVATE VÌ CHỈ GỌI KHI ĐÃ KIỂM TRA
+            } else if (veCanSua.getMaVe().toUpperCase().startsWith("VTH")) {
+                // Menu sửa vé Thường
+                veThuongCanSua((VeThuong) veCanSua); // KHAI BÁO HÀM LOẠI PRIVATE VÌ CHỈ GỌI KHI ĐÃ KIỂM TRA
+            } else {
+                System.out.println("Khong ho tro loai ve nay!");
+            }
         } else {
-            System.out.println("Khong ho tro loai ve nay!");
+            System.out.println("Khong tim thay ve can sua!!!");
         }
-    } else {
-        System.out.println("Khong tim thay ve can sua!!!");
     }
-}
-public void suaVe(String maVe) {
-    Ve veCanSua = timVe(maVe);
-    
-    if (veCanSua != null) {
-        if (veCanSua.getMaVe().toUpperCase().startsWith("VVIP")) {
-            // Menu sửa vé VIP
-            veVIPCanSua((VeVIP) veCanSua); // KHAI BÁO HÀM LOẠI PRIVATE VÌ CHỈ GỌI KHI ĐÃ KIỂM TRA
-        } else if (veCanSua.getMaVe().toUpperCase().startsWith("VTH")) {
-            // Menu sửa vé Thường
-            veThuongCanSua((VeThuong) veCanSua); // KHAI BÁO HÀM LOẠI PRIVATE VÌ CHỈ GỌI KHI ĐÃ KIỂM TRA
+    public void suaVe(String maVe) {
+        Ve veCanSua = timVe(maVe);
+        
+        if (veCanSua != null) {
+            if (veCanSua.getMaVe().toUpperCase().startsWith("VVIP")) {
+                // Menu sửa vé VIP
+                veVIPCanSua((VeVIP) veCanSua); // KHAI BÁO HÀM LOẠI PRIVATE VÌ CHỈ GỌI KHI ĐÃ KIỂM TRA
+            } else if (veCanSua.getMaVe().toUpperCase().startsWith("VTH")) {
+                // Menu sửa vé Thường
+                veThuongCanSua((VeThuong) veCanSua); // KHAI BÁO HÀM LOẠI PRIVATE VÌ CHỈ GỌI KHI ĐÃ KIỂM TRA
+            } else {
+                System.out.println("Khong ho tro loai ve nay!");
+            }
         } else {
-            System.out.println("Khong ho tro loai ve nay!");
+            System.out.println("Khong tim thay ve can sua!!!");
         }
-    } else {
-        System.out.println("Khong tim thay ve can sua!!!");
     }
-}
 
-// PHƯƠNG THỨC HỖ TRỢ - SỬA VÉ VIP
-private void veVIPCanSua(VeVIP veVIP) {
-    int luaChon;
-    do {
-        System.out.println("\n\t\t\t=== MENU SUA VE VIP ===");
-        System.out.println("+===========================================+");
-        System.out.println("|  0. Thoat                                 |");
-        System.out.println("|  1. Sua Loai Ve                           |");
-        System.out.println("|  2. Sua Gia Ve                            |");
-        System.out.println("|  3. Sua Phong Cho                         |");
-        System.out.println("|  4. Sua Qua Tang                          |");
-        System.out.println("+===========================================+");
-        System.out.print("Nhap lua chon cua ban: ");
-        
-        try {
-            luaChon = sc.nextInt();
+    // PHƯƠNG THỨC HỖ TRỢ - SỬA VÉ VIP
+    private void veVIPCanSua(VeVIP veVIP) {
+        int luaChon;
+        do {
+            System.out.println("\n\t\t\t=== MENU SUA VE VIP ===");
+            System.out.println("+===========================================+");
+            System.out.println("|  0. Thoat                                 |");
+            System.out.println("|  1. Sua Loai Ve                           |");
+            System.out.println("|  2. Sua Gia Ve                            |");
+            System.out.println("|  3. Sua Phong Cho                         |");
+            System.out.println("|  4. Sua Qua Tang                          |");
+            System.out.println("+===========================================+");
+            System.out.print("Nhap lua chon cua ban: ");
             
-            switch (luaChon) {
-                case 0:
-                    System.out.println("Thoat menu sua ve VIP!");
-                    break;
-                    
-                case 1:
-                    suaLoaiVe(veVIP);
-                    break;
-                    
-                case 2:
-                    System.out.print("Nhap gia ve moi: ");
-                    double giaVeMoi = sc.nextDouble();
-                    veVIP.setGiaVe(giaVeMoi);
-                    System.out.println("Da cap nhat gia ve thanh cong!");
-                    break;
-                    
-                case 3:
-                    System.out.print("Nhap phong cho moi: ");
-                    String phongChoMoi = sc.nextLine();
-                    veVIP.setPhongCho(phongChoMoi);
-                    System.out.println("Da cap nhat phong cho thanh cong!");
-                    break;
-                    
-                case 4:
-                    System.out.print("Nhap qua tang moi: ");
-                    String quaTangMoi = sc.nextLine();
-                    veVIP.setQuaTang(quaTangMoi);
-                    System.out.println("Da cap nhat qua tang thanh cong!");
-                    break;
-                    
-                default:
-                    System.out.println("Lua chon khong hop le! Vui long chon tu 0 den 4.");
-                    break;
-            }
-        } catch (NumberFormatException e) {
-            System.out.println("Vui long nhap so nguyen!");
-            luaChon = -1;
-        } catch (Exception e) {
-            System.out.println("Co loi xay ra: " + e.getMessage());
-            luaChon = -1;
-        }
-        
-    } while (luaChon != 0);
-}
-
-// PHƯƠNG THỨC HỖ TRỢ - SỬA VÉ THƯỜNG
-private void veThuongCanSua(VeThuong veThuong) {
-    int luaChon;
-    do {
-        System.out.println("\n\t\t\t=== MENU SUA VE THUONG ===");
-        System.out.println("+===========================================+");
-        System.out.println("|  0. Thoat                                 |");
-        System.out.println("|  1. Sua Loai Ve                           |");
-        System.out.println("|  2. Sua Gia Ve                            |");
-        System.out.println("|  3. Sua Phi Hanh Ly                       |");
-        System.out.println("|  4. Sua Phi Dich Vu                       |");
-        System.out.println("+===========================================+");
-        System.out.print("Nhap lua chon cua ban: ");
-        
-        try {
-            luaChon = sc.nextInt();
-            
-            switch (luaChon) {
-                case 0:
-                    System.out.println("Thoat menu sua ve thuong!");
-                    break;
-                    
-                case 1:
-                    suaLoaiVe(veThuong);
-                    break;
-                    
-                case 2:
-                    System.out.print("Nhap gia ve moi: ");
-                    double giaVeMoi = sc.nextDouble();
-                    veThuong.setGiaVe(giaVeMoi);
-                    System.out.println("Da cap nhat gia ve thanh cong!");
-                    break;
-                    
-                case 3:
-                    System.out.print("Nhap phi hanh ly moi: ");
-                    double phiHanhLyMoi = sc.nextDouble();
-                    veThuong.setPhiHanhLy(phiHanhLyMoi);
-                    System.out.println("Da cap nhat phi hanh ly thanh cong!");
-                    break;
-                    
-                case 4:
-                    System.out.print("Nhap phi dich vu moi: ");
-                    double phiDichVuMoi = sc.nextDouble();
-                    veThuong.setPhiDichVu(phiDichVuMoi);
-                    System.out.println("Da cap nhat phi dich vu thanh cong!");
-                    break;
-                    
-                default:
-                    System.out.println("Lua chon khong hop le! Vui long chon tu 0 den 4.");
-                    break;
-            }
-        } catch (NumberFormatException e) {
-            System.out.println("Vui long nhap so nguyen!");
-            luaChon = -1;
-        } catch (Exception e) {
-            System.out.println("Co loi xay ra: " + e.getMessage());
-            luaChon = -1;
-        }
-        
-    } while (luaChon != 0);
-}
-
-// PHƯƠNG THỨC HỖ TRỢ - SỬA LOẠI VÉ VÀ CẬP NHẬT GIÁ TỰ ĐỘNG
-private void suaLoaiVe(Ve ve) {
-    int choice;
-    String loaiVeMoi = "";
-    double giaVeMoi = ve.tinhTienVe();
-    
-    do {
-        System.out.println("\n\t\t\t=== CHON LOAI VE MOI ===");
-        System.out.println("+===========================================+");
-        System.out.println("|  1. Mot Chieu                             |");
-        System.out.println("|  2. Khu Hoi                               |");
-        System.out.println("+===========================================+");
-        System.out.print("Nhap lua chon: ");
-        
-        try {
-            choice = sc.nextInt();
-            
-            switch (choice) {
-                case 1:
-                    loaiVeMoi = "Mot Chieu";
-                    // Nếu đang là khứ hồi chuyển sang một chiều, giảm giá đi 50%
-                    if (ve.getLoaiVe().equalsIgnoreCase("Khu Hoi")) {
-                        giaVeMoi = (ve.tinhTienVe() / 0.9) * 0.5;
-                    }
-                    break;
-                    
-                case 2:
-                    loaiVeMoi = "Khu Hoi";
-                    // Nếu đang là một chiều chuyển sang khứ hồi, tăng giá lên gấp 2 nhưng theo chính sách được giảm 10%
-                    if (ve.getLoaiVe().equalsIgnoreCase("Mot Chieu")) {
-                        giaVeMoi = ve.tinhTienVe() * 2.0 * 0.9;
-                    }
-                    break;
-                    
-                default:
-                    System.out.println("Lua chon khong hop le! Vui long chon 1 hoac 2.");
-                    continue;
+            try {
+                luaChon = sc.nextInt();
+                
+                switch (luaChon) {
+                    case 0:
+                        System.out.println("Thoat menu sua ve VIP!");
+                        break;
+                        
+                    case 1:
+                        suaLoaiVe(veVIP);
+                        break;
+                        
+                    case 2:
+                        System.out.print("Nhap gia ve moi: ");
+                        double giaVeMoi = sc.nextDouble();
+                        veVIP.setGiaVe(giaVeMoi);
+                        System.out.println("Da cap nhat gia ve thanh cong!");
+                        break;
+                        
+                    case 3:
+                        System.out.print("Nhap phong cho moi: ");
+                        String phongChoMoi = sc.nextLine();
+                        veVIP.setPhongCho(phongChoMoi);
+                        System.out.println("Da cap nhat phong cho thanh cong!");
+                        break;
+                        
+                    case 4:
+                        System.out.print("Nhap qua tang moi: ");
+                        String quaTangMoi = sc.nextLine();
+                        veVIP.setQuaTang(quaTangMoi);
+                        System.out.println("Da cap nhat qua tang thanh cong!");
+                        break;
+                        
+                    default:
+                        System.out.println("Lua chon khong hop le! Vui long chon tu 0 den 4.");
+                        break;
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Vui long nhap so nguyen!");
+                luaChon = -1;
+            } catch (Exception e) {
+                System.out.println("Co loi xay ra: " + e.getMessage());
+                luaChon = -1;
             }
             
-            // Cập nhật loại vé và giá vé mới
-            ve.setLoaiVe(loaiVeMoi);
-            ve.setGiaVe(giaVeMoi);
+        } while (luaChon != 0);
+    }
+
+    // PHƯƠNG THỨC HỖ TRỢ - SỬA VÉ THƯỜNG
+    private void veThuongCanSua(VeThuong veThuong) {
+        int luaChon;
+        do {
+            System.out.println("\n\t\t\t=== MENU SUA VE THUONG ===");
+            System.out.println("+===========================================+");
+            System.out.println("|  0. Thoat                                 |");
+            System.out.println("|  1. Sua Loai Ve                           |");
+            System.out.println("|  2. Sua Gia Ve                            |");
+            System.out.println("|  3. Sua Phi Hanh Ly                       |");
+            System.out.println("|  4. Sua Phi Dich Vu                       |");
+            System.out.println("+===========================================+");
+            System.out.print("Nhap lua chon cua ban: ");
             
-            System.out.println("Da cap nhat loai ve thanh: " + loaiVeMoi);
-            System.out.println("Gia ve da duoc cap nhat tu dong: " + giaVeMoi);
-            break;
+            try {
+                luaChon = sc.nextInt();
+                
+                switch (luaChon) {
+                    case 0:
+                        System.out.println("Thoat menu sua ve thuong!");
+                        break;
+                        
+                    case 1:
+                        suaLoaiVe(veThuong);
+                        break;
+                        
+                    case 2:
+                        System.out.print("Nhap gia ve moi: ");
+                        double giaVeMoi = sc.nextDouble();
+                        veThuong.setGiaVe(giaVeMoi);
+                        System.out.println("Da cap nhat gia ve thanh cong!");
+                        break;
+                        
+                    case 3:
+                        System.out.print("Nhap phi hanh ly moi: ");
+                        double phiHanhLyMoi = sc.nextDouble();
+                        veThuong.setPhiHanhLy(phiHanhLyMoi);
+                        System.out.println("Da cap nhat phi hanh ly thanh cong!");
+                        break;
+                        
+                    case 4:
+                        System.out.print("Nhap phi dich vu moi: ");
+                        double phiDichVuMoi = sc.nextDouble();
+                        veThuong.setPhiDichVu(phiDichVuMoi);
+                        System.out.println("Da cap nhat phi dich vu thanh cong!");
+                        break;
+                        
+                    default:
+                        System.out.println("Lua chon khong hop le! Vui long chon tu 0 den 4.");
+                        break;
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Vui long nhap so nguyen!");
+                luaChon = -1;
+            } catch (Exception e) {
+                System.out.println("Co loi xay ra: " + e.getMessage());
+                luaChon = -1;
+            }
             
-        } catch (NumberFormatException e) {
-            System.out.println("Vui long nhap so nguyen!");
-            choice = -1;
-        }
+        } while (luaChon != 0);
+    }
+
+    // PHƯƠNG THỨC HỖ TRỢ - SỬA LOẠI VÉ VÀ CẬP NHẬT GIÁ TỰ ĐỘNG
+    private void suaLoaiVe(Ve ve) {
+        int choice;
+        String loaiVeMoi = "";
+        double giaVeMoi = ve.tinhTienVe();
         
-    } while (choice != 1 && choice != 2);
-}
+        do {
+            System.out.println("\n\t\t\t=== CHON LOAI VE MOI ===");
+            System.out.println("+===========================================+");
+            System.out.println("|  1. Mot Chieu                             |");
+            System.out.println("|  2. Khu Hoi                               |");
+            System.out.println("+===========================================+");
+            System.out.print("Nhap lua chon: ");
+            
+            try {
+                choice = sc.nextInt();
+                
+                switch (choice) {
+                    case 1:
+                        loaiVeMoi = "Mot Chieu";
+                        // Nếu đang là khứ hồi chuyển sang một chiều, giảm giá đi 50%
+                        if (ve.getLoaiVe().equalsIgnoreCase("Khu Hoi")) {
+                            giaVeMoi = (ve.tinhTienVe() / 0.9) * 0.5;
+                        }
+                        break;
+                        
+                    case 2:
+                        loaiVeMoi = "Khu Hoi";
+                        // Nếu đang là một chiều chuyển sang khứ hồi, tăng giá lên gấp 2 nhưng theo chính sách được giảm 10%
+                        if (ve.getLoaiVe().equalsIgnoreCase("Mot Chieu")) {
+                            giaVeMoi = ve.tinhTienVe() * 2.0 * 0.9;
+                        }
+                        break;
+                        
+                    default:
+                        System.out.println("Lua chon khong hop le! Vui long chon 1 hoac 2.");
+                        continue;
+                }
+                
+                // Cập nhật loại vé và giá vé mới
+                ve.setLoaiVe(loaiVeMoi);
+                ve.setGiaVe(giaVeMoi);
+                
+                System.out.println("Da cap nhat loai ve thanh: " + loaiVeMoi);
+                System.out.println("Gia ve da duoc cap nhat tu dong: " + giaVeMoi);
+                break;
+                
+            } catch (NumberFormatException e) {
+                System.out.println("Vui long nhap so nguyen!");
+                choice = -1;
+            }
+            
+        } while (choice != 1 && choice != 2);
+    }
+
+
+
+
+
 
 
 
@@ -849,4 +874,20 @@ public void menuTimKiemVe() {
         System.out.println("\n\t\t\t=== KET QUA TIM KIEM: " + tieuDe + " ===");
         xuatDSVe();
     }
+
+
+
+
+
+
+
+
+
+    public double tinhGiaVeTrungBinh(){
+        if (soLuong == 0) return 0;
+        double tongGiaVe = 0;
+        for(int i = 0; i < soLuong; i++) tongGiaVe += dsVe[i].tinhTongTien();
+        return tongGiaVe / soLuong;
+    }
+
 }
